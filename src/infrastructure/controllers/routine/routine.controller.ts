@@ -7,14 +7,11 @@ import {
   ParseIntPipe,
   Post,
   Put,
-  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../../../infrastructure/common/guards/jwtAuth.guard';
 import { RoutineUseCases } from '../../../usecases/routine/routine.usecases';
 import { CreateRoutineDto, UpdateRoutineDto } from './routine.dto';
-import { GetUser } from 'src/infrastructure/common/decorators/user.decorator';
-import { Users } from 'src/infrastructure/entities/user.entity';
 
 @Controller('routines')
 @UseGuards(JwtAuthGuard)
@@ -22,19 +19,8 @@ export class RoutineController {
   constructor(private readonly routineUseCases: RoutineUseCases) {}
 
   @Post()
-  createRoutine(
-    @Body()
-    routine: CreateRoutineDto,
-  ) {
-    const user: any = GetUser();
-
-    if (!user) {
-      throw new UnauthorizedException();
-    }
-    return this.routineUseCases.createRoutine({
-      ...routine,
-      user: user.id,
-    });
+  createRoutine(@Body() routine: CreateRoutineDto) {
+    return this.routineUseCases.createRoutine(routine);
   }
 
   @Get(':id')

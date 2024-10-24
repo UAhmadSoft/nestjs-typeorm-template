@@ -1,38 +1,25 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  Column,
-  ManyToOne,
-  JoinColumn,
-} from 'typeorm';
-import { Categories } from './category.entity';
+import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, } from 'typeorm';
 
 @Entity()
-export class Exercises {
-  @PrimaryGeneratedColumn({ type: 'int4' })
-  id: number;
+export class Exercises{
+@PrimaryGeneratedColumn({ type: 'int4' })
+id: number;
 
-  @Column({ nullable: false, type: 'varchar' })
-  title: string;
+@Column({nullable: false,type:'varchar', })
+title:string;
 
-  @Column({ nullable: false, type: 'varchar' })
-  description: string;
+@Column({nullable: false,type:'varchar', })
+description:string;
 
-  @Column({ nullable: false, type: 'varchar' })
-  image: string;
+@Column({nullable: false,type:'varchar', })
+image:string;
 
-  @Column({ nullable: false, type: 'timestamp' })
-  area: Date;
+@Column({nullable: false,type:'timestamp', })
+area:Date;
 
-  @ManyToOne(() => Categories, (categories) => categories)
-  @JoinColumn({ name: 'deal' })
-  deal: number;
+@CreateDateColumn({ type: 'timestamp' })
+created_on: Date;
 
-  @CreateDateColumn({ type: 'timestamp' })
-  created_on: Date;
-
-  @UpdateDateColumn({ type: 'timestamp' })
-  updated_on: Date;
+@UpdateDateColumn({ type: 'timestamp' })
+updated_on: Date;
 }

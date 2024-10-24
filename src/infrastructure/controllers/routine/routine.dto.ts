@@ -4,7 +4,6 @@ import {
   IsOptional,
   IsNumber,
   IsBoolean,
-  IsArray,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -25,13 +24,15 @@ export class CreateRoutineDto {
   @IsNotEmpty()
   @ApiProperty({ required: true })
   time_delay: number;
-  @IsArray({
-    message: 'Exercises must be an array of numbers',
-    each: true,
-  })
+  @IsNumber()
+  @IsOptional()
+  @ApiProperty({ required: false })
+  user: number;
+
+  // exercises as array of numbers
   @IsNumber({}, { each: true })
   @IsNotEmpty()
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: false })
   exercises: number[];
 }
 
@@ -56,12 +57,9 @@ export class UpdateRoutineDto {
   @IsOptional()
   @ApiProperty({ required: false })
   user: number;
-  @IsArray({
-    message: 'Exercises must be an array of numbers',
-    each: true,
-  })
+  // exercises as array of numbers
   @IsNumber({}, { each: true })
   @IsOptional()
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: false })
   exercises: number[];
 }
