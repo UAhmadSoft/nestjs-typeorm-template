@@ -20,10 +20,10 @@ export class AuthUserPermissions {
   @JoinColumn({ name: 'permissions' })
   permissions: string;
 
-  @PrimaryColumn({ type: 'int8' })
-  @ManyToOne(() => Users, (user) => user.auth_user_permissions)
-  @JoinColumn({ name: 'user_id' })
-  user_id: number;
+  // @PrimaryColumn({ type: 'int8' })
+  // @ManyToOne(() => Users, (user) => user.auth_user_permissions)
+  // @JoinColumn({ name: 'user_id' })
+  // user_id: number;
 
   @Column({ type: 'bool', default: true })
   is_allow: boolean;

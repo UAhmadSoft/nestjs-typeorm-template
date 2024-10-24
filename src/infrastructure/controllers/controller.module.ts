@@ -5,6 +5,11 @@ import { MyLogger } from '../common/logger/myLogger';
 import { MulterModule } from '@nestjs/platform-express';
 import { EmailModule } from 'src/infrastructure/services/emails/email.module';
 import { UseCaseModule } from 'src/usecases/usecase.module';
+import { UserController } from './user/user.controller';
+import { DeviceController } from './device/device.controller';
+import { ExerciseController } from './exercise/exercise.controller';
+import { ProfileController } from './profile/profile.controller';
+import { RoutineController } from './routine/routine.controller';
 
 @Module({
   imports: [
@@ -38,7 +43,13 @@ import { UseCaseModule } from 'src/usecases/usecase.module';
     }),
     EmailModule,
   ],
-  controllers: [],
+  controllers: [
+    UserController,
+    DeviceController,
+    ExerciseController,
+    ProfileController,
+    RoutineController,
+  ],
   providers: [MyLogger, EmailModule],
 })
 export class ControllerModule {}

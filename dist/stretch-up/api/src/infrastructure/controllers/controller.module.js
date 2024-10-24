@@ -13,6 +13,11 @@ const myLogger_1 = require("../common/logger/myLogger");
 const platform_express_1 = require("@nestjs/platform-express");
 const email_module_1 = require("../services/emails/email.module");
 const usecase_module_1 = require("../../usecases/usecase.module");
+const user_controller_1 = require("./user/user.controller");
+const device_controller_1 = require("./device/device.controller");
+const exercise_controller_1 = require("./exercise/exercise.controller");
+const profile_controller_1 = require("./profile/profile.controller");
+const routine_controller_1 = require("./routine/routine.controller");
 let ControllerModule = class ControllerModule {
 };
 ControllerModule = __decorate([
@@ -41,7 +46,13 @@ ControllerModule = __decorate([
             }),
             email_module_1.EmailModule,
         ],
-        controllers: [],
+        controllers: [
+            user_controller_1.UserController,
+            device_controller_1.DeviceController,
+            exercise_controller_1.ExerciseController,
+            profile_controller_1.ProfileController,
+            routine_controller_1.RoutineController,
+        ],
         providers: [myLogger_1.MyLogger, email_module_1.EmailModule],
     })
 ], ControllerModule);

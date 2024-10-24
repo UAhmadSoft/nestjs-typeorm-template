@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateAdminDto = exports.banUserDto = exports.UpdateUserDto = exports.CreateUserDto = void 0;
+exports.UpdateUserDto = exports.CreateUserDto = void 0;
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
 class CreateUserDto {
@@ -33,6 +33,12 @@ __decorate([
     __metadata("design:type", Number)
 ], CreateUserDto.prototype, "signup_otp", void 0);
 __decorate([
+    (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({ required: true }),
+    __metadata("design:type", Date)
+], CreateUserDto.prototype, "signup_otp_expiry", void 0);
+__decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
@@ -43,19 +49,7 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", Date)
-], CreateUserDto.prototype, "signup_otp_expiry", void 0);
-__decorate([
-    (0, class_validator_1.IsDate)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", Date)
 ], CreateUserDto.prototype, "forget_email_otp_expiry", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "fullname", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
@@ -105,23 +99,17 @@ __decorate([
     __metadata("design:type", Boolean)
 ], CreateUserDto.prototype, "is_active", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", Date)
-], CreateUserDto.prototype, "last_login", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "hashRefreshToken", void 0);
-__decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", Boolean)
 ], CreateUserDto.prototype, "is_banned", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({ required: true }),
+    __metadata("design:type", Number)
+], CreateUserDto.prototype, "device", void 0);
 exports.CreateUserDto = CreateUserDto;
 class UpdateUserDto {
 }
@@ -144,6 +132,12 @@ __decorate([
     __metadata("design:type", Number)
 ], UpdateUserDto.prototype, "signup_otp", void 0);
 __decorate([
+    (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, swagger_1.ApiProperty)({ required: false }),
+    __metadata("design:type", Date)
+], UpdateUserDto.prototype, "signup_otp_expiry", void 0);
+__decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
@@ -154,19 +148,7 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", Date)
-], UpdateUserDto.prototype, "signup_otp_expiry", void 0);
-__decorate([
-    (0, class_validator_1.IsDate)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", Date)
 ], UpdateUserDto.prototype, "forget_email_otp_expiry", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", String)
-], UpdateUserDto.prototype, "fullname", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
@@ -216,72 +198,16 @@ __decorate([
     __metadata("design:type", Boolean)
 ], UpdateUserDto.prototype, "is_active", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", Date)
-], UpdateUserDto.prototype, "last_login", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", String)
-], UpdateUserDto.prototype, "hashRefreshToken", void 0);
-__decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", Boolean)
 ], UpdateUserDto.prototype, "is_banned", void 0);
-exports.UpdateUserDto = UpdateUserDto;
-class banUserDto {
-}
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsArray)({
-        message: 'You must provide an array of ids to ban',
-    }),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", Array)
-], banUserDto.prototype, "ids", void 0);
-exports.banUserDto = banUserDto;
-class CreateAdminDto {
-}
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateAdminDto.prototype, "email", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateAdminDto.prototype, "fullName", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateAdminDto.prototype, "phone", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateAdminDto.prototype, "password", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateAdminDto.prototype, "role", void 0);
-__decorate([
+    (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateAdminDto.prototype, "description", void 0);
-exports.CreateAdminDto = CreateAdminDto;
+    __metadata("design:type", Number)
+], UpdateUserDto.prototype, "device", void 0);
+exports.UpdateUserDto = UpdateUserDto;
 //# sourceMappingURL=user.dto.js.map

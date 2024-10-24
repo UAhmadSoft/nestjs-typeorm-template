@@ -19,43 +19,37 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", String)
-], CreateProfileDto.prototype, "phone", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", String)
-], CreateProfileDto.prototype, "upcoming_phone", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", Number)
-], CreateProfileDto.prototype, "upcoming_phone_otp", void 0);
+], CreateProfileDto.prototype, "fullname", void 0);
 __decorate([
     (0, class_validator_1.IsDate)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", Date)
-], CreateProfileDto.prototype, "upcoming_phone_otp_expiry", void 0);
+], CreateProfileDto.prototype, "reminder_time", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", String)
-], CreateProfileDto.prototype, "document_front", void 0);
+    __metadata("design:type", Array)
+], CreateProfileDto.prototype, "flexibility_level", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", String)
-], CreateProfileDto.prototype, "document_back", void 0);
+    __metadata("design:type", Array)
+], CreateProfileDto.prototype, "stretching_time", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", String)
-], CreateProfileDto.prototype, "photo", void 0);
+    __metadata("design:type", Array)
+], CreateProfileDto.prototype, "goal", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({ required: true }),
+    __metadata("design:type", Array)
+], CreateProfileDto.prototype, "discomfort_areas", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
@@ -70,49 +64,37 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", String)
-], UpdateProfileDto.prototype, "phone", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", String)
-], UpdateProfileDto.prototype, "email", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", String)
-], UpdateProfileDto.prototype, "upcoming_phone", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", Number)
-], UpdateProfileDto.prototype, "upcoming_phone_otp", void 0);
+], UpdateProfileDto.prototype, "fullname", void 0);
 __decorate([
     (0, class_validator_1.IsDate)(),
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", Date)
-], UpdateProfileDto.prototype, "upcoming_phone_otp_expiry", void 0);
+], UpdateProfileDto.prototype, "reminder_time", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", String)
-], UpdateProfileDto.prototype, "document_front", void 0);
+    __metadata("design:type", Array)
+], UpdateProfileDto.prototype, "flexibility_level", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", String)
-], UpdateProfileDto.prototype, "document_back", void 0);
+    __metadata("design:type", Array)
+], UpdateProfileDto.prototype, "stretching_time", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", String)
-], UpdateProfileDto.prototype, "photo", void 0);
+    __metadata("design:type", Array)
+], UpdateProfileDto.prototype, "goal", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, swagger_1.ApiProperty)({ required: false }),
+    __metadata("design:type", Array)
+], UpdateProfileDto.prototype, "discomfort_areas", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),

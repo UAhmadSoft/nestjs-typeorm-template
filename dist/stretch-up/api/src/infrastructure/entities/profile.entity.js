@@ -19,41 +19,29 @@ __decorate([
     __metadata("design:type", Number)
 ], Profiles.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar', }),
     __metadata("design:type", String)
-], Profiles.prototype, "phone", void 0);
+], Profiles.prototype, "fullname", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
-    __metadata("design:type", Number)
-], Profiles.prototype, "phone_otp", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp', nullable: true }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'time', }),
     __metadata("design:type", Date)
-], Profiles.prototype, "phone_otp_expiry", void 0);
+], Profiles.prototype, "reminder_time", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
-    __metadata("design:type", String)
-], Profiles.prototype, "upcoming_phone", void 0);
+    (0, typeorm_1.Column)({ nullable: false, type: 'simple-array', }),
+    __metadata("design:type", Array)
+], Profiles.prototype, "flexibility_level", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
-    __metadata("design:type", Number)
-], Profiles.prototype, "upcoming_phone_otp", void 0);
+    (0, typeorm_1.Column)({ nullable: false, type: 'simple-array', }),
+    __metadata("design:type", Array)
+], Profiles.prototype, "stretching_time", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp', nullable: true }),
-    __metadata("design:type", Date)
-], Profiles.prototype, "upcoming_phone_otp_expiry", void 0);
+    (0, typeorm_1.Column)({ nullable: false, type: 'simple-array', }),
+    __metadata("design:type", Array)
+], Profiles.prototype, "goal", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
-    __metadata("design:type", String)
-], Profiles.prototype, "document_front", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
-    __metadata("design:type", String)
-], Profiles.prototype, "document_back", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
-    __metadata("design:type", String)
-], Profiles.prototype, "photo", void 0);
+    (0, typeorm_1.Column)({ nullable: false, type: 'simple-array', }),
+    __metadata("design:type", Array)
+], Profiles.prototype, "discomfort_areas", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => user_entity_1.Users),
     (0, typeorm_1.JoinColumn)({ name: 'user' }),

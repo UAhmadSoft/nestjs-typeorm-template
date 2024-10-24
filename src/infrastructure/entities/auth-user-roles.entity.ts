@@ -16,10 +16,10 @@ export class AuthUserRoles {
   @JoinColumn({ name: 'role' })
   role: string;
 
-  @PrimaryColumn({ type: 'int8' })
-  @ManyToOne(() => Users, (user) => user.auth_user_roles)
-  @JoinColumn({ name: 'user_id' })
-  user_id: number;
+  // @PrimaryColumn({ type: 'int8' })
+  // @ManyToOne(() => Users, (user) => user.auth_user_roles)
+  // @JoinColumn({ name: 'user_id' })
+  // user_id: number;
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;

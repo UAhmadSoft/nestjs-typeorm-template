@@ -11,19 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProfileController = void 0;
 const common_1 = require("@nestjs/common");
-const jwtAuth_guard_1 = require("../../common/guards/jwtAuth.guard");
+const jwtAuth_guard_1 = require("../../../infrastructure/common/guards/jwtAuth.guard");
 const profile_usecases_1 = require("../../../usecases/profile/profile.usecases");
 const profile_dto_1 = require("./profile.dto");
-const user_usecases_1 = require("src/usecases/user/user.usecases");
-const user_data_1 = require("../../common/user.data");
 let ProfileController = class ProfileController {
-    constructor(profileUseCases, userUseCases) {
+    constructor(profileUseCases) {
         this.profileUseCases = profileUseCases;
-        this.userUseCases = userUseCases;
+    }
+    createProfile(profile) {
+        return this.profileUseCases.createProfile(profile);
     }
     getProfile(id) {
         return this.profileUseCases.getProfile(id);
@@ -31,21 +30,20 @@ let ProfileController = class ProfileController {
     getProfiles() {
         return this.profileUseCases.getProfiles();
     }
-    async updateProfile(profile) {
-        const loggedInUser = await this.userUseCases.getUser(user_data_1.UserData.getUserData().id, true);
-        const profileId = loggedInUser.profile;
-        const result = await this.profileUseCases.updateProfile(profileId.id, profile);
-        return {
-            message: 'Profile updated successfully',
-            status: 200,
-            profile: result,
-            user: loggedInUser,
-        };
+    updateProfile(id, profile) {
+        return this.profileUseCases.updateProfile(id, profile);
     }
     deleteProfile(id) {
         return this.profileUseCases.deleteProfile(id);
     }
 };
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [profile_dto_1.CreateProfileDto]),
+    __metadata("design:returntype", void 0)
+], ProfileController.prototype, "createProfile", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
@@ -60,11 +58,12 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ProfileController.prototype, "getProfiles", null);
 __decorate([
-    (0, common_1.Patch)(),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [profile_dto_1.UpdateProfileDto]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:paramtypes", [Number, profile_dto_1.UpdateProfileDto]),
+    __metadata("design:returntype", void 0)
 ], ProfileController.prototype, "updateProfile", null);
 __decorate([
     (0, common_1.Delete)(':id'),
@@ -76,7 +75,7 @@ __decorate([
 ProfileController = __decorate([
     (0, common_1.Controller)('profiles'),
     (0, common_1.UseGuards)(jwtAuth_guard_1.JwtAuthGuard),
-    __metadata("design:paramtypes", [typeof (_a = typeof profile_usecases_1.ProfilesUseCases !== "undefined" && profile_usecases_1.ProfilesUseCases) === "function" ? _a : Object, typeof (_b = typeof user_usecases_1.UserUseCases !== "undefined" && user_usecases_1.UserUseCases) === "function" ? _b : Object])
+    __metadata("design:paramtypes", [profile_usecases_1.ProfileUseCases])
 ], ProfileController);
 exports.ProfileController = ProfileController;
 //# sourceMappingURL=profile.controller.js.map

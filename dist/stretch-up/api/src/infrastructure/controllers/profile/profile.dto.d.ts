@@ -1,21 +1,18 @@
 export declare class CreateProfileDto {
-    phone: string;
-    upcoming_phone: string;
-    upcoming_phone_otp: number;
-    upcoming_phone_otp_expiry: Date;
-    document_front: string;
-    document_back: string;
-    photo: string;
+    fullname: string;
+    reminder_time: Date;
+    flexibility_level: string[];
+    stretching_time: string[];
+    goal: string[];
+    discomfort_areas: string[];
     user: number;
 }
 export declare class UpdateProfileDto {
-    phone: string;
-    email: string;
-    upcoming_phone: string;
-    upcoming_phone_otp: number;
-    upcoming_phone_otp_expiry: Date;
-    document_front: string;
-    document_back: string;
-    photo: string;
+    fullname: string;
+    reminder_time: Date;
+    flexibility_level: string[];
+    stretching_time: string[];
+    goal: string[];
+    discomfort_areas: string[];
     user: number;
 }

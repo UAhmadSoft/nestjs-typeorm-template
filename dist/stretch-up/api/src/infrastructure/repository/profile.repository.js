@@ -12,59 +12,44 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProfilesRepository = void 0;
+exports.ProfileRepository = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const profile_entity_1 = require("../entities/profile.entity");
-let ProfilesRepository = class ProfilesRepository {
-    constructor(ProfilesRepository) {
-        this.ProfilesRepository = ProfilesRepository;
+let ProfileRepository = class ProfileRepository {
+    constructor(profileRepository) {
+        this.profileRepository = profileRepository;
     }
-    async createProfile(ProfilesModel, manager = null) {
-        const createdProfile = await this.ProfilesRepository.createQueryBuilder('Profiles')
-            .insert()
-            .into(profile_entity_1.Profiles)
-            .values(ProfilesModel)
-            .execute();
-        return await this.ProfilesRepository.findOne({
-            where: { id: createdProfile.identifiers[0].id },
-        });
+    async createProfile(profileModel) {
+        return await this.profileRepository.save(profileModel);
     }
     async getProfile(id) {
-        return await this.ProfilesRepository.findOne({ where: { id } });
+        return await this.profileRepository.findOne({ where: { id } });
     }
     async getProfiles() {
-        return await this.ProfilesRepository.find();
+        return await this.profileRepository.find();
     }
     async updateProfile(id, updateProfileModel) {
-        const Profile = await this.ProfilesRepository.findOne({ where: { id } });
-        if (Profile) {
-            const updatedProfile = Object.assign(Object.assign({}, Profile), updateProfileModel);
-            return this.ProfilesRepository.save(updatedProfile);
+        const profile = await this.profileRepository.findOne({ where: { id } });
+        if (profile) {
+            const updatedProfile = Object.assign(Object.assign({}, profile), updateProfileModel);
+            return this.profileRepository.save(updatedProfile);
         }
         return;
     }
     async deleteProfile(id) {
-        await this.ProfilesRepository.delete(id);
+        const result = await this.profileRepository.delete(id);
+        if (result.affected === 0) {
+            throw new common_1.NotFoundException('Profile Not Found');
+        }
         return;
     }
-    async getProfileByCode(code) {
-        const adminUserEntity = await this.ProfilesRepository.findOne({
-            where: {
-                phone_otp: code,
-            },
-        });
-        if (!adminUserEntity) {
-            return null;
-        }
-        return adminUserEntity;
-    }
 };
-ProfilesRepository = __decorate([
+ProfileRepository = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(profile_entity_1.Profiles)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
-], ProfilesRepository);
-exports.ProfilesRepository = ProfilesRepository;
+], ProfileRepository);
+exports.ProfileRepository = ProfileRepository;
 //# sourceMappingURL=profile.repository.js.map

@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthUserRoles = void 0;
 const typeorm_1 = require("typeorm");
 const auth_roles_entity_1 = require("./auth-roles.entity");
-const user_entity_1 = require("./user.entity");
 let AuthUserRoles = class AuthUserRoles {
 };
 __decorate([
@@ -21,12 +20,6 @@ __decorate([
     (0, typeorm_1.JoinColumn)({ name: 'role' }),
     __metadata("design:type", String)
 ], AuthUserRoles.prototype, "role", void 0);
-__decorate([
-    (0, typeorm_1.PrimaryColumn)({ type: 'int8' }),
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.Users, (user) => user.auth_user_roles),
-    (0, typeorm_1.JoinColumn)({ name: 'user_id' }),
-    __metadata("design:type", Number)
-], AuthUserRoles.prototype, "user_id", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)

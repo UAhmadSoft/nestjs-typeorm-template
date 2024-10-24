@@ -1,52 +1,28 @@
 export declare class ProfileModel {
-    id?: number;
-    phone?: string;
-    phone_otp?: number;
-    phone_otp_expiry?: Date;
-    upcoming_phone?: string;
-    upcoming_phone_otp?: number;
-    upcoming_phone_otp_expiry?: Date;
-    document_front?: string;
-    document_back?: string;
-    photo?: string;
-    user?: number;
-}
-export declare class FetchProfileModel {
-    id?: number;
-    phone?: string;
-    phone_otp?: number;
-    phone_otp_expiry?: Date;
-    upcoming_phone?: string;
-    upcoming_phone_otp?: number;
-    upcoming_phone_otp_expiry?: Date;
-    document_front?: string;
-    document_back?: string;
-    photo?: string;
-    user?: number;
-}
-export interface ProfileCreatedModel {
-    id?: number;
-    phone?: string;
-    phone_otp?: number;
-    phone_otp_expiry?: Date;
-    upcoming_phone: string;
-    upcoming_phone_otp: number;
-    upcoming_phone_otp_expiry: Date;
-    document_front: string;
-    document_back: string;
-    photo: string;
+    fullname: string;
+    reminder_time: Date;
+    flexibility_level: string[];
+    stretching_time: string[];
+    goal: string[];
+    discomfort_areas: string[];
     user: number;
 }
-export interface ProfileUpdateModel {
-    id?: number;
-    phone?: string;
-    phone_otp?: number;
-    phone_otp_expiry?: Date;
-    upcoming_phone?: string;
-    upcoming_phone_otp?: number;
-    upcoming_phone_otp_expiry?: Date;
-    document_front?: string;
-    document_back?: string;
-    photo?: string;
+export declare class FetchProfileModel {
+    id: number;
+    fullname: string;
+    reminder_time: Date;
+    flexibility_level: string[];
+    stretching_time: string[];
+    goal: string[];
+    discomfort_areas: string[];
+    user: number;
+}
+export declare class UpdateProfileModel {
+    fullname?: string;
+    reminder_time?: Date;
+    flexibility_level?: string[];
+    stretching_time?: string[];
+    goal?: string[];
+    discomfort_areas?: string[];
     user?: number;
 }

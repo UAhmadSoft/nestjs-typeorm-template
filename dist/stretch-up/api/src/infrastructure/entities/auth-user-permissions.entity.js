@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthUserPermissions = void 0;
 const typeorm_1 = require("typeorm");
 const auth_permissions_entity_1 = require("./auth-permissions.entity");
-const user_entity_1 = require("./user.entity");
 let AuthUserPermissions = class AuthUserPermissions {
 };
 __decorate([
@@ -21,12 +20,6 @@ __decorate([
     (0, typeorm_1.JoinColumn)({ name: 'permissions' }),
     __metadata("design:type", String)
 ], AuthUserPermissions.prototype, "permissions", void 0);
-__decorate([
-    (0, typeorm_1.PrimaryColumn)({ type: 'int8' }),
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.Users, (user) => user.auth_user_permissions),
-    (0, typeorm_1.JoinColumn)({ name: 'user_id' }),
-    __metadata("design:type", Number)
-], AuthUserPermissions.prototype, "user_id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'bool', default: true }),
     __metadata("design:type", Boolean)

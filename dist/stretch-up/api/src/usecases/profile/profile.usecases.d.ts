@@ -1,21 +1,13 @@
-import { UserRepository } from 'src/infrastructure/repository/user.repository';
-import { DataSource } from 'typeorm';
-import { ProfileModel, ProfileUpdateModel } from '../../domain/models/profile';
-import { ProfilesRepository } from '../../infrastructure/repository/profile.repository';
-import { UserUseCases } from '../user/user.usecases';
-export declare class ProfilesUseCases {
-    private readonly ProfilesRepository;
-    private readonly userRepository;
-    private readonly userUsecases;
-    private dataSource;
-    constructor(ProfilesRepository: ProfilesRepository, userRepository: UserRepository, userUsecases: UserUseCases, dataSource: DataSource);
-    random: (length?: number) => string;
-    createProfile(ProfileModel: ProfileModel, userId: number): Promise<import("../../domain/models/profile").ProfileCreatedModel>;
-    createProfileGoogle(ProfileModel: ProfileModel, email: string, userId: number): Promise<any>;
+import { ProfileModel, UpdateProfileModel } from '../../domain/models/profile';
+import { ProfileRepository } from '../../infrastructure/repository/profile.repository';
+export declare class ProfileUseCases {
+    private readonly profileRepository;
+    constructor(profileRepository: ProfileRepository);
+    createProfile(profileModel: ProfileModel): Promise<import("../../domain/models/profile").FetchProfileModel>;
     getProfile(id: number): Promise<{
-        data: ProfileModel;
+        data: import("../../domain/models/profile").FetchProfileModel;
     }>;
-    getProfiles(): Promise<ProfileModel[]>;
-    updateProfile(id: number, profileUpdateModel: ProfileUpdateModel): Promise<ProfileModel>;
+    getProfiles(): Promise<import("../../domain/models/profile").FetchProfileModel[]>;
+    updateProfile(id: number, profileUpdateModel: UpdateProfileModel): Promise<import("../../domain/models/profile").FetchProfileModel>;
     deleteProfile(id: number): Promise<void>;
 }

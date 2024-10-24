@@ -11,8 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Users = void 0;
 const typeorm_1 = require("typeorm");
-const auth_user_roles_entity_1 = require("./auth-user-roles.entity");
-const auth_user_permissions_entity_1 = require("./auth-user-permissions.entity");
+const device_entity_1 = require("./device.entity");
 let Users = class Users {
 };
 __decorate([
@@ -20,97 +19,70 @@ __decorate([
     __metadata("design:type", Number)
 ], Users.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar' }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Users.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar' }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Users.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'int' }),
     __metadata("design:type", Number)
 ], Users.prototype, "signup_otp", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
-    __metadata("design:type", Number)
-], Users.prototype, "forget_email_otp", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp', nullable: true }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Users.prototype, "signup_otp_expiry", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp', nullable: true }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'int' }),
+    __metadata("design:type", Number)
+], Users.prototype, "forget_email_otp", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false, type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Users.prototype, "forget_email_otp_expiry", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar' }),
-    __metadata("design:type", String)
-], Users.prototype, "fullname", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Users.prototype, "agent_rera", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: false }),
     __metadata("design:type", Boolean)
 ], Users.prototype, "is_social_login", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: false }),
     __metadata("design:type", Boolean)
 ], Users.prototype, "is_email_verified", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
-    __metadata("design:type", Boolean)
-], Users.prototype, "is_phone_verified", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
-    __metadata("design:type", Boolean)
-], Users.prototype, "is_rere_verified", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
-    __metadata("design:type", Boolean)
-], Users.prototype, "is_face_verified", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Users.prototype, "upcoming_email", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'int' }),
     __metadata("design:type", Number)
 ], Users.prototype, "upcoming_email_otp", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp', nullable: true }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Users.prototype, "upcoming_email_otp_expiry", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'boolean', default: true }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: true }),
     __metadata("design:type", Boolean)
 ], Users.prototype, "allow_notifications", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'boolean', default: true }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: true }),
     __metadata("design:type", Boolean)
 ], Users.prototype, "is_active", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp', nullable: true }),
-    __metadata("design:type", Date)
-], Users.prototype, "last_login", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
-    __metadata("design:type", String)
-], Users.prototype, "hashRefreshToken", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: false }),
     __metadata("design:type", Boolean)
 ], Users.prototype, "is_banned", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => auth_user_roles_entity_1.AuthUserRoles, (authUserRole) => authUserRole.user_id),
-    __metadata("design:type", Array)
-], Users.prototype, "auth_user_roles", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => auth_user_permissions_entity_1.AuthUserPermissions, (authUserPermission) => authUserPermission.user_id),
-    __metadata("design:type", Array)
-], Users.prototype, "auth_user_permissions", void 0);
+    (0, typeorm_1.OneToOne)(() => device_entity_1.Devices),
+    (0, typeorm_1.JoinColumn)({ name: 'device' }),
+    __metadata("design:type", Number)
+], Users.prototype, "device", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)

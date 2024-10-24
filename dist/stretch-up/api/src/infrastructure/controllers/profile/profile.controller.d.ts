@@ -1,17 +1,13 @@
-import { ProfilesUseCases } from '../../../usecases/profile/profile.usecases';
-import { UpdateProfileDto } from './profile.dto';
-import { UserUseCases } from 'src/usecases/user/user.usecases';
+import { ProfileUseCases } from '../../../usecases/profile/profile.usecases';
+import { CreateProfileDto, UpdateProfileDto } from './profile.dto';
 export declare class ProfileController {
     private readonly profileUseCases;
-    private readonly userUseCases;
-    constructor(profileUseCases: ProfilesUseCases, userUseCases: UserUseCases);
-    getProfile(id: number): any;
-    getProfiles(): any;
-    updateProfile(profile: UpdateProfileDto): Promise<{
-        message: string;
-        status: number;
-        profile: any;
-        user: any;
+    constructor(profileUseCases: ProfileUseCases);
+    createProfile(profile: CreateProfileDto): Promise<import("../../../domain/models/profile").FetchProfileModel>;
+    getProfile(id: number): Promise<{
+        data: import("../../../domain/models/profile").FetchProfileModel;
     }>;
-    deleteProfile(id: number): any;
+    getProfiles(): Promise<import("../../../domain/models/profile").FetchProfileModel[]>;
+    updateProfile(id: number, profile: UpdateProfileDto): Promise<import("../../../domain/models/profile").FetchProfileModel>;
+    deleteProfile(id: number): Promise<void>;
 }
