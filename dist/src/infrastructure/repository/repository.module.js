@@ -16,6 +16,9 @@ const device_repository_1 = require("./device.repository");
 const exercise_repository_1 = require("./exercise.repository");
 const profile_repository_1 = require("./profile.repository");
 const routine_repository_1 = require("./routine.repository");
+const support_repository_1 = require("./support.repository");
+const userpreference_repository_1 = require("./userpreference.repository");
+const userpreferencesresponse_repository_1 = require("./userpreferencesresponse.repository");
 let RepositoryModule = class RepositoryModule {
 };
 RepositoryModule = __decorate([
@@ -28,6 +31,9 @@ RepositoryModule = __decorate([
             exercise_repository_1.ExerciseRepository,
             profile_repository_1.ProfileRepository,
             routine_repository_1.RoutineRepository,
+            userpreference_repository_1.UserPreferenceRepository,
+            userpreferencesresponse_repository_1.UserPreferencesResponseRepository,
+            support_repository_1.SupportRepository,
         ],
         exports: [
             user_repository_1.UserRepository,
@@ -35,6 +41,9 @@ RepositoryModule = __decorate([
             exercise_repository_1.ExerciseRepository,
             profile_repository_1.ProfileRepository,
             routine_repository_1.RoutineRepository,
+            userpreference_repository_1.UserPreferenceRepository,
+            userpreferencesresponse_repository_1.UserPreferencesResponseRepository,
+            support_repository_1.SupportRepository,
         ],
     })
 ], RepositoryModule);

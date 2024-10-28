@@ -38,6 +38,12 @@ __decorate([
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", Date)
 ], CreateExerciseDto.prototype, "area", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, swagger_1.ApiProperty)({ required: false }),
+    __metadata("design:type", Number)
+], CreateExerciseDto.prototype, "category", void 0);
 exports.CreateExerciseDto = CreateExerciseDto;
 class UpdateExerciseDto {
 }
@@ -65,5 +71,11 @@ __decorate([
     (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", Date)
 ], UpdateExerciseDto.prototype, "area", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, swagger_1.ApiProperty)({ required: false }),
+    __metadata("design:type", Number)
+], UpdateExerciseDto.prototype, "category", void 0);
 exports.UpdateExerciseDto = UpdateExerciseDto;
 //# sourceMappingURL=exercise.dto.js.map

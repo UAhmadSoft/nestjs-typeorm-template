@@ -6,11 +6,13 @@ export declare class AuthLoginDto {
 export declare class AuthGoogleDto {
     readonly email: string;
     readonly is_social_login: boolean;
+    readonly device_id: string;
 }
 export declare class AuthSignUpDto {
     readonly email: string;
     readonly fullname: string;
     readonly password: string;
+    readonly device_id: string;
 }
 export declare class ResendCodeDto {
     readonly email: string;

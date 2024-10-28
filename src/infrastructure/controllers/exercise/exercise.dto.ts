@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsDate, } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsDate, IsNumber, } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 
@@ -19,6 +19,10 @@ image:string;
 @IsNotEmpty()
 @ApiProperty({ required: true })
 area:Date;
+@IsNumber()
+@IsOptional()
+@ApiProperty({ required: false })
+category:number;
 }
 
 
@@ -40,4 +44,8 @@ image:string;
 @IsOptional()
 @ApiProperty({ required: false })
 area:Date;
+@IsNumber()
+@IsOptional()
+@ApiProperty({ required: false })
+category:number;
 }

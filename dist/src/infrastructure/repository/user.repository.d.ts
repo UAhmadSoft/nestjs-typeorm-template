@@ -10,4 +10,7 @@ export declare class UserRepository implements IUser {
     getUsers(): Promise<FetchUserModel[]>;
     updateUser(id: number, updateUserModel: UpdateUserModel): Promise<FetchUserModel>;
     deleteUser(id: number): Promise<void>;
+    getActiveUserByEmail(email: string): Promise<UserModel>;
+    getUserByEmail(email: string): Promise<FetchUserModel>;
+    getUserByCode(code: number): Promise<FetchUserModel>;
 }

@@ -14,7 +14,7 @@ export declare class CreateUserDto {
     allow_notifications: boolean;
     is_active: boolean;
     is_banned: boolean;
-    device: number;
+    device: string;
 }
 export declare class UpdateUserDto {
     email: string;
@@ -32,5 +32,5 @@ export declare class UpdateUserDto {
     allow_notifications: boolean;
     is_active: boolean;
     is_banned: boolean;
-    device: number;
+    device: string;
 }

@@ -27,6 +27,9 @@ import { NotificationModule } from './infrastructure/services/notifications/noti
 import { RawBodyMiddleware } from './middlewares/raw-body.middleware';
 import { JsonBodyMiddleware } from './middlewares/json-body.middleware';
 import { ScheduleModule } from '@nestjs/schedule';
+import { JwtService } from '@nestjs/jwt';
+import { LoginUseCases } from './usecases/auth/login.usecases';
+import { UseCaseModule } from './usecases/usecase.module';
 
 @Module({
   imports: [
@@ -43,14 +46,13 @@ import { ScheduleModule } from '@nestjs/schedule';
     TypeOrmConfigModule,
     ControllerModule,
     BcryptModule,
-    JwtModule,
     BcryptModule,
-    JwtModule,
     EnvironmentConfigModule,
     ScheduleModule,
+    UseCaseModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [LocalStrategy, JwtStrategy],
 })
 export class AppModule implements NestModule {
   public configure(consumer: MiddlewareConsumer): void {

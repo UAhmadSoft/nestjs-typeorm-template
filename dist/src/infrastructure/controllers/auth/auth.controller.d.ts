@@ -1,0 +1,30 @@
+import { ProfileUseCases } from 'src/usecases/profile/profile.usecases';
+import { AuthorizationUseCases } from 'src/usecases/auth/authorization.usecases';
+import { MailService } from 'src/infrastructure/services/emails/email.service';
+import { BcryptService } from './../../services/bcrypt/bcrypt.service';
+import { AuthConfirmSignUpDto, AuthGoogleDto, AuthLoginDto, AuthSignUpDto, ForgotPasswordDto, ResendCodeDto, ResetPasswordDto, SetPasswordDto, UpdatePasswordDto } from './dtos/auth.dto';
+import { LoginUseCases } from '../../../usecases/auth/login.usecases';
+import { IsAuthenticatedUseCases } from '../../../usecases/auth/is-authenticated.usecases';
+import { LogoutUseCases } from '../../../usecases/auth/logout.usecases';
+import { UserUseCases } from 'src/usecases/user/user.usecases';
+export declare class AuthController {
+    private readonly loginUsecaseProxy;
+    private readonly logoutUsecaseProxy;
+    private readonly isAuthUsecaseProxy;
+    private readonly userUseCases;
+    private readonly profileUseCases;
+    private readonly bcryptService;
+    private emailService;
+    private authorizationUseCases;
+    constructor(loginUsecaseProxy: LoginUseCases, logoutUsecaseProxy: LogoutUseCases, isAuthUsecaseProxy: IsAuthenticatedUseCases, userUseCases: UserUseCases, profileUseCases: ProfileUseCases, bcryptService: BcryptService, emailService: MailService, authorizationUseCases: AuthorizationUseCases);
+    login(auth: AuthLoginDto, req: any, res: any, next: any): Promise<void>;
+    googleLogin(auth: AuthGoogleDto, req: any, res: any, next: any): Promise<any>;
+    SignUp(auth: AuthSignUpDto, req: any, res: any, next: any): Promise<void>;
+    ConfirmUserSignUp(user: AuthConfirmSignUpDto, req: any, res: any, next: any): Promise<void>;
+    ResendCode(auth: ResendCodeDto, req: any, res: any, next: any): Promise<void>;
+    forgotPassword(forgotDto: ForgotPasswordDto, req: any, res: any, next: any): Promise<void>;
+    setPassword(code: number, body: SetPasswordDto, req: any, res: any, next: any): Promise<void>;
+    resetPassword(body: ResetPasswordDto, code: number, req: any, res: any, next: any): Promise<void>;
+    updatePassword(user: UpdatePasswordDto, req: any, res: any, next: any): Promise<void>;
+    randomIntFromInterval(min: any, max: any): number;
+}

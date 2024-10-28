@@ -1,6 +1,7 @@
 export declare class Users {
     id: number;
     email: string;
+    role: string;
     password: string;
     signup_otp: number;
     signup_otp_expiry: Date;
@@ -15,7 +16,7 @@ export declare class Users {
     allow_notifications: boolean;
     is_active: boolean;
     is_banned: boolean;
-    device: number;
+    device: string;
     created_on: Date;
     updated_on: Date;
 }

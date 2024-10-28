@@ -7,6 +7,9 @@ import { DeviceRepository } from './device.repository';
 import { ExerciseRepository } from './exercise.repository';
 import { ProfileRepository } from './profile.repository';
 import { RoutineRepository } from './routine.repository';
+import { SupportRepository } from './support.repository';
+import { UserPreferenceRepository } from './userpreference.repository';
+import { UserPreferencesResponseRepository } from './userpreferencesresponse.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature(db1Entities)],
@@ -17,6 +20,9 @@ import { RoutineRepository } from './routine.repository';
     ExerciseRepository,
     ProfileRepository,
     RoutineRepository,
+    UserPreferenceRepository,
+    UserPreferencesResponseRepository,
+    SupportRepository,
   ],
   exports: [
     UserRepository,
@@ -24,6 +30,9 @@ import { RoutineRepository } from './routine.repository';
     ExerciseRepository,
     ProfileRepository,
     RoutineRepository,
+    UserPreferenceRepository,
+    UserPreferencesResponseRepository,
+    SupportRepository,
   ],
 })
 export class RepositoryModule {}

@@ -19,69 +19,73 @@ __decorate([
     __metadata("design:type", Number)
 ], Users.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'varchar', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Users.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'varchar', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
+    __metadata("design:type", String)
+], Users.prototype, "role", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Users.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'int', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'int' }),
     __metadata("design:type", Number)
 ], Users.prototype, "signup_otp", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'timestamp', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Users.prototype, "signup_otp_expiry", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'int', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'int' }),
     __metadata("design:type", Number)
 ], Users.prototype, "forget_email_otp", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'timestamp', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Users.prototype, "forget_email_otp_expiry", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'varchar', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Users.prototype, "agent_rera", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: false, }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: false }),
     __metadata("design:type", Boolean)
 ], Users.prototype, "is_social_login", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: false, }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: false }),
     __metadata("design:type", Boolean)
 ], Users.prototype, "is_email_verified", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'varchar', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Users.prototype, "upcoming_email", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'int', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'int' }),
     __metadata("design:type", Number)
 ], Users.prototype, "upcoming_email_otp", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'timestamp', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Users.prototype, "upcoming_email_otp_expiry", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: true, }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: true }),
     __metadata("design:type", Boolean)
 ], Users.prototype, "allow_notifications", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: true, }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: true }),
     __metadata("design:type", Boolean)
 ], Users.prototype, "is_active", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: false, }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: false }),
     __metadata("design:type", Boolean)
 ], Users.prototype, "is_banned", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => device_entity_1.Devices),
     (0, typeorm_1.JoinColumn)({ name: 'device' }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Users.prototype, "device", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),

@@ -105,10 +105,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], CreateUserDto.prototype, "is_banned", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], CreateUserDto.prototype, "device", void 0);
 exports.CreateUserDto = CreateUserDto;
 class UpdateUserDto {
@@ -204,10 +204,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], UpdateUserDto.prototype, "is_banned", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], UpdateUserDto.prototype, "device", void 0);
 exports.UpdateUserDto = UpdateUserDto;
 //# sourceMappingURL=user.dto.js.map

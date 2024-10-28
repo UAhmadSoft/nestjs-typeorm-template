@@ -12,7 +12,8 @@ const common_1 = require("@nestjs/common");
 const typeorm_module_1 = require("./infrastructure/config/typeorm/typeorm.module");
 const controller_module_1 = require("./infrastructure/controllers/controller.module");
 const bcrypt_module_1 = require("./infrastructure/services/bcrypt/bcrypt.module");
-const jwt_module_1 = require("./infrastructure/services/jwt/jwt.module");
+const local_strategy_1 = require("./infrastructure/common/strategies/local.strategy");
+const jwt_strategy_1 = require("./infrastructure/common/strategies/jwt.strategy");
 const environment_config_module_1 = require("./infrastructure/config/environment-config/environment-config.module");
 const microservice_module_1 = require("./infrastructure/microservices/microservice.module");
 const gateway_module_1 = require("./infrastructure/gateways/gateway.module");
@@ -24,6 +25,7 @@ const notifications_module_1 = require("./infrastructure/services/notifications/
 const raw_body_middleware_1 = require("./middlewares/raw-body.middleware");
 const json_body_middleware_1 = require("./middlewares/json-body.middleware");
 const schedule_1 = require("@nestjs/schedule");
+const usecase_module_1 = require("./usecases/usecase.module");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -51,14 +53,13 @@ AppModule = __decorate([
             typeorm_module_1.TypeOrmConfigModule,
             controller_module_1.ControllerModule,
             bcrypt_module_1.BcryptModule,
-            jwt_module_1.JwtModule,
             bcrypt_module_1.BcryptModule,
-            jwt_module_1.JwtModule,
             environment_config_module_1.EnvironmentConfigModule,
             schedule_1.ScheduleModule,
+            usecase_module_1.UseCaseModule,
         ],
         controllers: [],
-        providers: [],
+        providers: [local_strategy_1.LocalStrategy, jwt_strategy_1.JwtStrategy],
     })
 ], AppModule);
 exports.AppModule = AppModule;

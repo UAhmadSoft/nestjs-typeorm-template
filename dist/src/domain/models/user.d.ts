@@ -1,20 +1,21 @@
 export declare class UserModel {
     email: string;
     password: string;
-    signup_otp: number;
-    signup_otp_expiry: Date;
-    forget_email_otp: number;
-    forget_email_otp_expiry: Date;
-    agent_rera: string;
-    is_social_login: boolean;
-    is_email_verified: boolean;
-    upcoming_email: string;
-    upcoming_email_otp: number;
-    upcoming_email_otp_expiry: Date;
-    allow_notifications: boolean;
-    is_active: boolean;
-    is_banned: boolean;
-    device: number;
+    signup_otp?: number;
+    signup_otp_expiry?: Date;
+    forget_email_otp?: number;
+    forget_email_otp_expiry?: Date;
+    agent_rera?: string;
+    is_social_login?: boolean;
+    is_email_verified?: boolean;
+    upcoming_email?: string;
+    upcoming_email_otp?: number;
+    upcoming_email_otp_expiry?: Date;
+    allow_notifications?: boolean;
+    is_active?: boolean;
+    is_banned?: boolean;
+    role?: string;
+    device: string;
 }
 export declare class FetchUserModel {
     id: number;
@@ -33,7 +34,8 @@ export declare class FetchUserModel {
     allow_notifications: boolean;
     is_active: boolean;
     is_banned: boolean;
-    device: number;
+    device: string;
+    role: string;
 }
 export declare class UpdateUserModel {
     email?: string;
@@ -51,5 +53,6 @@ export declare class UpdateUserModel {
     allow_notifications?: boolean;
     is_active?: boolean;
     is_banned?: boolean;
-    device?: number;
+    role?: string;
+    device?: string;
 }

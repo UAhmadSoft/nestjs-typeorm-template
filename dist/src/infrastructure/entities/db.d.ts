@@ -1,7 +1,10 @@
+import { Categories } from './category.entity';
 import { Devices } from './device.entity';
-import { Exercises } from './exercise.entity';
 import { Profiles } from './profile.entity';
 import { Routines } from './routine.entity';
+import { Supports } from './support.entity';
 import { Users } from './user.entity';
-declare const _default: (typeof Devices | typeof Exercises | typeof Users | typeof Profiles | typeof Routines)[];
+import { UserPreferences } from './userpreference.entity';
+import { UserPreferencesResponses } from './userpreferencesresponse.entity';
+declare const _default: (typeof Users | typeof Devices | typeof Profiles | typeof Routines | typeof Categories | typeof UserPreferences | typeof UserPreferencesResponses | typeof Supports)[];
 export default _default;

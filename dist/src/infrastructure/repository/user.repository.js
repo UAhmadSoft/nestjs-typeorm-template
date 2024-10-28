@@ -45,6 +45,40 @@ let UserRepository = class UserRepository {
         }
         return;
     }
+    async getActiveUserByEmail(email) {
+        const adminUserEntity = await this.userRepository.findOne({
+            where: {
+                email: email.toLowerCase(),
+                is_active: true,
+            },
+        });
+        if (!adminUserEntity) {
+            return null;
+        }
+        return adminUserEntity;
+    }
+    async getUserByEmail(email) {
+        const adminUserEntity = await this.userRepository.findOne({
+            where: {
+                email: email.toLowerCase(),
+            },
+        });
+        if (!adminUserEntity) {
+            return null;
+        }
+        return adminUserEntity;
+    }
+    async getUserByCode(code) {
+        const adminUserEntity = await this.userRepository.findOne({
+            where: {
+                signup_otp: code,
+            },
+        });
+        if (!adminUserEntity) {
+            return null;
+        }
+        return adminUserEntity;
+    }
 };
 UserRepository = __decorate([
     (0, common_1.Injectable)(),

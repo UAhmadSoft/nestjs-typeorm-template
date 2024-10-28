@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, ManyToOne, JoinColumn, } from 'typeorm';
+import { Categories } from './category.entity';
 
 @Entity()
 export class Exercises{
@@ -16,6 +17,10 @@ image:string;
 
 @Column({nullable: false,type:'timestamp', })
 area:Date;
+
+@ManyToOne(() =>Categories, (categories) => categories)
+@JoinColumn({ name: 'category' })
+category: number;
 
 @CreateDateColumn({ type: 'timestamp' })
 created_on: Date;

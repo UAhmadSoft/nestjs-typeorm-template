@@ -41,6 +41,12 @@ __decorate([
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)
 ], AuthGoogleDto.prototype, "is_social_login", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], AuthGoogleDto.prototype, "device_id", void 0);
 exports.AuthGoogleDto = AuthGoogleDto;
 class AuthSignUpDto {
 }
@@ -63,6 +69,12 @@ __decorate([
     IsStrongPassword(),
     __metadata("design:type", String)
 ], AuthSignUpDto.prototype, "password", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], AuthSignUpDto.prototype, "device_id", void 0);
 exports.AuthSignUpDto = AuthSignUpDto;
 class ResendCodeDto {
 }

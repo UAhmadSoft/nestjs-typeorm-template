@@ -31,6 +31,11 @@ export class AuthGoogleDto {
   @IsNotEmpty()
   @IsBoolean()
   readonly is_social_login: boolean;
+
+  @ApiProperty({ required: true })
+  @IsNotEmpty()
+  @IsString()
+  readonly device_id: string;
 }
 export class AuthSignUpDto {
   @ApiProperty({ required: true })
@@ -48,6 +53,11 @@ export class AuthSignUpDto {
   @IsString()
   @IsStrongPassword()
   readonly password: string;
+
+  @ApiProperty({ required: true })
+  @IsNotEmpty()
+  @IsString()
+  readonly device_id: string;
 }
 export class ResendCodeDto {
   @ApiProperty({ required: true })

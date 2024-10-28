@@ -3,6 +3,7 @@ export declare class ExerciseModel {
     description: string;
     image: string;
     area: Date;
+    category?: number;
 }
 export declare class FetchExerciseModel {
     id: number;
@@ -10,10 +11,12 @@ export declare class FetchExerciseModel {
     description: string;
     image: string;
     area: Date;
+    category: number;
 }
 export declare class UpdateExerciseModel {
     title?: string;
     description?: string;
     image?: string;
     area?: Date;
+    category?: number;
 }

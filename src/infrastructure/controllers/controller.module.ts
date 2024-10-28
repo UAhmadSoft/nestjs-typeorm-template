@@ -1,3 +1,4 @@
+import { UserPreferenceController } from './userpreference/userpreference.controller';
 import { diskStorage } from 'multer';
 import { Module } from '@nestjs/common';
 
@@ -10,6 +11,10 @@ import { DeviceController } from './device/device.controller';
 import { ExerciseController } from './exercise/exercise.controller';
 import { ProfileController } from './profile/profile.controller';
 import { RoutineController } from './routine/routine.controller';
+import { UserPreferencesResponseController } from './userpreferencesresponse/userpreferencesresponse.controller';
+import { SupportController } from './support/support.controller';
+import { DashboardController } from './dashboard/dashboard.controller';
+import { AuthController } from './auth/auth.controller';
 
 @Module({
   imports: [
@@ -44,11 +49,16 @@ import { RoutineController } from './routine/routine.controller';
     EmailModule,
   ],
   controllers: [
+    AuthController,
     UserController,
     DeviceController,
     ExerciseController,
     ProfileController,
     RoutineController,
+    UserPreferenceController,
+    UserPreferencesResponseController,
+    SupportController,
+    DashboardController,
   ],
   providers: [MyLogger, EmailModule],
 })

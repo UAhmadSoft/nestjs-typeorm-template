@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ControllerModule = void 0;
+const userpreference_controller_1 = require("./userpreference/userpreference.controller");
 const multer_1 = require("multer");
 const common_1 = require("@nestjs/common");
 const myLogger_1 = require("../common/logger/myLogger");
@@ -18,6 +19,10 @@ const device_controller_1 = require("./device/device.controller");
 const exercise_controller_1 = require("./exercise/exercise.controller");
 const profile_controller_1 = require("./profile/profile.controller");
 const routine_controller_1 = require("./routine/routine.controller");
+const userpreferencesresponse_controller_1 = require("./userpreferencesresponse/userpreferencesresponse.controller");
+const support_controller_1 = require("./support/support.controller");
+const dashboard_controller_1 = require("./dashboard/dashboard.controller");
+const auth_controller_1 = require("./auth/auth.controller");
 let ControllerModule = class ControllerModule {
 };
 ControllerModule = __decorate([
@@ -47,11 +52,16 @@ ControllerModule = __decorate([
             email_module_1.EmailModule,
         ],
         controllers: [
+            auth_controller_1.AuthController,
             user_controller_1.UserController,
             device_controller_1.DeviceController,
             exercise_controller_1.ExerciseController,
             profile_controller_1.ProfileController,
             routine_controller_1.RoutineController,
+            userpreference_controller_1.UserPreferenceController,
+            userpreferencesresponse_controller_1.UserPreferencesResponseController,
+            support_controller_1.SupportController,
+            dashboard_controller_1.DashboardController,
         ],
         providers: [myLogger_1.MyLogger, email_module_1.EmailModule],
     })

@@ -3,6 +3,7 @@ title:string;
 description:string;
 image:string;
 area:Date;
+category?: number;
 }
 
 
@@ -13,6 +14,7 @@ title:string;
 description:string;
 image:string;
 area:Date;
+category: number;
 }
 
 
@@ -22,4 +24,5 @@ title?:string;
 description?:string;
 image?:string;
 area?:Date;
+category?: number;
 }
