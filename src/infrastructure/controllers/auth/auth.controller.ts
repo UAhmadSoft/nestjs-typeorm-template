@@ -127,7 +127,6 @@ export class AuthController {
         password: `${Math.random() * 131312}`,
         is_social_login: true,
         is_active: true,
-        device: auth.device_id,
       });
     } else {
       if (!user.is_social_login) {
@@ -161,7 +160,11 @@ export class AuthController {
         const user = await this.userUseCases.createUser({
           ...auth,
           password: hasPassword,
-          device: auth.device_id,
+        });
+
+        await this.profileUseCases.createProfile({
+          user: user.id,
+          fullname: auth.fullname,
         });
 
         await this.userUseCases.sendSignupCode(user);

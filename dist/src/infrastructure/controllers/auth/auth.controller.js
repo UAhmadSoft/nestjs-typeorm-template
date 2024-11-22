@@ -62,7 +62,6 @@ let AuthController = class AuthController {
                 password: `${Math.random() * 131312}`,
                 is_social_login: true,
                 is_active: true,
-                device: auth.device_id,
             });
         }
         else {
@@ -80,7 +79,11 @@ let AuthController = class AuthController {
         return await (0, catch_async_1.catchAsync)(async (req, res, next) => {
             try {
                 const hasPassword = await this.bcryptService.hash(auth.password);
-                const user = await this.userUseCases.createUser(Object.assign(Object.assign({}, auth), { password: hasPassword, device: auth.device_id }));
+                const user = await this.userUseCases.createUser(Object.assign(Object.assign({}, auth), { password: hasPassword }));
+                await this.profileUseCases.createProfile({
+                    user: user.id,
+                    fullname: auth.fullname,
+                });
                 await this.userUseCases.sendSignupCode(user);
                 if (user) {
                     return res.json({

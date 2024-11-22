@@ -26,6 +26,6 @@ export const databaseConfigurations: DataSourceOptions = {
   entities: Entities,
   cache: false,
   migrations: [join(__dirname, '../../../../database/migrations/*{.ts,.js}')],
-  logging: true,
+  logging: false,
   // migrationsRun: configSerivce.getDatabaseMigrationRun(),
 };

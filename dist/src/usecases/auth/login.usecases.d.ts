@@ -28,7 +28,6 @@ export declare class LoginUseCases {
         is_active?: boolean;
         is_banned?: boolean;
         role?: string;
-        device: string;
     }>;
     validateEmailForLocalStragtegy(email: string): Promise<import("../../domain/models/user").UserModel>;
     validateUserForJWTStragtegy(email: string): Promise<import("../../domain/models/user").UserModel>;

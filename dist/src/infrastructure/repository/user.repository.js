@@ -22,13 +22,39 @@ let UserRepository = class UserRepository {
         this.userRepository = userRepository;
     }
     async createUser(userModel) {
-        return await this.userRepository.save(userModel);
+        return await this.userRepository.save(Object.assign(Object.assign({}, userModel), { email: userModel.email.toLowerCase() }));
     }
     async getUser(id) {
         return await this.userRepository.findOne({ where: { id } });
     }
-    async getUsers() {
-        return await this.userRepository.find();
+    async getUsersCount() {
+        return await this.userRepository.count();
+    }
+    async getUsers(queryParams) {
+        const findObject = {
+            relations: ['profile'],
+        };
+        if (queryParams.search) {
+            findObject.where = {
+                profile: {
+                    fullname: (0, typeorm_2.ILike)(`%${queryParams.search}%`),
+                },
+            };
+        }
+        const total_count = await this.userRepository.count(findObject);
+        if (queryParams.page && queryParams.limit) {
+            const page = queryParams.page * 1 || 1;
+            const limit = queryParams.limit * 1 || 100;
+            const skip = (page - 1) * limit;
+            findObject['take'] = limit;
+            findObject['skip'] = skip;
+        }
+        console.log('findObject', findObject);
+        const users = await this.userRepository.find(findObject);
+        return {
+            total_count,
+            users,
+        };
     }
     async updateUser(id, updateUserModel) {
         const user = await this.userRepository.findOne({ where: { id } });
@@ -51,6 +77,7 @@ let UserRepository = class UserRepository {
                 email: email.toLowerCase(),
                 is_active: true,
             },
+            relations: ['profile'],
         });
         if (!adminUserEntity) {
             return null;

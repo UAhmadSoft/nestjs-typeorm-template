@@ -15,10 +15,10 @@ const swagger_1 = require("@nestjs/swagger");
 class CreateUserPreferencesResponseDto {
 }
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Array)
 ], CreateUserPreferencesResponseDto.prototype, "options", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
@@ -26,14 +26,20 @@ __decorate([
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", Number)
 ], CreateUserPreferencesResponseDto.prototype, "user_preference", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({ required: true }),
+    __metadata("design:type", String)
+], CreateUserPreferencesResponseDto.prototype, "device_id", void 0);
 exports.CreateUserPreferencesResponseDto = CreateUserPreferencesResponseDto;
 class UpdateUserPreferencesResponseDto {
 }
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", String)
+    __metadata("design:type", Array)
 ], UpdateUserPreferencesResponseDto.prototype, "options", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),

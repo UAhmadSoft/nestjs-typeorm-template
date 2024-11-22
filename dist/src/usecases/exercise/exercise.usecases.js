@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExerciseUseCases = void 0;
 const common_1 = require("@nestjs/common");
@@ -26,8 +27,8 @@ let ExerciseUseCases = class ExerciseUseCases {
         }
         return { data };
     }
-    async getExercises() {
-        return await this.exerciseRepository.getExercises();
+    async getExercises(query = {}) {
+        return await this.exerciseRepository.getExercises(query);
     }
     async updateExercise(id, exerciseUpdateModel) {
         return await this.exerciseRepository.updateExercise(id, exerciseUpdateModel);
@@ -38,7 +39,7 @@ let ExerciseUseCases = class ExerciseUseCases {
 };
 ExerciseUseCases = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [exercise_repository_1.ExerciseRepository])
+    __metadata("design:paramtypes", [typeof (_a = typeof exercise_repository_1.ExerciseRepository !== "undefined" && exercise_repository_1.ExerciseRepository) === "function" ? _a : Object])
 ], ExerciseUseCases);
 exports.ExerciseUseCases = ExerciseUseCases;
 //# sourceMappingURL=exercise.usecases.js.map

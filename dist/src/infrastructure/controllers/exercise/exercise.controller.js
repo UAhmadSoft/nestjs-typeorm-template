@@ -17,20 +17,36 @@ const common_1 = require("@nestjs/common");
 const jwtAuth_guard_1 = require("../../../infrastructure/common/guards/jwtAuth.guard");
 const exercise_usecases_1 = require("../../../usecases/exercise/exercise.usecases");
 const exercise_dto_1 = require("./exercise.dto");
+const platform_express_1 = require("@nestjs/platform-express");
+const multerS3 = require("multer-s3");
+const client_s3_1 = require("@aws-sdk/client-s3");
+const s3 = new client_s3_1.S3Client();
 let ExerciseController = class ExerciseController {
     constructor(exerciseUseCases) {
         this.exerciseUseCases = exerciseUseCases;
     }
-    createExercise(exercise) {
-        return this.exerciseUseCases.createExercise(exercise);
+    createExercise(exercise, files) {
+        var _a, _b;
+        if (!((_a = files.image) === null || _a === void 0 ? void 0 : _a[0]) || !((_b = files.thumbnail) === null || _b === void 0 ? void 0 : _b[0])) {
+            throw new common_1.BadRequestException('Please provide an image and a thumbnail');
+        }
+        return this.exerciseUseCases.createExercise(Object.assign(Object.assign({}, exercise), { image: files.image[0].location, thumbnail: files.thumbnail[0].location }));
     }
     getExercise(id) {
         return this.exerciseUseCases.getExercise(id);
     }
-    getExercises() {
-        return this.exerciseUseCases.getExercises();
+    async getExercises(query) {
+        const { exercises, total } = await this.exerciseUseCases.getExercises(query);
+        return { total, results: exercises.length, exercises };
     }
-    updateExercise(id, exercise) {
+    updateExercise(id, exercise, files) {
+        var _a, _b;
+        if ((_a = files.image) === null || _a === void 0 ? void 0 : _a[0]) {
+            exercise.image = files.image[0].location;
+        }
+        if ((_b = files.thumbnail) === null || _b === void 0 ? void 0 : _b[0]) {
+            exercise.thumbnail = files.thumbnail[0].location;
+        }
         return this.exerciseUseCases.updateExercise(id, exercise);
     }
     deleteExercise(id) {
@@ -39,9 +55,31 @@ let ExerciseController = class ExerciseController {
 };
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
+        { name: 'image', maxCount: 1 },
+        { name: 'thumbnail', maxCount: 1 },
+    ], {
+        storage: multerS3({
+            s3: s3,
+            bucket: process.env.AWS_S3_BUCKET_NAME,
+            key: (req, file, cb) => {
+                console.log('file', file);
+                cb(null, Date.now().toString() + '-' + file.originalname);
+            },
+        }),
+        fileFilter(req, file, cb) {
+            if (file.mimetype.includes('image')) {
+                cb(null, true);
+            }
+            else {
+                cb(new common_1.BadRequestException('Please provide a valid image file'), false);
+            }
+        },
+    })),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.UploadedFiles)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [exercise_dto_1.CreateExerciseDto]),
+    __metadata("design:paramtypes", [exercise_dto_1.CreateExerciseDto, Object]),
     __metadata("design:returntype", void 0)
 ], ExerciseController.prototype, "createExercise", null);
 __decorate([
@@ -53,16 +91,39 @@ __decorate([
 ], ExerciseController.prototype, "getExercise", null);
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], ExerciseController.prototype, "getExercises", null);
 __decorate([
     (0, common_1.Put)(':id'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
+        { name: 'image', maxCount: 1 },
+        { name: 'thumbnail', maxCount: 1 },
+    ], {
+        storage: multerS3({
+            s3: s3,
+            bucket: process.env.AWS_S3_BUCKET_NAME,
+            key: (req, file, cb) => {
+                console.log('file', file);
+                cb(null, Date.now().toString() + '-' + file.originalname);
+            },
+        }),
+        fileFilter(req, file, cb) {
+            if (file.mimetype.includes('image')) {
+                cb(null, true);
+            }
+            else {
+                cb(new common_1.BadRequestException('Please provide a valid image file'), false);
+            }
+        },
+    })),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.UploadedFiles)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, exercise_dto_1.UpdateExerciseDto]),
+    __metadata("design:paramtypes", [Number, exercise_dto_1.UpdateExerciseDto, Object]),
     __metadata("design:returntype", void 0)
 ], ExerciseController.prototype, "updateExercise", null);
 __decorate([

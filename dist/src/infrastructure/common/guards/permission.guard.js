@@ -18,14 +18,14 @@ let PermissionGuard = class PermissionGuard {
         this.reflector = reflector;
     }
     canActivate(context) {
+        console.log('PermissionGuard');
         const requiredPermission = this.reflector.getAllAndOverride('permission', [context.getHandler(), context.getClass()]);
+        console.log('requiredPermission', requiredPermission);
         if (requiredPermission === 'public')
             return true;
         const user = user_data_1.UserData.getUserData();
-        if (user.roles.includes('superadmin'))
-            return true;
-        const permissions = user.permissions;
-        return permissions.some((permission) => permission === requiredPermission);
+        console.log('user', user);
+        return requiredPermission.includes(user.role);
     }
 };
 PermissionGuard = __decorate([

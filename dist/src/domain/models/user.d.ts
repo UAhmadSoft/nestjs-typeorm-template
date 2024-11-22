@@ -15,7 +15,6 @@ export declare class UserModel {
     is_active?: boolean;
     is_banned?: boolean;
     role?: string;
-    device: string;
 }
 export declare class FetchUserModel {
     id: number;
@@ -34,7 +33,6 @@ export declare class FetchUserModel {
     allow_notifications: boolean;
     is_active: boolean;
     is_banned: boolean;
-    device: string;
     role: string;
 }
 export declare class UpdateUserModel {
@@ -54,5 +52,4 @@ export declare class UpdateUserModel {
     is_active?: boolean;
     is_banned?: boolean;
     role?: string;
-    device?: string;
 }

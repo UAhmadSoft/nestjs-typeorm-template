@@ -22,19 +22,47 @@ let CategoryRepository = class CategoryRepository {
         this.categoryRepository = categoryRepository;
     }
     async createCategory(categoryModel) {
-        return await this.categoryRepository.save(categoryModel);
+        let category = await this.categoryRepository.save(categoryModel);
+        category = await this.categoryRepository.query(`
+      SELECT c1.*, COUNT(c2.id) as total_exercises
+      FROM categories c1
+      LEFT JOIN exercise_categories ec ON c1.id = ec.category_id
+      LEFT JOIN exercises c2 ON ec.exercise_id = c2.id
+      WHERE c1.id = ${category.id}
+      GROUP BY c1.id
+      ORDER BY c1.id ASC
+      `);
+        return category[0];
     }
     async getCategory(id) {
         return await this.categoryRepository.findOne({ where: { id } });
     }
     async getCategories() {
-        return await this.categoryRepository.find();
+        const categories = await this.categoryRepository.query(`
+      SELECT c1.*, COUNT(c2.id) as total_exercises
+      FROM categories c1
+      LEFT JOIN exercise_categories ec ON c1.id = ec.category_id
+      LEFT JOIN exercises c2 ON ec.exercise_id = c2.id
+      GROUP BY c1.id
+      ORDER BY c1.id ASC
+    `);
+        return categories;
     }
     async updateCategory(id, updateCategoryModel) {
         const category = await this.categoryRepository.findOne({ where: { id } });
         if (category) {
-            const updatedCategory = Object.assign(Object.assign({}, category), updateCategoryModel);
-            return this.categoryRepository.save(updatedCategory);
+            const updatedCategoryBody = Object.assign(Object.assign({}, category), updateCategoryModel);
+            let updatedCategory = await this.categoryRepository.save(updatedCategoryBody);
+            updatedCategory = await this.categoryRepository.query(`
+      SELECT c1.*, COUNT(c2.id) as total_exercises
+      FROM categories c1
+      LEFT JOIN exercise_categories ec ON c1.id = ec.category_id
+      LEFT JOIN exercises c2 ON ec.exercise_id = c2.id
+      WHERE c1.id = ${updatedCategory.id}
+      GROUP BY c1.id
+      ORDER BY c1.id ASC
+      `);
+            return updatedCategory[0];
         }
         return;
     }

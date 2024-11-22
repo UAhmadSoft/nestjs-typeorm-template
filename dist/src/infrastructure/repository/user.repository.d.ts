@@ -7,7 +7,15 @@ export declare class UserRepository implements IUser {
     constructor(userRepository: Repository<Users>);
     createUser(userModel: UserModel): Promise<FetchUserModel>;
     getUser(id: number): Promise<FetchUserModel>;
-    getUsers(): Promise<FetchUserModel[]>;
+    getUsersCount(): Promise<number>;
+    getUsers(queryParams: {
+        page?: number;
+        limit?: number;
+        search?: string;
+    }): Promise<{
+        total_count: number;
+        users: FetchUserModel[];
+    }>;
     updateUser(id: number, updateUserModel: UpdateUserModel): Promise<FetchUserModel>;
     deleteUser(id: number): Promise<void>;
     getActiveUserByEmail(email: string): Promise<UserModel>;

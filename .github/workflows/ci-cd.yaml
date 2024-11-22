@@ -1,0 +1,33 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - dev # Trigger on push to the 'dev' branch
+
+jobs:
+  build-and-deploy:
+    runs-on: stretchup # Specifies that this job runs on the runner with the label 'beyondserver'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Sync Code to Deployment Directory
+        run: sudo rsync -avz --exclude=node_modules $GITHUB_WORKSPACE/* /home/projects/stretchup-api/
+
+      - name: Install Dependencies
+        run: |
+          cd /home/projects/stretchup-api/
+          sudo npm install --legacy-peer-deps
+
+      - name: Ensure Environment Variables for PM2
+        run: |
+          export HOME=/home/runner
+          sudo pm2 update
+
+      - name: Ensure PM2 Daemon is Running
+        run: pm2 ping || pm2 resurrect
+
+      - name: Clean Up GitHub Workspace
+        run: rm -rf $GITHUB_WORKSPACE/*

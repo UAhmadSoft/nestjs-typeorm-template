@@ -3,11 +3,11 @@ import { ExerciseRepository } from '../../infrastructure/repository/exercise.rep
 export declare class ExerciseUseCases {
     private readonly exerciseRepository;
     constructor(exerciseRepository: ExerciseRepository);
-    createExercise(exerciseModel: ExerciseModel): Promise<import("../../domain/models/exercise").FetchExerciseModel>;
+    createExercise(exerciseModel: ExerciseModel): Promise<any>;
     getExercise(id: number): Promise<{
-        data: import("../../domain/models/exercise").FetchExerciseModel;
+        data: any;
     }>;
-    getExercises(): Promise<import("../../domain/models/exercise").FetchExerciseModel[]>;
-    updateExercise(id: number, exerciseUpdateModel: UpdateExerciseModel): Promise<import("../../domain/models/exercise").FetchExerciseModel>;
-    deleteExercise(id: number): Promise<void>;
+    getExercises(query?: {}): Promise<any>;
+    updateExercise(id: number, exerciseUpdateModel: UpdateExerciseModel): Promise<any>;
+    deleteExercise(id: number): Promise<any>;
 }

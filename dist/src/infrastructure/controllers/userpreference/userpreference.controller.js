@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const jwtAuth_guard_1 = require("../../../infrastructure/common/guards/jwtAuth.guard");
 const userpreference_usecases_1 = require("../../../usecases/userpreference/userpreference.usecases");
 const userpreference_dto_1 = require("./userpreference.dto");
+const permissions_decorator_1 = require("../../common/decorators/permissions.decorator");
 let UserPreferenceController = class UserPreferenceController {
     constructor(userPreferenceUseCases) {
         this.userPreferenceUseCases = userPreferenceUseCases;
@@ -38,6 +39,8 @@ let UserPreferenceController = class UserPreferenceController {
     }
 };
 __decorate([
+    (0, common_1.UseGuards)(jwtAuth_guard_1.JwtAuthGuard),
+    (0, permissions_decorator_1.Permission)(['admin']),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -74,7 +77,6 @@ __decorate([
 ], UserPreferenceController.prototype, "deleteUserPreference", null);
 UserPreferenceController = __decorate([
     (0, common_1.Controller)('userpreferences'),
-    (0, common_1.UseGuards)(jwtAuth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [userpreference_usecases_1.UserPreferenceUseCases])
 ], UserPreferenceController);
 exports.UserPreferenceController = UserPreferenceController;

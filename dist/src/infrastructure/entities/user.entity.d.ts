@@ -1,3 +1,4 @@
+import { Profiles } from './profile.entity';
 export declare class Users {
     id: number;
     email: string;
@@ -16,7 +17,7 @@ export declare class Users {
     allow_notifications: boolean;
     is_active: boolean;
     is_banned: boolean;
-    device: string;
+    profile: Profiles;
     created_on: Date;
     updated_on: Date;
 }

@@ -22,7 +22,7 @@ let UserPreferenceRepository = class UserPreferenceRepository {
         this.userPreferenceRepository = userPreferenceRepository;
     }
     async createUserPreference(userPreferenceModel) {
-        return await this.userPreferenceRepository.save(userPreferenceModel);
+        return await this.userPreferenceRepository.save(Object.assign(Object.assign({}, userPreferenceModel), { options: `{${userPreferenceModel.options.join(',')}}` }));
     }
     async getUserPreference(id) {
         return await this.userPreferenceRepository.findOne({ where: { id } });
@@ -31,7 +31,9 @@ let UserPreferenceRepository = class UserPreferenceRepository {
         return await this.userPreferenceRepository.find();
     }
     async updateUserPreference(id, updateUserPreferenceModel) {
-        const userPreference = await this.userPreferenceRepository.findOne({ where: { id } });
+        const userPreference = await this.userPreferenceRepository.findOne({
+            where: { id },
+        });
         if (userPreference) {
             const updatedUserPreference = Object.assign(Object.assign({}, userPreference), updateUserPreferenceModel);
             return this.userPreferenceRepository.save(updatedUserPreference);

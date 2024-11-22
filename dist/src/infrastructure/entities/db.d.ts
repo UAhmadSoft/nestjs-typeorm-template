@@ -1,10 +1,4 @@
-import { Categories } from './category.entity';
-import { Devices } from './device.entity';
 import { Profiles } from './profile.entity';
-import { Routines } from './routine.entity';
-import { Supports } from './support.entity';
 import { Users } from './user.entity';
-import { UserPreferences } from './userpreference.entity';
-import { UserPreferencesResponses } from './userpreferencesresponse.entity';
-declare const _default: (typeof Users | typeof Devices | typeof Profiles | typeof Routines | typeof Categories | typeof UserPreferences | typeof UserPreferencesResponses | typeof Supports)[];
+declare const _default: (typeof Users | typeof Profiles)[];
 export default _default;

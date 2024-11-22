@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Users = void 0;
 const typeorm_1 = require("typeorm");
-const device_entity_1 = require("./device.entity");
+const profile_entity_1 = require("./profile.entity");
 let Users = class Users {
 };
 __decorate([
@@ -83,10 +83,9 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Users.prototype, "is_banned", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => device_entity_1.Devices),
-    (0, typeorm_1.JoinColumn)({ name: 'device' }),
-    __metadata("design:type", String)
-], Users.prototype, "device", void 0);
+    (0, typeorm_1.OneToOne)(() => profile_entity_1.Profiles, (profile) => profile.user),
+    __metadata("design:type", profile_entity_1.Profiles)
+], Users.prototype, "profile", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)

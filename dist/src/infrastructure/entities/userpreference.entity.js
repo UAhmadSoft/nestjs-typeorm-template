@@ -26,8 +26,8 @@ __decorate([
     __metadata("design:type", String)
 ], UserPreferences.prototype, "description", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
-    __metadata("design:type", String)
+    (0, typeorm_1.Column)('simple-array'),
+    __metadata("design:type", Array)
 ], UserPreferences.prototype, "options", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),

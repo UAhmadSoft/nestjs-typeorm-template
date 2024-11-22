@@ -3,11 +3,11 @@ import { DeviceRepository } from '../../infrastructure/repository/device.reposit
 export declare class DeviceUseCases {
     private readonly deviceRepository;
     constructor(deviceRepository: DeviceRepository);
-    createDevice(deviceModel: DeviceModel): Promise<import("../../domain/models/device").FetchDeviceModel>;
+    createDevice(deviceModel: DeviceModel): Promise<any>;
     getDevice(id: number): Promise<{
-        data: import("../../domain/models/device").FetchDeviceModel;
+        data: any;
     }>;
-    getDevices(): Promise<import("../../domain/models/device").FetchDeviceModel[]>;
-    updateDevice(id: number, deviceUpdateModel: UpdateDeviceModel): Promise<import("../../domain/models/device").FetchDeviceModel>;
-    deleteDevice(id: number): Promise<void>;
+    getDevices(): Promise<any>;
+    updateDevice(id: number, deviceUpdateModel: UpdateDeviceModel): Promise<any>;
+    deleteDevice(id: number): Promise<any>;
 }

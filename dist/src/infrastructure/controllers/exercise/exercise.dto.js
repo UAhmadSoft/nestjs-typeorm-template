@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateExerciseDto = exports.CreateExerciseDto = void 0;
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
+const exercise_entity_1 = require("../../entities/exercise.entity");
 class CreateExerciseDto {
 }
 __decorate([
@@ -25,25 +26,37 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", String)
-], CreateExerciseDto.prototype, "description", void 0);
+], CreateExerciseDto.prototype, "instructions", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", String)
-], CreateExerciseDto.prototype, "image", void 0);
+], CreateExerciseDto.prototype, "benefits", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", Date)
+    __metadata("design:type", String)
+], CreateExerciseDto.prototype, "caution", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({ required: true }),
+    __metadata("design:type", Number)
+], CreateExerciseDto.prototype, "duration", void 0);
+__decorate([
+    (0, class_validator_1.IsEnum)(exercise_entity_1.AreaEnum),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({ required: true, enum: exercise_entity_1.AreaEnum }),
+    __metadata("design:type", String)
 ], CreateExerciseDto.prototype, "area", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsArray)({}),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", Number)
-], CreateExerciseDto.prototype, "category", void 0);
+    (0, swagger_1.ApiProperty)({ required: false, type: [Number] }),
+    __metadata("design:type", Array)
+], CreateExerciseDto.prototype, "categories", void 0);
 exports.CreateExerciseDto = CreateExerciseDto;
 class UpdateExerciseDto {
 }
@@ -58,7 +71,25 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", String)
-], UpdateExerciseDto.prototype, "description", void 0);
+], UpdateExerciseDto.prototype, "instructions", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, swagger_1.ApiProperty)({ required: false }),
+    __metadata("design:type", Number)
+], UpdateExerciseDto.prototype, "duration", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, swagger_1.ApiProperty)({ required: false }),
+    __metadata("design:type", String)
+], UpdateExerciseDto.prototype, "benefits", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, swagger_1.ApiProperty)({ required: false }),
+    __metadata("design:type", String)
+], UpdateExerciseDto.prototype, "caution", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
@@ -66,16 +97,22 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateExerciseDto.prototype, "image", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", Date)
+    __metadata("design:type", String)
+], UpdateExerciseDto.prototype, "thumbnail", void 0);
+__decorate([
+    (0, class_validator_1.IsEnum)(exercise_entity_1.AreaEnum),
+    (0, class_validator_1.IsOptional)(),
+    (0, swagger_1.ApiProperty)({ required: false, enum: exercise_entity_1.AreaEnum }),
+    __metadata("design:type", String)
 ], UpdateExerciseDto.prototype, "area", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", Number)
-], UpdateExerciseDto.prototype, "category", void 0);
+    (0, swagger_1.ApiProperty)({ required: false, type: [Number] }),
+    __metadata("design:type", Array)
+], UpdateExerciseDto.prototype, "categories", void 0);
 exports.UpdateExerciseDto = UpdateExerciseDto;
 //# sourceMappingURL=exercise.dto.js.map

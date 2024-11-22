@@ -3,11 +3,11 @@ import { UserPreferencesResponseRepository } from '../../infrastructure/reposito
 export declare class UserPreferencesResponseUseCases {
     private readonly userPreferencesResponseRepository;
     constructor(userPreferencesResponseRepository: UserPreferencesResponseRepository);
-    createUserPreferencesResponse(userPreferencesResponseModel: UserPreferencesResponseModel): Promise<import("../../domain/models/userpreferencesresponse").FetchUserPreferencesResponseModel>;
+    createUserPreferencesResponse(userPreferencesResponseModel: UserPreferencesResponseModel): Promise<any>;
     getUserPreferencesResponse(id: number): Promise<{
-        data: import("../../domain/models/userpreferencesresponse").FetchUserPreferencesResponseModel;
+        data: any;
     }>;
-    getUserPreferencesResponses(): Promise<import("../../domain/models/userpreferencesresponse").FetchUserPreferencesResponseModel[]>;
-    updateUserPreferencesResponse(id: number, userPreferencesResponseUpdateModel: UpdateUserPreferencesResponseModel): Promise<import("../../domain/models/userpreferencesresponse").FetchUserPreferencesResponseModel>;
-    deleteUserPreferencesResponse(id: number): Promise<void>;
+    getUserPreferencesResponses(): Promise<any>;
+    updateUserPreferencesResponse(id: number, userPreferencesResponseUpdateModel: UpdateUserPreferencesResponseModel): Promise<any>;
+    deleteUserPreferencesResponse(id: number): Promise<any>;
 }

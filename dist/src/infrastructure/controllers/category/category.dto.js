@@ -20,12 +20,6 @@ __decorate([
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", String)
 ], CreateCategoryDto.prototype, "title", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", String)
-], CreateCategoryDto.prototype, "image", void 0);
 exports.CreateCategoryDto = CreateCategoryDto;
 class UpdateCategoryDto {
 }
@@ -35,11 +29,5 @@ __decorate([
     (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", String)
 ], UpdateCategoryDto.prototype, "title", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", String)
-], UpdateCategoryDto.prototype, "image", void 0);
 exports.UpdateCategoryDto = UpdateCategoryDto;
 //# sourceMappingURL=category.dto.js.map

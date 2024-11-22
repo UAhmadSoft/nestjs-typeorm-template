@@ -21,7 +21,13 @@ let RoutineController = class RoutineController {
     constructor(routineUseCases) {
         this.routineUseCases = routineUseCases;
     }
-    createRoutine(routine) {
+    createRoutine(routine, req) {
+        if (!req.user) {
+            throw new common_1.UnauthorizedException('Unauthorized');
+        }
+        if (req.user.role !== 'admin') {
+            routine.user = req.user.id;
+        }
         return this.routineUseCases.createRoutine(routine);
     }
     getRoutine(id) {
@@ -40,8 +46,9 @@ let RoutineController = class RoutineController {
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [routine_dto_1.CreateRoutineDto]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
 ], RoutineController.prototype, "createRoutine", null);
 __decorate([

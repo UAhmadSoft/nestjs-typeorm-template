@@ -67,6 +67,10 @@ export class UserUseCases {
     return await this.userRepository.createUser(userModel);
   }
 
+  async getMe(userEmail: string) {
+    return await this.userRepository.getActiveUserByEmail(userEmail);
+  }
+
   async getUserByEmail(email: string) {
     const user = await this.userRepository.getUserByEmail(email);
     if (!user) {
@@ -116,12 +120,14 @@ export class UserUseCases {
     }
 
     // Step 3: Update user - mark email as verified and clear OTP + expiry
-    const updateUser = await this.userRepository.updateUser(checkUser.id, {
+    let updateUser: any = await this.userRepository.updateUser(checkUser.id, {
       is_active: true,
       is_email_verified: true, // Mark email as verified
       signup_otp: null, // Clear OTP
       signup_otp_expiry: null, // Clear OTP expiry
     });
+
+    updateUser = await this.userRepository.getActiveUserByEmail(email);
     return updateUser;
   }
 
@@ -152,8 +158,8 @@ export class UserUseCases {
     return data;
   }
 
-  async getUsers() {
-    return await this.userRepository.getUsers();
+  async getUsers(queryParams = {}) {
+    return await this.userRepository.getUsers(queryParams);
   }
 
   async updateUser(id: number, userUpdateModel: UpdateUserModel) {

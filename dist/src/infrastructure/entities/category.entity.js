@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Categories = void 0;
 const typeorm_1 = require("typeorm");
+const exercise_entity_1 = require("./exercise.entity");
 let Categories = class Categories {
 };
 __decorate([
@@ -25,6 +26,13 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Categories.prototype, "image", void 0);
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => exercise_entity_1.Exercises, (student) => student.categories, {
+        onDelete: 'NO ACTION',
+        onUpdate: 'NO ACTION',
+    }),
+    __metadata("design:type", Array)
+], Categories.prototype, "exercises", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)

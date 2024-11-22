@@ -3,11 +3,11 @@ import { SupportRepository } from '../../infrastructure/repository/support.repos
 export declare class SupportUseCases {
     private readonly supportRepository;
     constructor(supportRepository: SupportRepository);
-    createSupport(supportModel: SupportModel): Promise<import("../../domain/models/support").FetchSupportModel>;
+    createSupport(supportModel: SupportModel): Promise<any>;
     getSupport(id: number): Promise<{
-        data: import("../../domain/models/support").FetchSupportModel;
+        data: any;
     }>;
-    getSupports(): Promise<import("../../domain/models/support").FetchSupportModel[]>;
-    updateSupport(id: number, supportUpdateModel: UpdateSupportModel): Promise<import("../../domain/models/support").FetchSupportModel>;
-    deleteSupport(id: number): Promise<void>;
+    getSupports(): Promise<any>;
+    updateSupport(id: number, supportUpdateModel: UpdateSupportModel): Promise<any>;
+    deleteSupport(id: number): Promise<any>;
 }

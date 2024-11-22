@@ -21,7 +21,6 @@ export declare class LocalStrategy extends LocalStrategy_base {
             is_active?: boolean;
             is_banned?: boolean;
             role?: string;
-            device: string;
         };
     }>;
 }

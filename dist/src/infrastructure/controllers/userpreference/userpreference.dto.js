@@ -22,15 +22,15 @@ __decorate([
 ], CreateUserPreferenceDto.prototype, "title", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", String)
 ], CreateUserPreferenceDto.prototype, "description", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Array)
 ], CreateUserPreferenceDto.prototype, "options", void 0);
 exports.CreateUserPreferenceDto = CreateUserPreferenceDto;
 class UpdateUserPreferenceDto {
@@ -48,10 +48,10 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateUserPreferenceDto.prototype, "description", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", String)
+    __metadata("design:type", Array)
 ], UpdateUserPreferenceDto.prototype, "options", void 0);
 exports.UpdateUserPreferenceDto = UpdateUserPreferenceDto;
 //# sourceMappingURL=userpreference.dto.js.map

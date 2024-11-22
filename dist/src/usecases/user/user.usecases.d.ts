@@ -10,13 +10,17 @@ export declare class UserUseCases {
     setUsersPassword(code: number, password: string): Promise<FetchUserModel>;
     sendSignupCode(user: FetchUserModel): Promise<FetchUserModel>;
     createUser(userModel: UserModel): Promise<FetchUserModel>;
+    getMe(userEmail: string): Promise<UserModel>;
     getUserByEmail(email: string): Promise<FetchUserModel>;
     forgotPassword(email: string): Promise<string>;
     checkUser(userEmail: any): Promise<FetchUserModel>;
-    createUserOnConfirmation(code: number, email: string): Promise<FetchUserModel>;
+    createUserOnConfirmation(code: number, email: string): Promise<any>;
     resendCodeEmail(userEmail: string): Promise<FetchUserModel>;
     getUser(id: number): Promise<FetchUserModel>;
-    getUsers(): Promise<FetchUserModel[]>;
+    getUsers(queryParams?: {}): Promise<{
+        total_count: number;
+        users: FetchUserModel[];
+    }>;
     updateUser(id: number, userUpdateModel: UpdateUserModel): Promise<FetchUserModel>;
     deleteUser(id: number): Promise<void>;
 }

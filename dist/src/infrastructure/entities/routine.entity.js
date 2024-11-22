@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Routines = void 0;
 const typeorm_1 = require("typeorm");
 const exercise_entity_1 = require("./exercise.entity");
+const routine_exercise_entity_1 = require("./routine-exercise.entity");
 let Routines = class Routines {
 };
 __decorate([
@@ -29,18 +30,17 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: false }),
     __metadata("design:type", Boolean)
-], Routines.prototype, "play_soung", void 0);
+], Routines.prototype, "play_sound", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: false, type: 'int' }),
     __metadata("design:type", Number)
 ], Routines.prototype, "time_delay", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => exercise_entity_1.Exercises),
-    (0, typeorm_1.JoinColumn)({ name: 'exercise' }),
+    (0, typeorm_1.OneToMany)(() => routine_exercise_entity_1.RoutineExercises, (routineExercise) => routineExercise.routine),
     __metadata("design:type", Array)
-], Routines.prototype, "exercises", void 0);
+], Routines.prototype, "routineExercises", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => exercise_entity_1.Exercises, (exercises) => exercises),
+    (0, typeorm_1.ManyToOne)(() => exercise_entity_1.Exercises, (exercises) => exercises, { nullable: true }),
     (0, typeorm_1.JoinColumn)({ name: 'user' }),
     __metadata("design:type", Number)
 ], Routines.prototype, "user", void 0);

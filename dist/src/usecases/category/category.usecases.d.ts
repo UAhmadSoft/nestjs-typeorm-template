@@ -3,11 +3,11 @@ import { CategoryRepository } from '../../infrastructure/repository/category.rep
 export declare class CategoryUseCases {
     private readonly categoryRepository;
     constructor(categoryRepository: CategoryRepository);
-    createCategory(categoryModel: CategoryModel): Promise<import("../../domain/models/category").FetchCategoryModel>;
+    createCategory(categoryModel: CategoryModel): Promise<any>;
     getCategory(id: number): Promise<{
-        data: import("../../domain/models/category").FetchCategoryModel;
+        data: any;
     }>;
-    getCategories(): Promise<import("../../domain/models/category").FetchCategoryModel[]>;
-    updateCategory(id: number, categoryUpdateModel: UpdateCategoryModel): Promise<import("../../domain/models/category").FetchCategoryModel>;
-    deleteCategory(id: number): Promise<void>;
+    getCategories(): Promise<any>;
+    updateCategory(id: number, categoryUpdateModel: UpdateCategoryModel): Promise<any>;
+    deleteCategory(id: number): Promise<any>;
 }

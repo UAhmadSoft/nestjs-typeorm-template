@@ -22,6 +22,6 @@ exports.databaseConfigurations = {
     entities: db_1.default,
     cache: false,
     migrations: [(0, path_1.join)(__dirname, '../../../../database/migrations/*{.ts,.js}')],
-    logging: true,
+    logging: false,
 };
 //# sourceMappingURL=typeorm.config.js.map

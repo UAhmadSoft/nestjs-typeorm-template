@@ -24,6 +24,9 @@ let SupportRepository = class SupportRepository {
     async createSupport(supportModel) {
         return await this.supportRepository.save(supportModel);
     }
+    async getSupportsCount() {
+        return await this.supportRepository.count();
+    }
     async getSupport(id) {
         return await this.supportRepository.findOne({ where: { id } });
     }

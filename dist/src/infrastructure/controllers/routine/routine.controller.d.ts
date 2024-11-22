@@ -3,7 +3,9 @@ import { CreateRoutineDto, UpdateRoutineDto } from './routine.dto';
 export declare class RoutineController {
     private readonly routineUseCases;
     constructor(routineUseCases: RoutineUseCases);
-    createRoutine(routine: CreateRoutineDto): Promise<import("../../../domain/models/routine").FetchRoutineModel>;
+    createRoutine(routine: CreateRoutineDto & {
+        user?: number;
+    }, req: any): Promise<import("../../../domain/models/routine").FetchRoutineModel>;
     getRoutine(id: number): Promise<{
         data: import("../../../domain/models/routine").FetchRoutineModel;
     }>;

@@ -10,6 +10,7 @@ export class PermissionGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
+    console.log('PermissionGuard');
     // throw new Error("Method not implemented.");
 
     // const request = context.switchToHttp().getRequest();
@@ -18,14 +19,12 @@ export class PermissionGuard implements CanActivate {
       [context.getHandler(), context.getClass()],
     );
 
+    console.log('requiredPermission', requiredPermission);
     if (requiredPermission === 'public') return true;
 
     const user = UserData.getUserData();
 
-    if (user.roles.includes('superadmin')) return true;
-
-    const permissions = user.permissions;
-
-    return permissions.some((permission) => permission === requiredPermission);
+    console.log('user', user);
+    return requiredPermission.includes(user.role);
   }
 }

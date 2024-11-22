@@ -17,18 +17,31 @@ const common_1 = require("@nestjs/common");
 const jwtAuth_guard_1 = require("../../../infrastructure/common/guards/jwtAuth.guard");
 const user_usecases_1 = require("../../../usecases/user/user.usecases");
 const user_dto_1 = require("./user.dto");
+const permissions_decorator_1 = require("../../common/decorators/permissions.decorator");
+const permission_guard_1 = require("../../common/guards/permission.guard");
+const login_usecases_1 = require("../../../usecases/auth/login.usecases");
 let UserController = class UserController {
-    constructor(userUseCases) {
+    constructor(userUseCases, loginUsecaseProxy) {
         this.userUseCases = userUseCases;
+        this.loginUsecaseProxy = loginUsecaseProxy;
     }
     createUser(user) {
         return this.userUseCases.createUser(user);
     }
+    async getMe(req) {
+        console.log('req.user', req.user);
+        const user = await this.userUseCases.getMe(req.user.email);
+        const accessTokenCookie = await this.loginUsecaseProxy.getJwtToken(user.email);
+        return {
+            user,
+            authentication: accessTokenCookie,
+        };
+    }
     getUser(id) {
         return this.userUseCases.getUser(id);
     }
-    getUsers() {
-        return this.userUseCases.getUsers();
+    getUsers(queryParams) {
+        return this.userUseCases.getUsers(queryParams);
     }
     updateUser(id, user) {
         return this.userUseCases.updateUser(id, user);
@@ -38,12 +51,21 @@ let UserController = class UserController {
     }
 };
 __decorate([
+    (0, common_1.UseGuards)(permission_guard_1.PermissionGuard),
+    (0, permissions_decorator_1.Permission)(['admin']),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_dto_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "createUser", null);
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getMe", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
@@ -52,12 +74,17 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "getUser", null);
 __decorate([
+    (0, common_1.UseGuards)(permission_guard_1.PermissionGuard),
+    (0, permissions_decorator_1.Permission)(['admin']),
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "getUsers", null);
 __decorate([
+    (0, common_1.UseGuards)(permission_guard_1.PermissionGuard),
+    (0, permissions_decorator_1.Permission)(['admin']),
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
@@ -66,6 +93,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "updateUser", null);
 __decorate([
+    (0, common_1.UseGuards)(permission_guard_1.PermissionGuard),
+    (0, permissions_decorator_1.Permission)(['admin']),
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
@@ -75,7 +104,8 @@ __decorate([
 UserController = __decorate([
     (0, common_1.Controller)('users'),
     (0, common_1.UseGuards)(jwtAuth_guard_1.JwtAuthGuard),
-    __metadata("design:paramtypes", [user_usecases_1.UserUseCases])
+    __metadata("design:paramtypes", [user_usecases_1.UserUseCases,
+        login_usecases_1.LoginUseCases])
 ], UserController);
 exports.UserController = UserController;
 //# sourceMappingURL=user.controller.js.map

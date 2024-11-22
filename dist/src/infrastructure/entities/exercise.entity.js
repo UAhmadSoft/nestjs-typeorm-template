@@ -9,9 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Exercises = void 0;
+exports.Exercises = exports.AreaEnum = void 0;
 const typeorm_1 = require("typeorm");
 const category_entity_1 = require("./category.entity");
+const routine_exercise_entity_1 = require("./routine-exercise.entity");
+var AreaEnum;
+(function (AreaEnum) {
+    AreaEnum["Hips"] = "Hips";
+    AreaEnum["LowerBack"] = "Lower back";
+    AreaEnum["Hamstrings"] = "Hamstrings";
+    AreaEnum["Chest"] = "Chest";
+    AreaEnum["LowerBody"] = "Lower Body";
+    AreaEnum["Core"] = "Core";
+    AreaEnum["UpperBody"] = "Upper Body";
+    AreaEnum["Quadriceps"] = "Quadriceps";
+    AreaEnum["Neck"] = "Neck";
+    AreaEnum["Shoulders"] = "Shoulders";
+})(AreaEnum = exports.AreaEnum || (exports.AreaEnum = {}));
 let Exercises = class Exercises {
 };
 __decorate([
@@ -19,26 +33,56 @@ __decorate([
     __metadata("design:type", Number)
 ], Exercises.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'varchar', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Exercises.prototype, "title", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'varchar', }),
-    __metadata("design:type", String)
-], Exercises.prototype, "description", void 0);
+    (0, typeorm_1.Column)({ nullable: true, type: 'int', default: 30 }),
+    __metadata("design:type", Number)
+], Exercises.prototype, "duration", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'varchar', }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
+    __metadata("design:type", String)
+], Exercises.prototype, "instructions", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
+    __metadata("design:type", String)
+], Exercises.prototype, "benefits", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
+    __metadata("design:type", String)
+], Exercises.prototype, "caution", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Exercises.prototype, "image", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'timestamp', }),
-    __metadata("design:type", Date)
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
+    __metadata("design:type", String)
+], Exercises.prototype, "thumbnail", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false, type: 'enum', enum: AreaEnum }),
+    __metadata("design:type", String)
 ], Exercises.prototype, "area", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => category_entity_1.Categories, (categories) => categories),
-    (0, typeorm_1.JoinColumn)({ name: 'category' }),
-    __metadata("design:type", Number)
-], Exercises.prototype, "category", void 0);
+    (0, typeorm_1.ManyToMany)(() => category_entity_1.Categories, (category) => category.exercises, { onDelete: 'SET NULL', onUpdate: 'SET NULL' }),
+    (0, typeorm_1.JoinTable)({
+        name: 'exercise_categories',
+        joinColumn: {
+            name: 'exercise_id',
+            referencedColumnName: 'id',
+        },
+        inverseJoinColumn: {
+            name: 'category_id',
+            referencedColumnName: 'id',
+        },
+    }),
+    __metadata("design:type", Array)
+], Exercises.prototype, "categories", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => routine_exercise_entity_1.RoutineExercises, (routineExercise) => routineExercise.exercise),
+    __metadata("design:type", Array)
+], Exercises.prototype, "routineExercises", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)

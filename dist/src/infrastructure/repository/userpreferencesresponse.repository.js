@@ -22,10 +22,12 @@ let UserPreferencesResponseRepository = class UserPreferencesResponseRepository 
         this.userPreferencesResponseRepository = userPreferencesResponseRepository;
     }
     async createUserPreferencesResponse(userPreferencesResponseModel) {
-        return await this.userPreferencesResponseRepository.save(userPreferencesResponseModel);
+        return await this.userPreferencesResponseRepository.save(Object.assign(Object.assign({}, userPreferencesResponseModel), { options: `{${userPreferencesResponseModel.options.join(',')}}` }));
     }
     async getUserPreferencesResponse(id) {
-        return await this.userPreferencesResponseRepository.findOne({ where: { id } });
+        return await this.userPreferencesResponseRepository.findOne({
+            where: { id },
+        });
     }
     async getUserPreferencesResponses() {
         return await this.userPreferencesResponseRepository.find();

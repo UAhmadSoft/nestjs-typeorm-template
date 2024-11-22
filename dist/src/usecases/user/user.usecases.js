@@ -61,6 +61,9 @@ let UserUseCases = class UserUseCases {
     async createUser(userModel) {
         return await this.userRepository.createUser(userModel);
     }
+    async getMe(userEmail) {
+        return await this.userRepository.getActiveUserByEmail(userEmail);
+    }
     async getUserByEmail(email) {
         const user = await this.userRepository.getUserByEmail(email);
         if (!user) {
@@ -99,12 +102,13 @@ let UserUseCases = class UserUseCases {
         if (checkUser.signup_otp !== code || currentTime > otpExpiryTime) {
             throw new common_1.HttpException(`OTP is invalid or expired`, common_1.HttpStatus.BAD_REQUEST);
         }
-        const updateUser = await this.userRepository.updateUser(checkUser.id, {
+        let updateUser = await this.userRepository.updateUser(checkUser.id, {
             is_active: true,
             is_email_verified: true,
             signup_otp: null,
             signup_otp_expiry: null,
         });
+        updateUser = await this.userRepository.getActiveUserByEmail(email);
         return updateUser;
     }
     async resendCodeEmail(userEmail) {
@@ -132,8 +136,8 @@ let UserUseCases = class UserUseCases {
         }
         return data;
     }
-    async getUsers() {
-        return await this.userRepository.getUsers();
+    async getUsers(queryParams = {}) {
+        return await this.userRepository.getUsers(queryParams);
     }
     async updateUser(id, userUpdateModel) {
         return await this.userRepository.updateUser(id, userUpdateModel);

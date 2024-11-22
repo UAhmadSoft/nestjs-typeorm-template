@@ -19,14 +19,22 @@ __decorate([
     __metadata("design:type", Number)
 ], UserPreferencesResponses.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
-    __metadata("design:type", String)
+    (0, typeorm_1.Column)('simple-array'),
+    __metadata("design:type", Array)
 ], UserPreferencesResponses.prototype, "options", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => userpreference_entity_1.UserPreferences, (userPreferences) => userPreferences),
     (0, typeorm_1.JoinColumn)({ name: 'user_preference' }),
     __metadata("design:type", Number)
 ], UserPreferencesResponses.prototype, "user_preference", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true, type: 'int4' }),
+    __metadata("design:type", Number)
+], UserPreferencesResponses.prototype, "user_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
+    __metadata("design:type", String)
+], UserPreferencesResponses.prototype, "device_id", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)

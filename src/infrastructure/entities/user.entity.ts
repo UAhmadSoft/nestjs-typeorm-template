@@ -8,7 +8,7 @@ import {
   JoinColumn,
   Unique,
 } from 'typeorm';
-import { Devices } from './device.entity';
+import { Profiles } from './profile.entity';
 
 @Entity()
 export class Users {
@@ -63,9 +63,8 @@ export class Users {
   @Column({ nullable: false, type: 'boolean', default: false })
   is_banned: boolean;
 
-  @OneToOne(() => Devices)
-  @JoinColumn({ name: 'device' })
-  device: string;
+  @OneToOne(() => Profiles, (profile) => profile.user)
+  profile: Profiles;
 
   @CreateDateColumn({ type: 'timestamp' })
   created_on: Date;

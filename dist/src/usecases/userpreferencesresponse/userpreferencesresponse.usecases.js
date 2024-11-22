@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserPreferencesResponseUseCases = void 0;
 const common_1 = require("@nestjs/common");
@@ -38,7 +39,7 @@ let UserPreferencesResponseUseCases = class UserPreferencesResponseUseCases {
 };
 UserPreferencesResponseUseCases = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [userpreferencesresponse_repository_1.UserPreferencesResponseRepository])
+    __metadata("design:paramtypes", [typeof (_a = typeof userpreferencesresponse_repository_1.UserPreferencesResponseRepository !== "undefined" && userpreferencesresponse_repository_1.UserPreferencesResponseRepository) === "function" ? _a : Object])
 ], UserPreferencesResponseUseCases);
 exports.UserPreferencesResponseUseCases = UserPreferencesResponseUseCases;
 //# sourceMappingURL=userpreferencesresponse.usecases.js.map

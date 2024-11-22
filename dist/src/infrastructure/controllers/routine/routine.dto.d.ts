@@ -1,15 +1,14 @@
 export declare class CreateRoutineDto {
     title: string;
     time: number;
-    play_soung: boolean;
+    play_sound: boolean;
     time_delay: number;
-    user: number;
     exercises: number[];
 }
 export declare class UpdateRoutineDto {
     title: string;
     time: number;
-    play_soung: boolean;
+    play_sound: boolean;
     time_delay: number;
     user: number;
     exercises: number[];

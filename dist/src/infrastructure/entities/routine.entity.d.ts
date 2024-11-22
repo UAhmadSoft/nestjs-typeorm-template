@@ -1,11 +1,11 @@
-import { Exercises } from './exercise.entity';
+import { RoutineExercises } from './routine-exercise.entity';
 export declare class Routines {
     id: number;
     title: string;
     time: number;
-    play_soung: boolean;
+    play_sound: boolean;
     time_delay: number;
-    exercises: Exercises[];
+    routineExercises: RoutineExercises[];
     user: number;
     created_on: Date;
     updated_on: Date;

@@ -3,11 +3,11 @@ import { RoutineRepository } from '../../infrastructure/repository/routine.repos
 export declare class RoutineUseCases {
     private readonly routineRepository;
     constructor(routineRepository: RoutineRepository);
-    createRoutine(routineModel: RoutineModel): Promise<import("../../domain/models/routine").FetchRoutineModel>;
+    createRoutine(routineModel: RoutineModel): Promise<any>;
     getRoutine(id: number): Promise<{
-        data: import("../../domain/models/routine").FetchRoutineModel;
+        data: any;
     }>;
-    getRoutines(): Promise<import("../../domain/models/routine").FetchRoutineModel[]>;
-    updateRoutine(id: number, routineUpdateModel: UpdateRoutineModel): Promise<import("../../domain/models/routine").FetchRoutineModel>;
-    deleteRoutine(id: number): Promise<void>;
+    getRoutines(): Promise<any>;
+    updateRoutine(id: number, routineUpdateModel: UpdateRoutineModel): Promise<any>;
+    deleteRoutine(id: number): Promise<any>;
 }

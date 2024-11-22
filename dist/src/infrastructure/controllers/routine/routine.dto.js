@@ -31,19 +31,13 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", Boolean)
-], CreateRoutineDto.prototype, "play_soung", void 0);
+], CreateRoutineDto.prototype, "play_sound", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", Number)
 ], CreateRoutineDto.prototype, "time_delay", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", Number)
-], CreateRoutineDto.prototype, "user", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)({}, { each: true }),
     (0, class_validator_1.IsNotEmpty)(),
@@ -70,7 +64,7 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", Boolean)
-], UpdateRoutineDto.prototype, "play_soung", void 0);
+], UpdateRoutineDto.prototype, "play_sound", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),

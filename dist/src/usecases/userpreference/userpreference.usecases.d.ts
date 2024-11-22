@@ -3,11 +3,11 @@ import { UserPreferenceRepository } from '../../infrastructure/repository/userpr
 export declare class UserPreferenceUseCases {
     private readonly userPreferenceRepository;
     constructor(userPreferenceRepository: UserPreferenceRepository);
-    createUserPreference(userPreferenceModel: UserPreferenceModel): Promise<import("../../domain/models/userpreference").FetchUserPreferenceModel>;
+    createUserPreference(userPreferenceModel: UserPreferenceModel): Promise<any>;
     getUserPreference(id: number): Promise<{
-        data: import("../../domain/models/userpreference").FetchUserPreferenceModel;
+        data: any;
     }>;
-    getUserPreferences(): Promise<import("../../domain/models/userpreference").FetchUserPreferenceModel[]>;
-    updateUserPreference(id: number, userPreferenceUpdateModel: UpdateUserPreferenceModel): Promise<import("../../domain/models/userpreference").FetchUserPreferenceModel>;
-    deleteUserPreference(id: number): Promise<void>;
+    getUserPreferences(): Promise<any>;
+    updateUserPreference(id: number, userPreferenceUpdateModel: UpdateUserPreferenceModel): Promise<any>;
+    deleteUserPreference(id: number): Promise<any>;
 }
