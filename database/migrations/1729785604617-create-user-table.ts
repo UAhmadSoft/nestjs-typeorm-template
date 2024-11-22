@@ -101,26 +101,11 @@ export class createUsersTable1729785604617 implements MigrationInterface {
             type: 'boolean',
             default: false,
           },
-          {
-            name: 'device',
-            type: 'int4',
-          },
         ],
       }),
     );
-    await queryRunner.createForeignKeys('users', [
-      new TableForeignKey({
-        name: 'users_devices_fk1',
-        columnNames: ['device'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'devices',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      }),
-    ]);
   }
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('users', 'users_devices_fk1');
     await queryRunner.dropTable('users', true);
   }
 }

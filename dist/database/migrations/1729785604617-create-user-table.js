@@ -97,25 +97,10 @@ class createUsersTable1729785604617 {
                     type: 'boolean',
                     default: false,
                 },
-                {
-                    name: 'device',
-                    type: 'int4',
-                },
             ],
         }));
-        await queryRunner.createForeignKeys('users', [
-            new typeorm_1.TableForeignKey({
-                name: 'users_devices_fk1',
-                columnNames: ['device'],
-                referencedColumnNames: ['id'],
-                referencedTableName: 'devices',
-                onDelete: 'CASCADE',
-                onUpdate: 'CASCADE',
-            }),
-        ]);
     }
     async down(queryRunner) {
-        await queryRunner.dropForeignKey('users', 'users_devices_fk1');
         await queryRunner.dropTable('users', true);
     }
 }
