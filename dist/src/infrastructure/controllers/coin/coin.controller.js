@@ -14,7 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CoinController = void 0;
 const common_1 = require("@nestjs/common");
-const jwtAuth_guard_1 = require("../../../infrastructure/common/guards/jwtAuth.guard");
 const coin_usecases_1 = require("../../../usecases/coin/coin.usecases");
 const coin_dto_1 = require("./coin.dto");
 let CoinController = class CoinController {
@@ -74,7 +73,6 @@ __decorate([
 ], CoinController.prototype, "deleteCoin", null);
 CoinController = __decorate([
     (0, common_1.Controller)('coins'),
-    (0, common_1.UseGuards)(jwtAuth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [coin_usecases_1.CoinUseCases])
 ], CoinController);
 exports.CoinController = CoinController;

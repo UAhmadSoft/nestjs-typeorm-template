@@ -14,7 +14,7 @@ import { CoinUseCases } from '../../../usecases/coin/coin.usecases';
 import { CreateCoinDto, UpdateCoinDto } from './coin.dto';
 
 @Controller('coins')
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 export class CoinController {
   constructor(private readonly coinUseCases: CoinUseCases) {}
 

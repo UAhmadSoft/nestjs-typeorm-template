@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.682.0",
+    "@binance/connector": "^3.5.0",
     "@nestjs-modules/mailer": "^1.6.1",
     "@nestjs/bull": "^0.6.3",
     "@nestjs/common": "^9.4.3",

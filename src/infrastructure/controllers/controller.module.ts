@@ -8,6 +8,13 @@ import { UseCaseModule } from 'src/usecases/usecase.module';
 import { UserController } from './user/user.controller';
 import { ProfileController } from './profile/profile.controller';
 import { AuthController } from './auth/auth.controller';
+import { CoinController } from './coin/coin.controller';
+import { ConvertHistoryController } from './converthistory/converthistory.controller';
+import { DepositHistoryController } from './deposithistory/deposithistory.controller';
+import { WithdrawHistoryController } from './withdrawhistory/withdrawhistory.controller';
+import { TransferHistoryController } from './transferhistory/transferhistory.controller';
+import { WalletController } from './wallet/wallet.controller';
+import { SpotController } from './spot/spot.controller';
 
 @Module({
   imports: [
@@ -41,7 +48,18 @@ import { AuthController } from './auth/auth.controller';
     }),
     EmailModule,
   ],
-  controllers: [AuthController, UserController, ProfileController],
+  controllers: [
+    AuthController,
+    UserController,
+    ProfileController,
+    CoinController,
+    ConvertHistoryController,
+    DepositHistoryController,
+    WithdrawHistoryController,
+    TransferHistoryController,
+    WalletController,
+    SpotController,
+  ],
   providers: [MyLogger, EmailModule],
 })
 export class ControllerModule {}
