@@ -17,18 +17,6 @@ export class ConvertHistoryUseCases {
     );
   }
 
-  async getConvertHistory(id: number) {
-    const data = await this.convertHistoryRepository.getConvertHistory(id);
-    if (!data) {
-      throw new HttpException('ConvertHistory Not Found', HttpStatus.NOT_FOUND);
-    }
-    return { data };
-  }
-
-  async getConvertHistory() {
-    return await this.convertHistoryRepository.getConvertHistory();
-  }
-
   async updateConvertHistory(
     id: number,
     convertHistoryUpdateModel: UpdateConvertHistoryModel,

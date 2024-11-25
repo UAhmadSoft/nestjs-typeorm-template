@@ -10,7 +10,7 @@ import { IDepositHistory } from '../../domain/repositories/deposithistory.reposi
 import { DepositHistory } from '../entities/deposithistory.entity';
 
 @Injectable()
-export class DepositHistoryRepository implements IDepositHistory {
+export class DepositHistoryRepository {
   constructor(
     @InjectRepository(DepositHistory)
     private depositHistoryRepository: Repository<DepositHistory>,
@@ -20,14 +20,6 @@ export class DepositHistoryRepository implements IDepositHistory {
     depositHistoryModel: DepositHistoryModel,
   ): Promise<FetchDepositHistoryModel> {
     return await this.depositHistoryRepository.save(depositHistoryModel);
-  }
-
-  async getDepositHistory(id: number): Promise<FetchDepositHistoryModel> {
-    return await this.depositHistoryRepository.findOne({ where: { id } });
-  }
-
-  async getDepositHistory(): Promise<FetchDepositHistoryModel[]> {
-    return await this.depositHistoryRepository.find();
   }
 
   async updateDepositHistory(

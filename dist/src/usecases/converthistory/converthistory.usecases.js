@@ -19,16 +19,6 @@ let ConvertHistoryUseCases = class ConvertHistoryUseCases {
     async createConvertHistory(convertHistoryModel) {
         return await this.convertHistoryRepository.createConvertHistory(convertHistoryModel);
     }
-    async getConvertHistory(id) {
-        const data = await this.convertHistoryRepository.getConvertHistory(id);
-        if (!data) {
-            throw new common_1.HttpException('ConvertHistory Not Found', common_1.HttpStatus.NOT_FOUND);
-        }
-        return { data };
-    }
-    async getConvertHistory() {
-        return await this.convertHistoryRepository.getConvertHistory();
-    }
     async updateConvertHistory(id, convertHistoryUpdateModel) {
         return await this.convertHistoryRepository.updateConvertHistory(id, convertHistoryUpdateModel);
     }

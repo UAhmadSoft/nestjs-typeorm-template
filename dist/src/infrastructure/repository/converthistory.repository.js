@@ -24,12 +24,6 @@ let ConvertHistoryRepository = class ConvertHistoryRepository {
     async createConvertHistory(convertHistoryModel) {
         return await this.convertHistoryRepository.save(convertHistoryModel);
     }
-    async getConvertHistory(id) {
-        return await this.convertHistoryRepository.findOne({ where: { id } });
-    }
-    async getConvertHistory() {
-        return await this.convertHistoryRepository.find();
-    }
     async updateConvertHistory(id, updateConvertHistoryModel) {
         const convertHistory = await this.convertHistoryRepository.findOne({
             where: { id },

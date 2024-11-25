@@ -10,7 +10,7 @@ import { ITransferHistory } from '../../domain/repositories/transferhistory.repo
 import { TransferHistory } from '../entities/transferhistory.entity';
 
 @Injectable()
-export class TransferHistoryRepository implements ITransferHistory {
+export class TransferHistoryRepository {
   constructor(
     @InjectRepository(TransferHistory)
     private transferHistoryRepository: Repository<TransferHistory>,

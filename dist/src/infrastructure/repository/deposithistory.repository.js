@@ -24,12 +24,6 @@ let DepositHistoryRepository = class DepositHistoryRepository {
     async createDepositHistory(depositHistoryModel) {
         return await this.depositHistoryRepository.save(depositHistoryModel);
     }
-    async getDepositHistory(id) {
-        return await this.depositHistoryRepository.findOne({ where: { id } });
-    }
-    async getDepositHistory() {
-        return await this.depositHistoryRepository.find();
-    }
     async updateDepositHistory(id, updateDepositHistoryModel) {
         const depositHistory = await this.depositHistoryRepository.findOne({
             where: { id },

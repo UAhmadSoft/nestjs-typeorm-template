@@ -10,7 +10,7 @@ import { IConvertHistory } from '../../domain/repositories/converthistory.reposi
 import { ConvertHistory } from '../entities/converthistory.entity';
 
 @Injectable()
-export class ConvertHistoryRepository implements IConvertHistory {
+export class ConvertHistoryRepository {
   constructor(
     @InjectRepository(ConvertHistory)
     private convertHistoryRepository: Repository<ConvertHistory>,
@@ -20,14 +20,6 @@ export class ConvertHistoryRepository implements IConvertHistory {
     convertHistoryModel: ConvertHistoryModel,
   ): Promise<FetchConvertHistoryModel> {
     return await this.convertHistoryRepository.save(convertHistoryModel);
-  }
-
-  async getConvertHistory(id: number): Promise<FetchConvertHistoryModel> {
-    return await this.convertHistoryRepository.findOne({ where: { id } });
-  }
-
-  async getConvertHistory(): Promise<FetchConvertHistoryModel[]> {
-    return await this.convertHistoryRepository.find();
   }
 
   async updateConvertHistory(

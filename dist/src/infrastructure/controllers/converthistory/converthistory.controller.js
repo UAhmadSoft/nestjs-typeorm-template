@@ -24,12 +24,6 @@ let ConvertHistoryController = class ConvertHistoryController {
     createConvertHistory(convertHistory) {
         return this.convertHistoryUseCases.createConvertHistory(convertHistory);
     }
-    getConvertHistory(id) {
-        return this.convertHistoryUseCases.getConvertHistory(id);
-    }
-    getConvertHistory() {
-        return this.convertHistoryUseCases.getConvertHistory();
-    }
     updateConvertHistory(id, convertHistory) {
         return this.convertHistoryUseCases.updateConvertHistory(id, convertHistory);
     }
@@ -44,19 +38,6 @@ __decorate([
     __metadata("design:paramtypes", [converthistory_dto_1.CreateConvertHistoryDto]),
     __metadata("design:returntype", void 0)
 ], ConvertHistoryController.prototype, "createConvertHistory", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
-], ConvertHistoryController.prototype, "getConvertHistory", null);
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], ConvertHistoryController.prototype, "getConvertHistory", null);
 __decorate([
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),

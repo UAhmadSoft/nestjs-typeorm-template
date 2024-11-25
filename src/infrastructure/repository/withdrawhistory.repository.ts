@@ -10,7 +10,7 @@ import { IWithdrawHistory } from '../../domain/repositories/withdrawhistory.repo
 import { WithdrawHistory } from '../entities/withdrawhistory.entity';
 
 @Injectable()
-export class WithdrawHistoryRepository implements IWithdrawHistory {
+export class WithdrawHistoryRepository {
   constructor(
     @InjectRepository(WithdrawHistory)
     private withdrawHistoryRepository: Repository<WithdrawHistory>,

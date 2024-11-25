@@ -16,25 +16,6 @@ let TransferHistoryUseCases = class TransferHistoryUseCases {
     constructor(transferHistoryRepository) {
         this.transferHistoryRepository = transferHistoryRepository;
     }
-    async createTransferHistory(transferHistoryModel) {
-        return await this.transferHistoryRepository.createTransferHistory(transferHistoryModel);
-    }
-    async getTransferHistory(id) {
-        const data = await this.transferHistoryRepository.getTransferHistory(id);
-        if (!data) {
-            throw new common_1.HttpException('TransferHistory Not Found', common_1.HttpStatus.NOT_FOUND);
-        }
-        return { data };
-    }
-    async getTransferHistory() {
-        return await this.transferHistoryRepository.getTransferHistory();
-    }
-    async updateTransferHistory(id, transferHistoryUpdateModel) {
-        return await this.transferHistoryRepository.updateTransferHistory(id, transferHistoryUpdateModel);
-    }
-    async deleteTransferHistory(id) {
-        return await this.transferHistoryRepository.deleteTransferHistory(id);
-    }
 };
 TransferHistoryUseCases = __decorate([
     (0, common_1.Injectable)(),

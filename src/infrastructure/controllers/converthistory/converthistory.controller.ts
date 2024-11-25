@@ -28,15 +28,15 @@ export class ConvertHistoryController {
     return this.convertHistoryUseCases.createConvertHistory(convertHistory);
   }
 
-  @Get(':id')
-  getConvertHistory(@Param('id', ParseIntPipe) id: number) {
-    return this.convertHistoryUseCases.getConvertHistory(id);
-  }
+  // @Get(':id')
+  // getConvertHistory(@Param('id', ParseIntPipe) id: number) {
+  //   return this.convertHistoryUseCases.getConvertHistory(id);
+  // }
 
-  @Get()
-  getConvertHistory() {
-    return this.convertHistoryUseCases.getConvertHistory();
-  }
+  // @Get()
+  // getConvertHistory() {
+  //   return this.convertHistoryUseCases.getConvertHistory();
+  // }
 
   @Put(':id')
   updateConvertHistory(
