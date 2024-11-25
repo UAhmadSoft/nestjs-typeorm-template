@@ -12,7 +12,7 @@ pipeline {
             steps {
                     dir('/home/liberty-nest-js') {
                         sh "sudo cp -r /${WORKSPACE}/** ./"
-                        // sh "sudo pm2 restart uat-Partner_portalApI "
+                        sh "sudo pm2 restart liberty-api"
                         
                     }
                
