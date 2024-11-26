@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpotController = void 0;
 const common_1 = require("@nestjs/common");
 const spot_usecases_1 = require("../../../usecases/spot/spot.usecases");
+const spot_dto_1 = require("./spot.dto");
 let SpotController = class SpotController {
     constructor(spotUseCases) {
         this.spotUseCases = spotUseCases;
@@ -42,12 +43,44 @@ let SpotController = class SpotController {
     }
 };
 __decorate([
+    (0, common_1.Post)('place-new-order-limit'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [spot_dto_1.createLimitOrderDto]),
+    __metadata("design:returntype", Promise)
+], SpotController.prototype, "placeNewOrderLimit", null);
+__decorate([
+    (0, common_1.Post)('place-new-order-market-with-quantity'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [spot_dto_1.createMarketQuantityOrderDto]),
+    __metadata("design:returntype", Promise)
+], SpotController.prototype, "placeNewOrderMarketWithQuantity", null);
+__decorate([
+    (0, common_1.Post)('place-new-order-market-with-amount'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [spot_dto_1.createMarketAmountOrderDto]),
+    __metadata("design:returntype", Promise)
+], SpotController.prototype, "placeNewOrderMarketWithAmount", null);
+__decorate([
+    (0, common_1.Post)('place-stop-limit-order'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [spot_dto_1.createStopLimitOrder]),
+    __metadata("design:returntype", Promise)
+], SpotController.prototype, "placeStopLimitOrder", null);
+__decorate([
+    (0, common_1.Get)('get-order/:symbol'),
     __param(0, (0, common_1.Param)('symbol')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], SpotController.prototype, "getOrder", null);
 __decorate([
+    (0, common_1.Get)('get-account'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], SpotController.prototype, "getAccount", null);
+__decorate([
+    (0, common_1.Get)('cancel-order/:symbol'),
     __param(0, (0, common_1.Param)('symbol')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

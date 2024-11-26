@@ -32,8 +32,8 @@ export class WalletController {
     return this.walletUseCases.convert(body);
   }
 
-  @Post('get-token-price')
-  async getTokenPrice(symbol: string) {
+  @Get('get-token-price:symbol')
+  async getTokenPrice(@Param('symbol') symbol: string) {
     return this.walletUseCases.getTokenPrice(symbol);
   }
 
