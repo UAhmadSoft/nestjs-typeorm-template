@@ -53,19 +53,19 @@ class ConvertDto {
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, examples: ['BTC', 'ETH'] }),
     __metadata("design:type", String)
 ], ConvertDto.prototype, "symbol", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, examples: [0.1, 0.2] }),
     __metadata("design:type", Number)
 ], ConvertDto.prototype, "quantity", void 0);
 __decorate([
     (0, class_validator_1.IsEnum)(['buy', 'sell']),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, examples: ['buy', 'sell'] }),
     __metadata("design:type", String)
 ], ConvertDto.prototype, "side", void 0);
 exports.ConvertDto = ConvertDto;
@@ -86,7 +86,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, examples: ['buy', 'sell'] }),
     __metadata("design:type", String)
 ], TransferDto.prototype, "type", void 0);
 exports.TransferDto = TransferDto;

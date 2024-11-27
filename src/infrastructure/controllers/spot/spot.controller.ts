@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { SpotUseCases } from 'src/usecases/spot/spot.usecases';
 import {
   createLimitOrderDto,
@@ -11,19 +11,23 @@ import {
 export class SpotController {
   constructor(private readonly spotUseCases: SpotUseCases) {}
   @Post('place-new-order-limit')
-  async placeNewOrderLimit(body: createLimitOrderDto) {
+  async placeNewOrderLimit(@Body() body: createLimitOrderDto) {
     return this.spotUseCases.placeNewOrderLimit(body);
   }
   @Post('place-new-order-market-with-quantity')
-  async placeNewOrderMarketWithQuantity(body: createMarketQuantityOrderDto) {
+  async placeNewOrderMarketWithQuantity(
+    @Body() body: createMarketQuantityOrderDto,
+  ) {
     return this.spotUseCases.placeNewOrderMarketWithQuantity(body);
   }
   @Post('place-new-order-market-with-amount')
-  async placeNewOrderMarketWithAmount(body: createMarketAmountOrderDto) {
+  async placeNewOrderMarketWithAmount(
+    @Body() body: createMarketAmountOrderDto,
+  ) {
     return this.spotUseCases.placeNewOrderMarketWithAmount(body);
   }
   @Post('place-stop-limit-order')
-  async placeStopLimitOrder(body: createStopLimitOrder) {
+  async placeStopLimitOrder(@Body() body: createStopLimitOrder) {
     return this.spotUseCases.placeStopLimitOrder(body);
   }
   @Get('get-order/:symbol')

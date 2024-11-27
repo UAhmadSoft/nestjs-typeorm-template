@@ -42,18 +42,18 @@ export class WithdrawDto {
 export class ConvertDto {
   @IsString()
   @IsNotEmpty()
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, examples: ['BTC', 'ETH'] })
   symbol: string;
 
   @IsNumber()
   @IsNotEmpty()
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, examples: [0.1, 0.2] })
   quantity: number;
 
   // side: buy or sell
   @IsEnum(['buy', 'sell'])
   @IsNotEmpty()
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, examples: ['buy', 'sell'] })
   side: string;
 }
 
@@ -71,6 +71,6 @@ export class TransferDto {
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, examples: ['buy', 'sell'] })
   type: string;
 }

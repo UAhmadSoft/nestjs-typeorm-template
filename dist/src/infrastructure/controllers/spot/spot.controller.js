@@ -44,24 +44,28 @@ let SpotController = class SpotController {
 };
 __decorate([
     (0, common_1.Post)('place-new-order-limit'),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [spot_dto_1.createLimitOrderDto]),
     __metadata("design:returntype", Promise)
 ], SpotController.prototype, "placeNewOrderLimit", null);
 __decorate([
     (0, common_1.Post)('place-new-order-market-with-quantity'),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [spot_dto_1.createMarketQuantityOrderDto]),
     __metadata("design:returntype", Promise)
 ], SpotController.prototype, "placeNewOrderMarketWithQuantity", null);
 __decorate([
     (0, common_1.Post)('place-new-order-market-with-amount'),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [spot_dto_1.createMarketAmountOrderDto]),
     __metadata("design:returntype", Promise)
 ], SpotController.prototype, "placeNewOrderMarketWithAmount", null);
 __decorate([
     (0, common_1.Post)('place-stop-limit-order'),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [spot_dto_1.createStopLimitOrder]),
     __metadata("design:returntype", Promise)
