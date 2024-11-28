@@ -109,7 +109,7 @@ export class SpotRepository implements ISpot {
         body;
       const response = await client.newOrder({
         symbol: symbol,
-        side: side,
+        side: side.toUpperCase(),
         type: 'STOP_LIMIT',
         timeInForce: stopLimitTime,
         quantity: quantity,

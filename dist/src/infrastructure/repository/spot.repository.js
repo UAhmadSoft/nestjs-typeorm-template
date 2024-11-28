@@ -84,7 +84,7 @@ let SpotRepository = class SpotRepository {
             const { symbol, quantity, stopPrice, limitPrice, side, stopLimitTime } = body;
             const response = await client.newOrder({
                 symbol: symbol,
-                side: side,
+                side: side.toUpperCase(),
                 type: 'STOP_LIMIT',
                 timeInForce: stopLimitTime,
                 quantity: quantity,

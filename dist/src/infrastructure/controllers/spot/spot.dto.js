@@ -117,7 +117,7 @@ __decorate([
     __metadata("design:type", Number)
 ], createStopLimitOrder.prototype, "limitPrice", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(['BUY', 'SELL']),
+    (0, class_validator_1.IsEnum)(['buy', 'sell']),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
     __metadata("design:type", String)

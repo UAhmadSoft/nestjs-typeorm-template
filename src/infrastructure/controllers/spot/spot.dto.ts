@@ -94,7 +94,7 @@ export class createStopLimitOrder {
   @ApiProperty({ required: true })
   limitPrice: number;
 
-  @IsEnum(['BUY', 'SELL'])
+  @IsEnum(['buy', 'sell'])
   @IsNotEmpty()
   @ApiProperty({ required: true })
   side: string;
