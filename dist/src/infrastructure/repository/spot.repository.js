@@ -82,15 +82,11 @@ let SpotRepository = class SpotRepository {
     async placeStopLimitOrder(body) {
         try {
             const { symbol, quantity, stopPrice, limitPrice, side, stopLimitTime } = body;
-            const response = await client.newOrder({
-                symbol: symbol,
-                side: side.toUpperCase(),
-                type: 'STOP_LIMIT',
-                timeInForce: stopLimitTime,
+            const response = await client.newOrder(symbol, side, 'STOP_LOSS_LIMIT', {
+                timeInForce: 'GTC',
                 quantity: quantity,
                 stopPrice: stopPrice,
                 price: limitPrice,
-                stopLimitTime: stopLimitTime,
             });
             console.log(response);
             return response.data;
