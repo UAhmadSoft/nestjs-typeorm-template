@@ -100,7 +100,7 @@ export class createStopLimitOrder {
   side: string;
 
   @IsNumber()
-  @IsNotEmpty()
-  @ApiProperty({ required: true })
+  @IsOptional()
+  @ApiProperty({ required: false })
   stopLimitTime: number;
 }

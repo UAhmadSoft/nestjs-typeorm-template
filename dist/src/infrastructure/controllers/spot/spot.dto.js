@@ -124,8 +124,8 @@ __decorate([
 ], createStopLimitOrder.prototype, "side", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, class_validator_1.IsOptional)(),
+    (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", Number)
 ], createStopLimitOrder.prototype, "stopLimitTime", void 0);
 exports.createStopLimitOrder = createStopLimitOrder;
