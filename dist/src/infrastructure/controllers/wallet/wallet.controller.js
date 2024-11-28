@@ -93,7 +93,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], WalletController.prototype, "convert", null);
 __decorate([
-    (0, common_1.Get)('get-token-price:symbol'),
+    (0, common_1.Get)('get-token-price/:symbol'),
     __param(0, (0, common_1.Param)('symbol')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -118,19 +118,22 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], WalletController.prototype, "getFundingWallet", null);
 __decorate([
-    (0, common_1.Post)('get-order-book'),
+    (0, common_1.Get)('get-order-book/:symbol'),
+    __param(0, (0, common_1.Param)('symbol')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], WalletController.prototype, "getOrderBook", null);
 __decorate([
-    (0, common_1.Post)('get-trade-history'),
+    (0, common_1.Get)('get-trade-history/:symbol'),
+    __param(0, (0, common_1.Param)('symbol')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], WalletController.prototype, "getTradeHistory", null);
 __decorate([
-    (0, common_1.Post)('get-order-history'),
+    (0, common_1.Get)('get-order-history/:symbol'),
+    __param(0, (0, common_1.Param)('symbol')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)

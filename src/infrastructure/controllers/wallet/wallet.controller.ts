@@ -32,7 +32,7 @@ export class WalletController {
     return this.walletUseCases.convert(body);
   }
 
-  @Get('get-token-price:symbol')
+  @Get('get-token-price/:symbol')
   async getTokenPrice(@Param('symbol') symbol: string) {
     return this.walletUseCases.getTokenPrice(symbol);
   }
@@ -52,18 +52,18 @@ export class WalletController {
     return this.walletUseCases.getFundingWallet();
   }
 
-  @Post('get-order-book')
-  async getOrderBook(symbol: string) {
+  @Get('get-order-book/:symbol')
+  async getOrderBook(@Param('symbol') symbol: string) {
     return this.walletUseCases.getOrderBook(symbol);
   }
 
-  @Post('get-trade-history')
-  async getTradeHistory(symbol: string) {
+  @Get('get-trade-history/:symbol')
+  async getTradeHistory(@Param('symbol') symbol: string) {
     return this.walletUseCases.getTradeHistory(symbol);
   }
 
-  @Post('get-order-history')
-  async getOrderHistory(symbol: string) {
+  @Get('get-order-history/:symbol')
+  async getOrderHistory(@Param('symbol') symbol: string) {
     return this.walletUseCases.getOrderHistory(symbol);
   }
 }
