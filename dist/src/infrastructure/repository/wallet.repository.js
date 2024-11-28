@@ -24,11 +24,11 @@ const apiKey = process.env.API_KEY;
 const apiSecret = process.env.API_SECRET;
 const apiKeyTest = process.env.API_KEY_TESTNET;
 const apiSecretTest = process.env.API_SECRET_TESTNET;
-console.log('process.env.PAYMENT_ENV', process.env.PAYMENT_ENV);
-const client = process.env.PAYMENT_ENV === 'test'
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+const client = process.env.NODE_ENV === 'test'
     ? new connector_1.Spot(apiKeyTest, apiSecretTest)
     : new connector_1.Spot(apiKey, apiSecret);
-const baseUrl = process.env.PAYMENT_ENV === 'test'
+const baseUrl = process.env.NODE_ENV === 'test'
     ? 'https://testnet.binance.vision'
     : 'https://api.binance.com';
 let WalletRepository = class WalletRepository {
