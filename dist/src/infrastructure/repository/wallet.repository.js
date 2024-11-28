@@ -122,6 +122,30 @@ let WalletRepository = class WalletRepository {
             throw new common_1.BadRequestException(`Error getting trade history: ${((_b = (_a = error.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.msg) || error.message || 'Something went wrong'}`);
         }
     }
+    async getConvertTradeHistory() {
+        var _a, _b;
+        try {
+            const { data } = await client.convertTradeHistory(1730720207, 1731152250);
+            return data;
+        }
+        catch (error) {
+            throw new common_1.BadRequestException(`Error getting trade history: ${((_b = (_a = error.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.msg) || error.message || 'Something went wrong'}`);
+        }
+    }
+    async getTransferHistory() {
+        var _a, _b;
+        try {
+            const { data } = await client.userUniversalTransferHistory({
+                type: 'MAIN_UMFUTURE',
+                startTime: 1609459200000,
+                endTime: 1612137600000,
+            });
+            return data;
+        }
+        catch (error) {
+            throw new common_1.BadRequestException(`Error getting trade history: ${((_b = (_a = error.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.msg) || error.message || 'Something went wrong'}`);
+        }
+    }
     async getOrderHistory(symbol) {
         var _a, _b;
         try {

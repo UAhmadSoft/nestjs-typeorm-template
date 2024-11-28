@@ -49,6 +49,12 @@ let WalletUseCases = class WalletUseCases {
     async getTradeHistory(symbol) {
         return this.walletRepository.getTradeHistory(symbol);
     }
+    async getConvertTradeHistory() {
+        return this.walletRepository.getConvertTradeHistory();
+    }
+    async getTransferHistory() {
+        return this.walletRepository.getTransferHistory();
+    }
     async getOrderHistory(symbol) {
         return this.walletRepository.getOrderHistory(symbol);
     }

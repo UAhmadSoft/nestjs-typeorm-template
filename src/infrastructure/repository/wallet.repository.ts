@@ -148,6 +148,36 @@ export class WalletRepository implements IWallet {
       );
     }
   }
+  async getConvertTradeHistory() {
+    try {
+      const { data } = await client.convertTradeHistory(1730720207, 1731152250);
+
+      return data;
+    } catch (error) {
+      throw new BadRequestException(
+        `Error getting trade history: ${
+          error.response?.data?.msg || error.message || 'Something went wrong'
+        }`,
+      );
+    }
+  }
+  async getTransferHistory() {
+    try {
+      const { data } = await client.userUniversalTransferHistory({
+        type: 'MAIN_UMFUTURE', // Replace with your transfer type
+        startTime: 1609459200000, // Optional
+        endTime: 1612137600000, // Optional
+      });
+
+      return data;
+    } catch (error) {
+      throw new BadRequestException(
+        `Error getting trade history: ${
+          error.response?.data?.msg || error.message || 'Something went wrong'
+        }`,
+      );
+    }
+  }
 
   async getOrderHistory(symbol: string) {
     try {

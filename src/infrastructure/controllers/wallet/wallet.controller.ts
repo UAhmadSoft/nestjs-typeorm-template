@@ -62,6 +62,16 @@ export class WalletController {
     return this.walletUseCases.getTradeHistory(symbol);
   }
 
+  @Get('get-convert-trade-history')
+  async getConvertTradeHistory() {
+    return this.walletUseCases.getConvertTradeHistory();
+  }
+
+  @Get('get-transfer-history')
+  async getTransferHistory() {
+    return this.walletUseCases.getTransferHistory();
+  }
+
   @Get('get-order-history/:symbol')
   async getOrderHistory(@Param('symbol') symbol: string) {
     return this.walletUseCases.getOrderHistory(symbol);

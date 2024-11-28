@@ -22,5 +22,7 @@ export declare class WalletController {
     getFundingWallet(): Promise<any>;
     getOrderBook(symbol: string): Promise<any>;
     getTradeHistory(symbol: string): Promise<any>;
+    getConvertTradeHistory(): Promise<any>;
+    getTransferHistory(): Promise<any>;
     getOrderHistory(symbol: string): Promise<any>;
 }

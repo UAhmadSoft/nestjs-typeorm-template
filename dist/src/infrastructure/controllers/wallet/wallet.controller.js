@@ -53,6 +53,12 @@ let WalletController = class WalletController {
     async getTradeHistory(symbol) {
         return this.walletUseCases.getTradeHistory(symbol);
     }
+    async getConvertTradeHistory() {
+        return this.walletUseCases.getConvertTradeHistory();
+    }
+    async getTransferHistory() {
+        return this.walletUseCases.getTransferHistory();
+    }
     async getOrderHistory(symbol) {
         return this.walletUseCases.getOrderHistory(symbol);
     }
@@ -131,6 +137,18 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], WalletController.prototype, "getTradeHistory", null);
+__decorate([
+    (0, common_1.Get)('get-convert-trade-history'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], WalletController.prototype, "getConvertTradeHistory", null);
+__decorate([
+    (0, common_1.Get)('get-transfer-history'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], WalletController.prototype, "getTransferHistory", null);
 __decorate([
     (0, common_1.Get)('get-order-history/:symbol'),
     __param(0, (0, common_1.Param)('symbol')),

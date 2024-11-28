@@ -21,6 +21,8 @@ export declare class WalletRepository implements IWallet {
     getFundingWallet(): Promise<any>;
     getOrderBook(symbol: string): Promise<any>;
     getTradeHistory(symbol: string): Promise<any>;
+    getConvertTradeHistory(): Promise<any>;
+    getTransferHistory(): Promise<any>;
     getOrderHistory(symbol: string): Promise<any>;
     depositHistory(coin: string): Promise<any>;
     deposit(body: DepositDto): Promise<any>;

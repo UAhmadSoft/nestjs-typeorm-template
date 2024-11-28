@@ -50,6 +50,12 @@ export class WalletUseCases {
   async getTradeHistory(symbol: string) {
     return this.walletRepository.getTradeHistory(symbol);
   }
+  async getConvertTradeHistory() {
+    return this.walletRepository.getConvertTradeHistory();
+  }
+  async getTransferHistory() {
+    return this.walletRepository.getTransferHistory();
+  }
   async getOrderHistory(symbol: string) {
     return this.walletRepository.getOrderHistory(symbol);
   }
