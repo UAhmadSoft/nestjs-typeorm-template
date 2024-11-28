@@ -22,9 +22,15 @@ const connector_1 = require("@binance/connector");
 const axios_1 = require("axios");
 const apiKey = process.env.API_KEY;
 const apiSecret = process.env.API_SECRET;
-console.log('apiKey', apiSecret);
-const client = new connector_1.Spot(apiKey, apiSecret);
-const baseUrl = 'https://api.binance.com';
+const apiKeyTest = process.env.API_KEY_TESTNET;
+const apiSecretTest = process.env.API_SECRET_TESTNET;
+console.log('process.env.PAYMENT_ENV', process.env.PAYMENT_ENV);
+const client = process.env.PAYMENT_ENV === 'test'
+    ? new connector_1.Spot(apiKeyTest, apiSecretTest)
+    : new connector_1.Spot(apiKey, apiSecret);
+const baseUrl = process.env.PAYMENT_ENV === 'test'
+    ? 'https://testnet.binance.vision'
+    : 'https://api.binance.com';
 let WalletRepository = class WalletRepository {
     constructor(userRepository, coinrepository) {
         this.userRepository = userRepository;
