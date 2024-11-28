@@ -81,6 +81,7 @@ export class SpotRepository implements ISpot {
       console.log(order);
       return order;
     } catch (e) {
+      console.log('e', e);
       throw new BadRequestException(e.message);
     }
   }
@@ -99,6 +100,7 @@ export class SpotRepository implements ISpot {
       console.log(order);
       return order;
     } catch (e) {
+      console.log('e', e);
       throw new BadRequestException(e.message);
     }
   }
@@ -127,6 +129,7 @@ export class SpotRepository implements ISpot {
       console.log(response);
       return response.data;
     } catch (e) {
+      console.log('e', e);
       throw new BadRequestException(e.message);
     }
   }

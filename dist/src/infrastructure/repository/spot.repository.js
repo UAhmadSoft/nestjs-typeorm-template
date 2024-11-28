@@ -63,6 +63,7 @@ let SpotRepository = class SpotRepository {
             return order;
         }
         catch (e) {
+            console.log('e', e);
             throw new common_1.BadRequestException(e.message);
         }
     }
@@ -76,6 +77,7 @@ let SpotRepository = class SpotRepository {
             return order;
         }
         catch (e) {
+            console.log('e', e);
             throw new common_1.BadRequestException(e.message);
         }
     }
@@ -92,6 +94,7 @@ let SpotRepository = class SpotRepository {
             return response.data;
         }
         catch (e) {
+            console.log('e', e);
             throw new common_1.BadRequestException(e.message);
         }
     }
