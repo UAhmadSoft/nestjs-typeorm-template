@@ -13,41 +13,13 @@ const db_1 = require("../entities/db");
 const bcrypt_service_1 = require("../services/bcrypt/bcrypt.service");
 const user_repository_1 = require("./user.repository");
 const profile_repository_1 = require("./profile.repository");
-const coin_repository_1 = require("./coin.repository");
-const converthistory_repository_1 = require("./converthistory.repository");
-const transferhistory_repository_1 = require("./transferhistory.repository");
-const withdrawhistory_repository_1 = require("./withdrawhistory.repository");
-const deposithistory_repository_1 = require("./deposithistory.repository");
-const wallet_repository_1 = require("./wallet.repository");
-const spot_repository_1 = require("./spot.repository");
 let RepositoryModule = class RepositoryModule {
 };
 RepositoryModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature(db_1.default)],
-        providers: [
-            bcrypt_service_1.BcryptService,
-            user_repository_1.UserRepository,
-            profile_repository_1.ProfileRepository,
-            coin_repository_1.CoinRepository,
-            converthistory_repository_1.ConvertHistoryRepository,
-            deposithistory_repository_1.DepositHistoryRepository,
-            withdrawhistory_repository_1.WithdrawHistoryRepository,
-            transferhistory_repository_1.TransferHistoryRepository,
-            wallet_repository_1.WalletRepository,
-            spot_repository_1.SpotRepository,
-        ],
-        exports: [
-            user_repository_1.UserRepository,
-            profile_repository_1.ProfileRepository,
-            coin_repository_1.CoinRepository,
-            converthistory_repository_1.ConvertHistoryRepository,
-            deposithistory_repository_1.DepositHistoryRepository,
-            withdrawhistory_repository_1.WithdrawHistoryRepository,
-            transferhistory_repository_1.TransferHistoryRepository,
-            wallet_repository_1.WalletRepository,
-            spot_repository_1.SpotRepository,
-        ],
+        providers: [bcrypt_service_1.BcryptService, user_repository_1.UserRepository, profile_repository_1.ProfileRepository],
+        exports: [user_repository_1.UserRepository, profile_repository_1.ProfileRepository],
     })
 ], RepositoryModule);
 exports.RepositoryModule = RepositoryModule;

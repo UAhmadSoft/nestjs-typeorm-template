@@ -7,7 +7,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
-const rabbitmq_module_1 = require("./infrastructure/config/rabbitmq/rabbitmq.module");
 const common_1 = require("@nestjs/common");
 const typeorm_module_1 = require("./infrastructure/config/typeorm/typeorm.module");
 const controller_module_1 = require("./infrastructure/controllers/controller.module");
@@ -15,7 +14,6 @@ const bcrypt_module_1 = require("./infrastructure/services/bcrypt/bcrypt.module"
 const local_strategy_1 = require("./infrastructure/common/strategies/local.strategy");
 const jwt_strategy_1 = require("./infrastructure/common/strategies/jwt.strategy");
 const environment_config_module_1 = require("./infrastructure/config/environment-config/environment-config.module");
-const microservice_module_1 = require("./infrastructure/microservices/microservice.module");
 const gateway_module_1 = require("./infrastructure/gateways/gateway.module");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
@@ -48,8 +46,6 @@ AppModule = __decorate([
                 rootPath: (0, path_1.join)(__dirname, '../..', 'uploads'),
             }),
             gateway_module_1.GatewayModule,
-            microservice_module_1.MicroServiceModule,
-            rabbitmq_module_1.RabbitMQModule,
             typeorm_module_1.TypeOrmConfigModule,
             controller_module_1.ControllerModule,
             bcrypt_module_1.BcryptModule,

@@ -16,17 +16,9 @@ const environment_config_service_1 = require("../infrastructure/config/environme
 const bcrypt_service_1 = require("../infrastructure/services/bcrypt/bcrypt.service");
 const jwt_1 = require("@nestjs/jwt");
 const logout_usecases_1 = require("./auth/logout.usecases");
-const is_authenticated_usecases_1 = require("./auth/is-authenticated.usecases");
 const authorization_usecases_1 = require("./auth/authorization.usecases");
 const email_module_1 = require("../infrastructure/services/emails/email.module");
-const coin_usecases_1 = require("./coin/coin.usecases");
-const converthistory_usecases_1 = require("./converthistory/converthistory.usecases");
-const deposithistory_usecases_1 = require("./deposithistory/deposithistory.usecases");
-const withdrawhistory_usecases_1 = require("./withdrawhistory/withdrawhistory.usecases");
-const transferhistory_usecases_1 = require("./transferhistory/transferhistory.usecases");
 const repository_module_1 = require("../infrastructure/repository/repository.module");
-const wallet_usecases_1 = require("./wallet/wallet.usecases");
-const spot_usecases_1 = require("./spot/spot.usecases");
 let UseCaseModule = class UseCaseModule {
 };
 UseCaseModule = __decorate([
@@ -41,15 +33,7 @@ UseCaseModule = __decorate([
             bcrypt_service_1.BcryptService,
             jwt_1.JwtService,
             logout_usecases_1.LogoutUseCases,
-            is_authenticated_usecases_1.IsAuthenticatedUseCases,
-            coin_usecases_1.CoinUseCases,
             authorization_usecases_1.AuthorizationUseCases,
-            converthistory_usecases_1.ConvertHistoryUseCases,
-            deposithistory_usecases_1.DepositHistoryUseCases,
-            withdrawhistory_usecases_1.WithdrawHistoryUseCases,
-            transferhistory_usecases_1.TransferHistoryUseCases,
-            wallet_usecases_1.WalletUseCases,
-            spot_usecases_1.SpotUseCases,
         ],
         exports: [
             user_usecases_1.UserUseCases,
@@ -60,15 +44,7 @@ UseCaseModule = __decorate([
             bcrypt_service_1.BcryptService,
             jwt_1.JwtService,
             logout_usecases_1.LogoutUseCases,
-            is_authenticated_usecases_1.IsAuthenticatedUseCases,
-            coin_usecases_1.CoinUseCases,
             authorization_usecases_1.AuthorizationUseCases,
-            converthistory_usecases_1.ConvertHistoryUseCases,
-            deposithistory_usecases_1.DepositHistoryUseCases,
-            withdrawhistory_usecases_1.WithdrawHistoryUseCases,
-            transferhistory_usecases_1.TransferHistoryUseCases,
-            wallet_usecases_1.WalletUseCases,
-            spot_usecases_1.SpotUseCases,
         ],
     })
 ], UseCaseModule);

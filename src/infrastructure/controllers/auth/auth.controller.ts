@@ -1,15 +1,11 @@
 import { ProfileUseCases } from 'src/usecases/profile/profile.usecases';
 // import { NotificationsUseCases } from './../../../usecases/notification/notifications.usecases';
-import { AuthorizationUseCases } from 'src/usecases/auth/authorization.usecases';
-import { MailService } from 'src/infrastructure/services/emails/email.service';
 import { BcryptService } from './../../services/bcrypt/bcrypt.service';
 import { UserData } from 'src/infrastructure/common/user.data';
 
 import {
-  BadRequestException,
   Body,
   Controller,
-  Get,
   HttpException,
   HttpStatus,
   Param,
@@ -17,7 +13,6 @@ import {
   Patch,
   Post,
   Put,
-  Req,
   Request,
   UnauthorizedException,
   UseGuards,
@@ -35,7 +30,6 @@ import {
 } from '@nestjs/swagger';
 
 import {
-  AuthConfirmPhoneDto,
   AuthConfirmSignUpDto,
   AuthGoogleDto,
   AuthLoginDto,
@@ -45,19 +39,14 @@ import {
   ResetPasswordDto,
   SetPasswordDto,
   UpdatePasswordDto,
-  ValidatePasswordDto,
 } from './dtos/auth.dto';
 import { IsAuthPresenter } from './auth.presenter';
 
-import JwtRefreshGuard from '../../common/guards/jwtRefresh.guard';
 import { JwtAuthGuard } from '../../common/guards/jwtAuth.guard';
 import { LoginGuard } from '../../common/guards/login.guard';
 
 import { LoginUseCases } from '../../../usecases/auth/login.usecases';
-import { IsAuthenticatedUseCases } from '../../../usecases/auth/is-authenticated.usecases';
-import { LogoutUseCases } from '../../../usecases/auth/logout.usecases';
 
-import { ApiResponseType } from '../../common/swagger/response.decorator';
 import { UserUseCases } from 'src/usecases/user/user.usecases';
 import { catchAsync } from 'src/utils/catch-async';
 
@@ -72,13 +61,9 @@ import { catchAsync } from 'src/utils/catch-async';
 export class AuthController {
   constructor(
     private readonly loginUsecaseProxy: LoginUseCases,
-    private readonly logoutUsecaseProxy: LogoutUseCases,
-    private readonly isAuthUsecaseProxy: IsAuthenticatedUseCases,
     private readonly userUseCases: UserUseCases,
     private readonly profileUseCases: ProfileUseCases,
-    private readonly bcryptService: BcryptService,
-    private emailService: MailService,
-    private authorizationUseCases: AuthorizationUseCases, // private notificationsUseCases: NotificationsUseCases,
+    private readonly bcryptService: BcryptService, // private notificationsUseCases: NotificationsUseCases,
   ) {}
 
   @Post('login')
@@ -92,7 +77,7 @@ export class AuthController {
     @Response() res,
     @Next() next,
   ) {
-    return await catchAsync(async (req: any, res, next) => {
+    return await catchAsync(async (req: any, res) => {
       let user = req.user?.user || req.user;
 
       if (user.is_banned) {
@@ -113,12 +98,7 @@ export class AuthController {
   @ApiBearerAuth()
   @ApiBody({ type: AuthGoogleDto })
   @ApiOperation({ description: 'google-login' })
-  async googleLogin(
-    @Body() auth: AuthGoogleDto,
-    @Request() req,
-    @Response() res,
-    @Next() next,
-  ) {
+  async googleLogin(@Body() auth: AuthGoogleDto, @Response() res) {
     let user = await this.userUseCases.checkUser(auth.email);
 
     if (!user) {
@@ -153,7 +133,7 @@ export class AuthController {
     @Response() res,
     @Next() next,
   ) {
-    return await catchAsync(async (req, res, next) => {
+    return await catchAsync(async (req, res) => {
       try {
         // Step 1: Create the user during signup
         const hasPassword = await this.bcryptService.hash(auth.password);
@@ -196,7 +176,7 @@ export class AuthController {
     @Response() res,
     @Next() next,
   ) {
-    return await catchAsync(async (req, res, next) => {
+    return await catchAsync(async (req, res) => {
       const User = await this.userUseCases.createUserOnConfirmation(
         user.code,
         user.email,
@@ -229,7 +209,7 @@ export class AuthController {
     @Response() res,
     @Next() next,
   ) {
-    return await catchAsync(async (req, res, next) => {
+    return await catchAsync(async (req, res) => {
       const code = await this.userUseCases.resendCodeEmail(auth.email);
       if (code) {
         return res.json({
@@ -253,7 +233,7 @@ export class AuthController {
     @Response() res,
     @Next() next,
   ) {
-    return await catchAsync(async (req, res, next) => {
+    return await catchAsync(async (req, res) => {
       let str = await this.userUseCases.forgotPassword(forgotDto.email);
       return res.json({
         message: str,
@@ -269,7 +249,7 @@ export class AuthController {
     @Response() res,
     @Next() next,
   ) {
-    return await catchAsync(async (req, res, next) => {
+    return await catchAsync(async (req, res) => {
       const hashedPassword = await this.bcryptService.hash(body.password);
 
       const result = await this.userUseCases.setUsersPassword(
@@ -298,7 +278,7 @@ export class AuthController {
     @Response() res,
     @Next() next,
   ) {
-    return await catchAsync(async (req, res, next) => {
+    return await catchAsync(async (req, res) => {
       const userEmail = await this.userUseCases.getUserEmailByCode(code);
 
       // Get user by email
@@ -321,7 +301,7 @@ export class AuthController {
     @Response() res,
     @Next() next,
   ) {
-    return await catchAsync(async (req, res, next) => {
+    return await catchAsync(async (req, res) => {
       // * Get the logged in user
       const loggedInUser = await this.userUseCases.getUser(
         UserData.getUserData().id,

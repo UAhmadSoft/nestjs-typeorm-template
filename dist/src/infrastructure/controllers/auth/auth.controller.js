@@ -14,8 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const profile_usecases_1 = require("../../../usecases/profile/profile.usecases");
-const authorization_usecases_1 = require("../../../usecases/auth/authorization.usecases");
-const email_service_1 = require("../../services/emails/email.service");
 const bcrypt_service_1 = require("./../../services/bcrypt/bcrypt.service");
 const user_data_1 = require("../../common/user.data");
 const common_1 = require("@nestjs/common");
@@ -25,23 +23,17 @@ const auth_presenter_1 = require("./auth.presenter");
 const jwtAuth_guard_1 = require("../../common/guards/jwtAuth.guard");
 const login_guard_1 = require("../../common/guards/login.guard");
 const login_usecases_1 = require("../../../usecases/auth/login.usecases");
-const is_authenticated_usecases_1 = require("../../../usecases/auth/is-authenticated.usecases");
-const logout_usecases_1 = require("../../../usecases/auth/logout.usecases");
 const user_usecases_1 = require("../../../usecases/user/user.usecases");
 const catch_async_1 = require("../../../utils/catch-async");
 let AuthController = class AuthController {
-    constructor(loginUsecaseProxy, logoutUsecaseProxy, isAuthUsecaseProxy, userUseCases, profileUseCases, bcryptService, emailService, authorizationUseCases) {
+    constructor(loginUsecaseProxy, userUseCases, profileUseCases, bcryptService) {
         this.loginUsecaseProxy = loginUsecaseProxy;
-        this.logoutUsecaseProxy = logoutUsecaseProxy;
-        this.isAuthUsecaseProxy = isAuthUsecaseProxy;
         this.userUseCases = userUseCases;
         this.profileUseCases = profileUseCases;
         this.bcryptService = bcryptService;
-        this.emailService = emailService;
-        this.authorizationUseCases = authorizationUseCases;
     }
     async login(auth, req, res, next) {
-        return await (0, catch_async_1.catchAsync)(async (req, res, next) => {
+        return await (0, catch_async_1.catchAsync)(async (req, res) => {
             var _a;
             let user = ((_a = req.user) === null || _a === void 0 ? void 0 : _a.user) || req.user;
             if (user.is_banned) {
@@ -54,7 +46,7 @@ let AuthController = class AuthController {
             });
         })(req, res, next);
     }
-    async googleLogin(auth, req, res, next) {
+    async googleLogin(auth, res) {
         let user = await this.userUseCases.checkUser(auth.email);
         if (!user) {
             user = await this.userUseCases.createUser({
@@ -76,7 +68,7 @@ let AuthController = class AuthController {
         });
     }
     async SignUp(auth, req, res, next) {
-        return await (0, catch_async_1.catchAsync)(async (req, res, next) => {
+        return await (0, catch_async_1.catchAsync)(async (req, res) => {
             try {
                 const hasPassword = await this.bcryptService.hash(auth.password);
                 const user = await this.userUseCases.createUser(Object.assign(Object.assign({}, auth), { password: hasPassword }));
@@ -101,7 +93,7 @@ let AuthController = class AuthController {
         })(req, res, next);
     }
     async ConfirmUserSignUp(user, req, res, next) {
-        return await (0, catch_async_1.catchAsync)(async (req, res, next) => {
+        return await (0, catch_async_1.catchAsync)(async (req, res) => {
             const User = await this.userUseCases.createUserOnConfirmation(user.code, user.email);
             if (User) {
                 const accessTokenCookie = await this.loginUsecaseProxy.getJwtToken(user.email);
@@ -116,7 +108,7 @@ let AuthController = class AuthController {
         })(req, res, next);
     }
     async ResendCode(auth, req, res, next) {
-        return await (0, catch_async_1.catchAsync)(async (req, res, next) => {
+        return await (0, catch_async_1.catchAsync)(async (req, res) => {
             const code = await this.userUseCases.resendCodeEmail(auth.email);
             if (code) {
                 return res.json({
@@ -130,7 +122,7 @@ let AuthController = class AuthController {
         })(req, res, next);
     }
     async forgotPassword(forgotDto, req, res, next) {
-        return await (0, catch_async_1.catchAsync)(async (req, res, next) => {
+        return await (0, catch_async_1.catchAsync)(async (req, res) => {
             let str = await this.userUseCases.forgotPassword(forgotDto.email);
             return res.json({
                 message: str,
@@ -138,7 +130,7 @@ let AuthController = class AuthController {
         })(req, res, next);
     }
     async setPassword(code, body, req, res, next) {
-        return await (0, catch_async_1.catchAsync)(async (req, res, next) => {
+        return await (0, catch_async_1.catchAsync)(async (req, res) => {
             const hashedPassword = await this.bcryptService.hash(body.password);
             const result = await this.userUseCases.setUsersPassword(code, hashedPassword);
             if (result) {
@@ -153,7 +145,7 @@ let AuthController = class AuthController {
         })(req, res, next);
     }
     async resetPassword(body, code, req, res, next) {
-        return await (0, catch_async_1.catchAsync)(async (req, res, next) => {
+        return await (0, catch_async_1.catchAsync)(async (req, res) => {
             const userEmail = await this.userUseCases.getUserEmailByCode(code);
             const user = await this.userUseCases.getUserByEmail(userEmail);
             const updatedUser = await this.userUseCases.updateUser(user.id, {
@@ -163,7 +155,7 @@ let AuthController = class AuthController {
         })(req, res, next);
     }
     async updatePassword(user, req, res, next) {
-        return await (0, catch_async_1.catchAsync)(async (req, res, next) => {
+        return await (0, catch_async_1.catchAsync)(async (req, res) => {
             const loggedInUser = await this.userUseCases.getUser(user_data_1.UserData.getUserData().id);
             console.log('loggedInUser :>> ', loggedInUser);
             const match = await this.bcryptService.compare(user.currentPassword, loggedInUser.password);
@@ -199,11 +191,9 @@ __decorate([
     (0, swagger_1.ApiBody)({ type: auth_dto_1.AuthGoogleDto }),
     (0, swagger_1.ApiOperation)({ description: 'google-login' }),
     __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Request)()),
-    __param(2, (0, common_1.Response)()),
-    __param(3, (0, common_1.Next)()),
+    __param(1, (0, common_1.Response)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [auth_dto_1.AuthGoogleDto, Object, Object, Object]),
+    __metadata("design:paramtypes", [auth_dto_1.AuthGoogleDto, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "googleLogin", null);
 __decorate([
@@ -299,13 +289,9 @@ AuthController = __decorate([
     (0, swagger_1.ApiResponse)({ status: 500, description: 'Internal error' }),
     (0, swagger_1.ApiExtraModels)(auth_presenter_1.IsAuthPresenter),
     __metadata("design:paramtypes", [login_usecases_1.LoginUseCases,
-        logout_usecases_1.LogoutUseCases,
-        is_authenticated_usecases_1.IsAuthenticatedUseCases,
         user_usecases_1.UserUseCases,
         profile_usecases_1.ProfileUseCases,
-        bcrypt_service_1.BcryptService,
-        email_service_1.MailService,
-        authorization_usecases_1.AuthorizationUseCases])
+        bcrypt_service_1.BcryptService])
 ], AuthController);
 exports.AuthController = AuthController;
 //# sourceMappingURL=auth.controller.js.map
