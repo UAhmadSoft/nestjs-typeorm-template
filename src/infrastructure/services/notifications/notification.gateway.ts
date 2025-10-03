@@ -1,17 +1,12 @@
-import { UseGuards } from '@nestjs/common';
 import {
   ConnectedSocket,
   MessageBody,
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
-  WsResponse,
 } from '@nestjs/websockets';
 import { Socket } from 'net';
-import { from, map, Observable } from 'rxjs';
 import { Server } from 'socket.io';
-import { JwtAuthGuard } from 'src/infrastructure/common/guards/jwtAuth.guard';
-import { UserData } from 'src/infrastructure/common/user.data';
 
 @WebSocketGateway({
   cors: {

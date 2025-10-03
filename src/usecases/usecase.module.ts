@@ -7,17 +7,9 @@ import { EnvironmentConfigService } from 'src/infrastructure/config/environment-
 import { BcryptService } from 'src/infrastructure/services/bcrypt/bcrypt.service';
 import { JwtService } from '@nestjs/jwt';
 import { LogoutUseCases } from './auth/logout.usecases';
-import { IsAuthenticatedUseCases } from './auth/is-authenticated.usecases';
 import { AuthorizationUseCases } from './auth/authorization.usecases';
 import { EmailModule } from 'src/infrastructure/services/emails/email.module';
-import { CoinUseCases } from './coin/coin.usecases';
-import { ConvertHistoryUseCases } from './converthistory/converthistory.usecases';
-import { DepositHistoryUseCases } from './deposithistory/deposithistory.usecases';
-import { WithdrawHistoryUseCases } from './withdrawhistory/withdrawhistory.usecases';
-import { TransferHistoryUseCases } from './transferhistory/transferhistory.usecases';
 import { RepositoryModule } from 'src/infrastructure/repository/repository.module';
-import { WalletUseCases } from './wallet/wallet.usecases';
-import { SpotUseCases } from './spot/spot.usecases';
 
 @Module({
   imports: [RepositoryModule, EmailModule],
@@ -30,15 +22,7 @@ import { SpotUseCases } from './spot/spot.usecases';
     BcryptService,
     JwtService,
     LogoutUseCases,
-    IsAuthenticatedUseCases,
-    CoinUseCases,
     AuthorizationUseCases,
-    ConvertHistoryUseCases,
-    DepositHistoryUseCases,
-    WithdrawHistoryUseCases,
-    TransferHistoryUseCases,
-    WalletUseCases,
-    SpotUseCases,
   ],
   exports: [
     UserUseCases,
@@ -49,15 +33,7 @@ import { SpotUseCases } from './spot/spot.usecases';
     BcryptService,
     JwtService,
     LogoutUseCases,
-    IsAuthenticatedUseCases,
-    CoinUseCases,
     AuthorizationUseCases,
-    ConvertHistoryUseCases,
-    DepositHistoryUseCases,
-    WithdrawHistoryUseCases,
-    TransferHistoryUseCases,
-    WalletUseCases,
-    SpotUseCases,
   ],
 })
 export class UseCaseModule {}
