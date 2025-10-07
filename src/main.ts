@@ -23,8 +23,15 @@ async function bootstrap() {
   const httpAdapterHost = app.get(HttpAdapterHost);
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost));
   app.use(cookieParser());
-  app.useGlobalPipes(new ValidationPipe());
-  
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: false,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+
   // app.disable('x-powered-by');
   app.getHttpAdapter().getInstance().disable('x-powered-by');
 
