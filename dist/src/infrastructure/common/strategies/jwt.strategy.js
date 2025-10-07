@@ -20,6 +20,7 @@ let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(pas
     constructor(loginUsecase, configService) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromExtractors([
+                passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
                 (request) => {
                     var _a;
                     return (_a = request === null || request === void 0 ? void 0 : request.headers) === null || _a === void 0 ? void 0 : _a.authentication;

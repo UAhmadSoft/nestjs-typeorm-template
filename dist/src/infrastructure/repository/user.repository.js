@@ -22,7 +22,15 @@ let UserRepository = class UserRepository {
         this.userRepository = userRepository;
     }
     async createUser(userModel) {
-        return await this.userRepository.save(Object.assign(Object.assign({}, userModel), { email: userModel.email.toLowerCase() }));
+        const normalizedEmail = userModel.email.toLowerCase();
+        const existing = await this.userRepository
+            .createQueryBuilder('u')
+            .where('LOWER(u.email) = :email', { email: normalizedEmail })
+            .getOne();
+        if (existing) {
+            throw new common_1.ConflictException('Email already exists');
+        }
+        return await this.userRepository.save(Object.assign(Object.assign({}, userModel), { email: normalizedEmail }));
     }
     async getUser(id) {
         return await this.userRepository.findOne({ where: { id } });
@@ -59,8 +67,10 @@ let UserRepository = class UserRepository {
     async updateUser(id, updateUserModel) {
         const user = await this.userRepository.findOne({ where: { id } });
         if (user) {
-            const updatedUser = Object.assign(Object.assign({}, user), updateUserModel);
-            return this.userRepository.save(updatedUser);
+            const merged = Object.assign(Object.assign({}, user), updateUserModel);
+            if (merged.email)
+                merged.email = merged.email.toLowerCase();
+            return this.userRepository.save(merged);
         }
         return;
     }
@@ -72,24 +82,22 @@ let UserRepository = class UserRepository {
         return;
     }
     async getActiveUserByEmail(email) {
-        const adminUserEntity = await this.userRepository.findOne({
-            where: {
-                email: email.toLowerCase(),
-                is_active: true,
-            },
-            relations: ['profile'],
-        });
+        const adminUserEntity = await this.userRepository
+            .createQueryBuilder('u')
+            .leftJoinAndSelect('u.profile', 'profile')
+            .where('LOWER(u.email) = :email', { email: email.toLowerCase() })
+            .andWhere('u.is_active = :active', { active: true })
+            .getOne();
         if (!adminUserEntity) {
             return null;
         }
         return adminUserEntity;
     }
     async getUserByEmail(email) {
-        const adminUserEntity = await this.userRepository.findOne({
-            where: {
-                email: email.toLowerCase(),
-            },
-        });
+        const adminUserEntity = await this.userRepository
+            .createQueryBuilder('u')
+            .where('LOWER(u.email) = :email', { email: email.toLowerCase() })
+            .getOne();
         if (!adminUserEntity) {
             return null;
         }

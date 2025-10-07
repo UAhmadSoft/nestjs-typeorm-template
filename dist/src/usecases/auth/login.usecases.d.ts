@@ -26,7 +26,7 @@ export declare class LoginUseCases {
         allow_notifications?: boolean;
         is_active?: boolean;
         is_banned?: boolean;
-        role?: string;
+        role?: import("../../infrastructure/enums/role.enum").Role;
         device_id?: string;
     }>;
     validateEmailForLocalStragtegy(email: string): Promise<import("../../domain/models/user.model").UserModel>;

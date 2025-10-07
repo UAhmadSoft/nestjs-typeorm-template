@@ -19,7 +19,7 @@ export declare class LocalStrategy extends LocalStrategy_base {
             allow_notifications?: boolean;
             is_active?: boolean;
             is_banned?: boolean;
-            role?: string;
+            role?: import("../../enums/role.enum").Role;
             device_id?: string;
         };
     }>;

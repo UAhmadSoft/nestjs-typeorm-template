@@ -22,7 +22,12 @@ async function bootstrap() {
     const httpAdapterHost = app.get(core_1.HttpAdapterHost);
     app.useGlobalFilters(new global_exception_handler_1.AllExceptionsFilter(httpAdapterHost));
     app.use(cookieParser());
-    app.useGlobalPipes(new common_1.ValidationPipe());
+    app.useGlobalPipes(new common_1.ValidationPipe({
+        transform: true,
+        whitelist: true,
+        forbidNonWhitelisted: false,
+        transformOptions: { enableImplicitConversion: true },
+    }));
     app.getHttpAdapter().getInstance().disable('x-powered-by');
     app.enableCors();
     app.use((0, helmet_1.default)());

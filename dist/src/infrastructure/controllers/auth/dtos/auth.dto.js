@@ -72,7 +72,6 @@ __decorate([
     (0, swagger_1.ApiProperty)({ required: true, example: 'Str0ngP@ssw0rd!' }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
-    IsStrongPassword(),
     __metadata("design:type", String)
 ], AuthSignUpDto.prototype, "password", void 0);
 __decorate([
@@ -173,7 +172,6 @@ __decorate([
     (0, swagger_1.ApiProperty)({ required: true, example: 'NewStr0ngP@ss!' }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
-    IsStrongPassword(),
     __metadata("design:type", String)
 ], SetPasswordDto.prototype, "password", void 0);
 exports.SetPasswordDto = SetPasswordDto;

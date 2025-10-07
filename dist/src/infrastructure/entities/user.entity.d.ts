@@ -1,9 +1,10 @@
+import { Role } from '../enums/role.enum';
 import { Profiles } from './profile.entity';
 export declare class Users {
     id: number;
     email: string;
     device_id: string;
-    role: string;
+    role: Role;
     password: string;
     signup_otp: number;
     signup_otp_expiry: Date;

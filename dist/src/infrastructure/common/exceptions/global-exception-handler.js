@@ -19,30 +19,66 @@ let AllExceptionsFilter = class AllExceptionsFilter {
     catch(exception, host) {
         const { httpAdapter } = this.httpAdapterHost;
         const ctx = host.switchToHttp();
-        console.log(exception);
-        const status = exception.hasOwnProperty('response')
-            ? exception['response']['statusCode']
-                ? exception['response']['statusCode']
-                : exception['status']
-                    ? exception['status']
-                    : 500
-            : exception.hasOwnProperty('status') && exception['status'] === 500
-                ? 500
-                : exception['detail']
-                    ? 400
-                    : 500;
-        const message = exception.hasOwnProperty('response')
-            ? exception['response']['message'] || exception['message']
-            : exception.hasOwnProperty('status') && exception['status'] === 500
-                ? 'Internal Server Error'
-                : exception['detail']
-                    ? exception['detail']
-                    : 'Internal Server Error';
+        const response = ctx.getResponse();
+        const request = ctx.getRequest();
+        let status = common_1.HttpStatus.INTERNAL_SERVER_ERROR;
+        let message = 'Internal server error';
+        let errors = undefined;
+        const isProd = process.env.NODE_ENV === 'production';
+        if (exception instanceof common_1.HttpException) {
+            status = exception.getStatus();
+            const res = exception.getResponse();
+            if (typeof res === 'string') {
+                message = res;
+            }
+            else if (typeof res === 'object' && res !== null) {
+                const r = res;
+                if (r.message) {
+                    if (Array.isArray(r.message)) {
+                        message = 'Validation failed';
+                        if (!isProd)
+                            errors = r.message;
+                    }
+                    else {
+                        message = r.message;
+                    }
+                }
+                if (r.error && !errors && !isProd) {
+                    errors = r.error;
+                }
+            }
+        }
+        else {
+            if (isProd) {
+                status = common_1.HttpStatus.INTERNAL_SERVER_ERROR;
+                message = 'Internal server error';
+                console.error(exception);
+            }
+            else {
+                status = common_1.HttpStatus.INTERNAL_SERVER_ERROR;
+                if (exception && typeof exception === 'object') {
+                    const ex = exception;
+                    message = ex.message || ex.detail || 'Internal server error';
+                    errors = ex.errors || ex.detail || undefined;
+                }
+                else if (typeof exception === 'string') {
+                    message = exception;
+                }
+                console.error(exception);
+            }
+        }
         const responseBody = {
+            statusCode: status,
+            timestamp: new Date().toISOString(),
+            path: request === null || request === void 0 ? void 0 : request.url,
+            method: request === null || request === void 0 ? void 0 : request.method,
             message,
-            status,
         };
-        httpAdapter.reply(ctx.getResponse(), responseBody, status);
+        if (!isProd && errors)
+            responseBody.errors = errors;
+        if (!isProd && (exception === null || exception === void 0 ? void 0 : exception.stack))
+            responseBody.stack = exception.stack;
+        httpAdapter.reply(response, responseBody, status);
     }
 };
 AllExceptionsFilter = __decorate([

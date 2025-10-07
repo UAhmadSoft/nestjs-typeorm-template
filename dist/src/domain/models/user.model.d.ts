@@ -1,3 +1,4 @@
+import { Role } from 'src/infrastructure/enums/role.enum';
 export declare class UserModel {
     email: string;
     password: string;
@@ -13,7 +14,7 @@ export declare class UserModel {
     allow_notifications?: boolean;
     is_active?: boolean;
     is_banned?: boolean;
-    role?: string;
+    role?: Role;
     device_id?: string;
 }
 export declare class FetchUserModel {
@@ -32,7 +33,7 @@ export declare class FetchUserModel {
     allow_notifications: boolean;
     is_active: boolean;
     is_banned: boolean;
-    role: string;
+    role: Role;
     device_id?: string;
 }
 export declare class UpdateUserModel {
@@ -50,6 +51,6 @@ export declare class UpdateUserModel {
     allow_notifications?: boolean;
     is_active?: boolean;
     is_banned?: boolean;
-    role?: string;
+    role?: Role;
     device_id?: string;
 }
