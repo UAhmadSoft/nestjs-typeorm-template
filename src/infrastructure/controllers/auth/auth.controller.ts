@@ -246,6 +246,7 @@ export class AuthController {
     summary: 'Request a password reset email/code',
     description: 'forgot-password',
   })
+  @ApiBody({ type: ForgotPasswordDto })
   async forgotPassword(
     @Body() forgotDto: ForgotPasswordDto,
     @Request() req,
@@ -262,6 +263,7 @@ export class AuthController {
 
   @Put('set-password/:code')
   @ApiOperation({ summary: 'Set a new password using a reset code' })
+  @ApiBody({ type: SetPasswordDto })
   async setPassword(
     @Param('code', ParseIntPipe) code: number,
     @Body() body: SetPasswordDto,
@@ -292,6 +294,7 @@ export class AuthController {
 
   @Patch('reset-password/:code')
   @ApiOperation({ summary: 'Reset password using provided code' })
+  @ApiBody({ type: ResetPasswordDto })
   async resetPassword(
     @Body() body: ResetPasswordDto,
     @Param('code') code: number,
@@ -317,6 +320,7 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Patch('update-password')
   @ApiOperation({ summary: "Update the logged-in user's password" })
+  @ApiBody({ type: UpdatePasswordDto })
   async updatePassword(
     @Body() user: UpdatePasswordDto,
     @Request() req,

@@ -11,7 +11,7 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiBody } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../../infrastructure/common/guards/jwtAuth.guard';
 import { UserUseCases } from '../../../usecases/user/user.usecases';
 import { CreateUserDto, UpdateUserDto } from './user.dto';
@@ -31,6 +31,7 @@ export class UserController {
   @Permission(['admin'])
   @Post()
   @ApiOperation({ summary: 'Create a new user (admin only)' })
+  @ApiBody({ type: CreateUserDto })
   createUser(@Body() user: CreateUserDto) {
     return this.userUseCases.createUser(user);
   }
@@ -68,6 +69,7 @@ export class UserController {
   @Permission(['admin'])
   @Put(':id')
   @ApiOperation({ summary: 'Update a user by id (admin only)' })
+  @ApiBody({ type: UpdateUserDto })
   updateUser(
     @Param('id', ParseIntPipe) id: number,
     @Body() user: UpdateUserDto,

@@ -9,7 +9,7 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiBody } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../../infrastructure/common/guards/jwtAuth.guard';
 import { ProfileUseCases } from '../../../usecases/profile/profile.usecases';
 import { CreateProfileDto, UpdateProfileDto } from './profile.dto';
@@ -21,6 +21,7 @@ export class ProfileController {
 
   @Post()
   @ApiOperation({ summary: 'Create a new profile' })
+  @ApiBody({ type: CreateProfileDto })
   createProfile(@Body() profile: CreateProfileDto) {
     return this.profileUseCases.createProfile(profile);
   }
@@ -39,6 +40,7 @@ export class ProfileController {
 
   @Put(':id')
   @ApiOperation({ summary: 'Update a profile by id' })
+  @ApiBody({ type: UpdateProfileDto })
   updateProfile(
     @Param('id', ParseIntPipe) id: number,
     @Body() profile: UpdateProfileDto,
