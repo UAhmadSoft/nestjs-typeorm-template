@@ -23,11 +23,15 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "email", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ nullable: true, type: 'varchar' }),
+    __metadata("design:type", String)
+], Users.prototype, "device_id", void 0);
+__decorate([
     (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
     __metadata("design:type", String)
 ], Users.prototype, "role", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
+    (0, typeorm_1.Column)({ nullable: true, type: 'varchar' }),
     __metadata("design:type", String)
 ], Users.prototype, "password", void 0);
 __decorate([
@@ -46,10 +50,6 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: false, type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Users.prototype, "forget_email_otp_expiry", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'varchar' }),
-    __metadata("design:type", String)
-], Users.prototype, "agent_rera", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: false, type: 'boolean', default: false }),
     __metadata("design:type", Boolean)

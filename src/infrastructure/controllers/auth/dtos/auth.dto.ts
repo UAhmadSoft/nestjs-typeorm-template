@@ -3,6 +3,7 @@ import {
   IsBoolean,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   Matches,
   ValidationArguments,
@@ -46,7 +47,12 @@ export class AuthSignUpDto {
   @ApiProperty({ required: true })
   @IsNotEmpty()
   @IsString()
-  readonly fullname: string;
+  readonly first_name: string;
+
+  @ApiProperty({ required: true })
+  @IsNotEmpty()
+  @IsString()
+  readonly last_name: string;
 
   @ApiProperty({ required: true })
   @IsNotEmpty()
@@ -55,7 +61,7 @@ export class AuthSignUpDto {
   readonly password: string;
 
   @ApiProperty({ required: true })
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   readonly device_id: string;
 }

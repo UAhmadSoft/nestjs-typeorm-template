@@ -31,6 +31,12 @@ class createUsersTable1729785604617 {
                 {
                     name: 'password',
                     type: 'varchar',
+                    isNullable: true,
+                },
+                {
+                    name: 'device_id',
+                    type: 'varchar',
+                    isNullable: true,
                 },
                 {
                     name: 'signup_otp',
@@ -51,11 +57,6 @@ class createUsersTable1729785604617 {
                     name: 'forget_email_otp_expiry',
                     isNullable: true,
                     type: 'timestamp',
-                },
-                {
-                    name: 'agent_rera',
-                    isNullable: true,
-                    type: 'varchar',
                 },
                 {
                     name: 'is_social_login',

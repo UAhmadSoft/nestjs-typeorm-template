@@ -51,12 +51,6 @@ __decorate([
     __metadata("design:type", Date)
 ], CreateUserDto.prototype, "forget_email_otp_expiry", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "agent_rera", void 0);
-__decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)({ required: true }),
@@ -149,12 +143,6 @@ __decorate([
     (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", Date)
 ], UpdateUserDto.prototype, "forget_email_otp_expiry", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
-    __metadata("design:type", String)
-], UpdateUserDto.prototype, "agent_rera", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),

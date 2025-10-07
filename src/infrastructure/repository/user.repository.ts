@@ -5,7 +5,7 @@ import {
   UserModel,
   FetchUserModel,
   UpdateUserModel,
-} from '../../domain/models/user';
+} from '../../domain/models/user.model';
 import { IUser } from '../../domain/repositories/user.repository.interface';
 import { Users } from '../entities/user.entity';
 

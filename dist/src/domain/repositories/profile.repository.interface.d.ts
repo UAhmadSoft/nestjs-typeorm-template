@@ -1,4 +1,4 @@
-import { ProfileModel, FetchProfileModel, UpdateProfileModel } from '../models/Profile';
+import { ProfileModel, FetchProfileModel, UpdateProfileModel } from '../models/profile.model';
 export interface IProfile {
     createProfile(profileModel: ProfileModel): Promise<FetchProfileModel>;
     getProfile(id: number): Promise<FetchProfileModel>;

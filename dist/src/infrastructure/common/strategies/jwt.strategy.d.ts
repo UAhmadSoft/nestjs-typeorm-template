@@ -6,6 +6,6 @@ export declare class JwtStrategy extends JwtStrategy_base {
     private readonly loginUsecase;
     private readonly configService;
     constructor(loginUsecase: LoginUseCases, configService: EnvironmentConfigService);
-    validate(payload: any): Promise<import("../../../domain/models/user").UserModel>;
+    validate(payload: any): Promise<import("../../../domain/models/user.model").UserModel>;
 }
 export {};

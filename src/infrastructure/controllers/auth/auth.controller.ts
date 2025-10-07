@@ -144,7 +144,8 @@ export class AuthController {
 
         await this.profileUseCases.createProfile({
           user: user.id,
-          fullname: auth.fullname,
+          first_name: auth.first_name,
+          last_name: auth.last_name,
         });
 
         await this.userUseCases.sendSignupCode(user);

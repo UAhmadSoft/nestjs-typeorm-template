@@ -1,7 +1,11 @@
-import { Injectable,NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ProfileModel, FetchProfileModel, UpdateProfileModel  } from '../../domain/models/profile';
+import {
+  ProfileModel,
+  FetchProfileModel,
+  UpdateProfileModel,
+} from '../../domain/models/profile.model';
 import { IProfile } from '../../domain/repositories/profile.repository.interface';
 import { Profiles } from '../entities/profile.entity';
 
@@ -38,8 +42,8 @@ export class ProfileRepository implements IProfile {
 
   async deleteProfile(id: number): Promise<void> {
     const result = await this.profileRepository.delete(id);
-    if(result.affected === 0){
-        throw new NotFoundException('Profile Not Found');
+    if (result.affected === 0) {
+      throw new NotFoundException('Profile Not Found');
     }
 
     return;

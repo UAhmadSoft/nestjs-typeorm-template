@@ -29,38 +29,19 @@ export class createProfilesTable1729785604630 implements MigrationInterface {
             default: 'now()',
           },
           {
-            name: 'fullname',
+            name: 'first_name',
             isNullable: true,
             type: 'varchar',
           },
           {
-            name: 'reminder_time',
-            isNullable: true,
-            type: 'time',
-          },
-          {
-            name: 'flexibility_level',
+            name: 'last_name',
             isNullable: true,
             type: 'varchar',
-            isArray: true,
           },
           {
-            name: 'stretching_time',
+            name: 'image_url',
             isNullable: true,
             type: 'varchar',
-            isArray: true,
-          },
-          {
-            name: 'goal',
-            isNullable: true,
-            type: 'varchar',
-            isArray: true,
-          },
-          {
-            name: 'discomfort_areas',
-            isNullable: true,
-            type: 'varchar',
-            isArray: true,
           },
           {
             name: 'user',

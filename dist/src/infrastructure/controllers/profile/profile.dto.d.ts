@@ -1,18 +1,12 @@
 export declare class CreateProfileDto {
-    fullname: string;
-    reminder_time: Date;
-    flexibility_level: string[];
-    stretching_time: string[];
-    goal: string[];
-    discomfort_areas: string[];
+    first_name: string;
+    last_name: string;
+    image_url?: string;
     user: number;
 }
 export declare class UpdateProfileDto {
-    fullname: string;
-    reminder_time: Date;
-    flexibility_level: string[];
-    stretching_time: string[];
-    goal: string[];
-    discomfort_areas: string[];
+    first_name: string;
+    last_name: string;
+    image_url?: string;
     user: number;
 }

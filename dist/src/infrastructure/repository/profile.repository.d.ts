@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { ProfileModel, FetchProfileModel, UpdateProfileModel } from '../../domain/models/profile';
+import { ProfileModel, FetchProfileModel, UpdateProfileModel } from '../../domain/models/profile.model';
 import { IProfile } from '../../domain/repositories/profile.repository.interface';
 import { Profiles } from '../entities/profile.entity';
 export declare class ProfileRepository implements IProfile {

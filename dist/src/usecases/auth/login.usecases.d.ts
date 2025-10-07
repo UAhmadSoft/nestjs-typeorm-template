@@ -18,7 +18,6 @@ export declare class LoginUseCases {
         signup_otp_expiry?: Date;
         forget_email_otp?: number;
         forget_email_otp_expiry?: Date;
-        agent_rera?: string;
         is_social_login?: boolean;
         is_email_verified?: boolean;
         upcoming_email?: string;
@@ -28,7 +27,8 @@ export declare class LoginUseCases {
         is_active?: boolean;
         is_banned?: boolean;
         role?: string;
+        device_id?: string;
     }>;
-    validateEmailForLocalStragtegy(email: string): Promise<import("../../domain/models/user").UserModel>;
-    validateUserForJWTStragtegy(email: string): Promise<import("../../domain/models/user").UserModel>;
+    validateEmailForLocalStragtegy(email: string): Promise<import("../../domain/models/user.model").UserModel>;
+    validateUserForJWTStragtegy(email: string): Promise<import("../../domain/models/user.model").UserModel>;
 }

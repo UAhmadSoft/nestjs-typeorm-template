@@ -1,5 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { ProfileModel, UpdateProfileModel  } from '../../domain/models/profile';
+import {
+  ProfileModel,
+  UpdateProfileModel,
+} from '../../domain/models/profile.model';
 import { ProfileRepository } from '../../infrastructure/repository/profile.repository';
 
 @Injectable()

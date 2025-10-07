@@ -10,7 +10,8 @@ export declare class AuthGoogleDto {
 }
 export declare class AuthSignUpDto {
     readonly email: string;
-    readonly fullname: string;
+    readonly first_name: string;
+    readonly last_name: string;
     readonly password: string;
     readonly device_id: string;
 }

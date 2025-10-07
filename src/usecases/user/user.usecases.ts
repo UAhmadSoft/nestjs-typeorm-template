@@ -3,7 +3,7 @@ import {
   UserModel,
   UpdateUserModel,
   FetchUserModel,
-} from '../../domain/models/user';
+} from '../../domain/models/user.model';
 import { UserRepository } from '../../infrastructure/repository/user.repository';
 import { EntityManager } from 'typeorm';
 import { MailService } from 'src/infrastructure/services/emails/email.service';

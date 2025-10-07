@@ -18,10 +18,13 @@ export class Users {
   @Column({ nullable: false, type: 'varchar' })
   email: string;
 
+  @Column({ nullable: true, type: 'varchar' })
+  device_id: string;
+
   @Column({ nullable: false, type: 'varchar' })
   role: string;
 
-  @Column({ nullable: false, type: 'varchar' })
+  @Column({ nullable: true, type: 'varchar' })
   password: string;
 
   @Column({ nullable: false, type: 'int' })
@@ -35,9 +38,6 @@ export class Users {
 
   @Column({ nullable: false, type: 'timestamp' })
   forget_email_otp_expiry: Date;
-
-  @Column({ nullable: false, type: 'varchar' })
-  agent_rera: string;
 
   @Column({ nullable: false, type: 'boolean', default: false })
   is_social_login: boolean;

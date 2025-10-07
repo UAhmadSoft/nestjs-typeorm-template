@@ -61,7 +61,13 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], AuthSignUpDto.prototype, "fullname", void 0);
+], AuthSignUpDto.prototype, "first_name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], AuthSignUpDto.prototype, "last_name", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ required: true }),
     (0, class_validator_1.IsNotEmpty)(),
@@ -71,7 +77,7 @@ __decorate([
 ], AuthSignUpDto.prototype, "password", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ required: true }),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], AuthSignUpDto.prototype, "device_id", void 0);

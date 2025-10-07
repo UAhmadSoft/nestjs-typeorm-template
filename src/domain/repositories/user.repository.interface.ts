@@ -1,4 +1,8 @@
-import { UserModel, FetchUserModel, UpdateUserModel } from '../models/User';
+import {
+  UserModel,
+  FetchUserModel,
+  UpdateUserModel,
+} from '../models/user.model';
 export interface IUser {
   createUser(userModel: UserModel): Promise<FetchUserModel>;
   getUser(id: number): Promise<FetchUserModel>;

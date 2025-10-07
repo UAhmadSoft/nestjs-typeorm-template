@@ -1,4 +1,4 @@
-import { UserModel, UpdateUserModel, FetchUserModel } from '../../domain/models/user';
+import { UserModel, UpdateUserModel, FetchUserModel } from '../../domain/models/user.model';
 import { UserRepository } from '../../infrastructure/repository/user.repository';
 import { MailService } from 'src/infrastructure/services/emails/email.service';
 export declare class UserUseCases {

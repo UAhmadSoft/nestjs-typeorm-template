@@ -5,7 +5,6 @@ export declare class CreateUserDto {
     signup_otp_expiry: Date;
     forget_email_otp: number;
     forget_email_otp_expiry: Date;
-    agent_rera: string;
     is_social_login: boolean;
     is_email_verified: boolean;
     upcoming_email: string;
@@ -23,7 +22,6 @@ export declare class UpdateUserDto {
     signup_otp_expiry: Date;
     forget_email_otp: number;
     forget_email_otp_expiry: Date;
-    agent_rera: string;
     is_social_login: boolean;
     is_email_verified: boolean;
     upcoming_email: string;

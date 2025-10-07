@@ -5,7 +5,6 @@ export class UserModel {
   signup_otp_expiry?: Date;
   forget_email_otp?: number;
   forget_email_otp_expiry?: Date;
-  agent_rera?: string;
   is_social_login?: boolean;
   is_email_verified?: boolean;
   upcoming_email?: string;
@@ -15,6 +14,7 @@ export class UserModel {
   is_active?: boolean;
   is_banned?: boolean;
   role?: string;
+  device_id?: string;
 }
 
 export class FetchUserModel {
@@ -25,7 +25,6 @@ export class FetchUserModel {
   signup_otp_expiry: Date;
   forget_email_otp: number;
   forget_email_otp_expiry: Date;
-  agent_rera: string;
   is_social_login: boolean;
   is_email_verified: boolean;
   upcoming_email: string;
@@ -35,6 +34,7 @@ export class FetchUserModel {
   is_active: boolean;
   is_banned: boolean;
   role: string;
+  device_id?: string;
 }
 
 export class UpdateUserModel {
@@ -44,7 +44,6 @@ export class UpdateUserModel {
   signup_otp_expiry?: Date;
   forget_email_otp?: number;
   forget_email_otp_expiry?: Date;
-  agent_rera?: string;
   is_social_login?: boolean;
   is_email_verified?: boolean;
   upcoming_email?: string;
@@ -54,4 +53,5 @@ export class UpdateUserModel {
   is_active?: boolean;
   is_banned?: boolean;
   role?: string;
+  device_id?: string;
 }

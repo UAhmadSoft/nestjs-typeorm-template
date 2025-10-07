@@ -33,10 +33,6 @@ export class CreateUserDto {
   @IsNotEmpty()
   @ApiProperty({ required: true })
   forget_email_otp_expiry: Date;
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty({ required: true })
-  agent_rera: string;
   @IsBoolean()
   @IsNotEmpty()
   @ApiProperty({ required: true })
@@ -100,10 +96,6 @@ export class UpdateUserDto {
   @IsOptional()
   @ApiProperty({ required: false })
   forget_email_otp_expiry: Date;
-  @IsString()
-  @IsOptional()
-  @ApiProperty({ required: false })
-  agent_rera: string;
   @IsBoolean()
   @IsOptional()
   @ApiProperty({ required: false })
