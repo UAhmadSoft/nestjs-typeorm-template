@@ -12,127 +12,127 @@ import {
 } from 'class-validator';
 
 export class AuthLoginDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'user@example.com' })
   @IsNotEmpty()
   @IsString()
   readonly email: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'Str0ngP@ssw0rd!' })
   @IsNotEmpty()
   @IsString()
   readonly password: string;
 }
 export class AuthGoogleDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'user@gmail.com' })
   @IsNotEmpty()
   @IsString()
   readonly email: string;
 
-  @ApiProperty({ required: false })
+  @ApiProperty({ required: false, example: true })
   @IsNotEmpty()
   @IsBoolean()
   readonly is_social_login: boolean;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'device-uuid-1234' })
   @IsNotEmpty()
   @IsString()
   readonly device_id: string;
 }
 export class AuthSignUpDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'user@example.com' })
   @IsNotEmpty()
   @IsString()
   readonly email: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'John' })
   @IsNotEmpty()
   @IsString()
   readonly first_name: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'Doe' })
   @IsNotEmpty()
   @IsString()
   readonly last_name: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'Str0ngP@ssw0rd!' })
   @IsNotEmpty()
   @IsString()
   @IsStrongPassword()
   readonly password: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'device-uuid-1234' })
   @IsOptional()
   @IsString()
   readonly device_id: string;
 }
 export class ResendCodeDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'user@example.com' })
   @IsNotEmpty()
   @IsString()
   readonly email: string;
 }
 export class AuthConfirmSignUpDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 123456 })
   @IsNotEmpty()
   @IsNumber()
   readonly code: number;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'user@example.com' })
   @IsNotEmpty()
   @IsString()
   readonly email: string;
 }
 
 export class AuthConfirmPhoneDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: '+15551234567' })
   @IsNotEmpty()
   @IsString()
   @Matches(/^[+]?[0-9]{10,15}$/) // Ensures the phone number is valid with optional '+'
   readonly phone: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'user@example.com' })
   @IsNotEmpty()
   @IsString()
   readonly email: string;
 }
 export class AuthConfirmOtpDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 123456 })
   @IsNotEmpty()
   @IsNumber()
   readonly code: number;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'user@example.com' })
   @IsNotEmpty()
   @IsString()
   readonly email: string;
 }
 
 export class UpdatePasswordDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'OldP@ssw0rd!' })
   @IsNotEmpty()
   @IsString()
   readonly currentPassword: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'NewStr0ngP@ss!' })
   @IsNotEmpty()
   @IsString()
   readonly newPassword: string;
 }
 
 export class ResetPasswordDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'NewStr0ngP@ss!' })
   @IsNotEmpty()
   @IsString()
   readonly password: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'NewStr0ngP@ss!' })
   @IsNotEmpty()
   @IsString()
   readonly confirmPassword: string;
 }
 
 export class SetPasswordDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'NewStr0ngP@ss!' })
   @IsNotEmpty()
   @IsString()
   @IsStrongPassword()
@@ -140,13 +140,13 @@ export class SetPasswordDto {
 }
 
 export class ForgotPasswordDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'user@example.com' })
   @IsNotEmpty()
   @IsString()
   readonly email: string;
 }
 export class ValidatePasswordDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: true, example: 'Str0ngP@ssw0rd!' })
   @IsNotEmpty()
   @IsString()
   readonly password: string;
