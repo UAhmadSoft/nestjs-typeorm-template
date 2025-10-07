@@ -57,7 +57,7 @@ export class AuthSignUpDto {
   @ApiProperty({ required: true, example: 'Str0ngP@ssw0rd!' })
   @IsNotEmpty()
   @IsString()
-  @IsStrongPassword()
+  // @IsStrongPassword()
   readonly password: string;
 
   @ApiProperty({ required: true, example: 'device-uuid-1234' })
@@ -135,7 +135,7 @@ export class SetPasswordDto {
   @ApiProperty({ required: true, example: 'NewStr0ngP@ss!' })
   @IsNotEmpty()
   @IsString()
-  @IsStrongPassword()
+  // @IsStrongPassword()
   readonly password: string;
 }
 
