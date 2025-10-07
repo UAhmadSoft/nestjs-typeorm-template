@@ -8,6 +8,7 @@ import {
   JoinColumn,
   Unique,
 } from 'typeorm';
+import { Role } from '../enums/role.enum';
 import { Profiles } from './profile.entity';
 
 @Entity()
@@ -21,8 +22,8 @@ export class Users {
   @Column({ nullable: true, type: 'varchar' })
   device_id: string;
 
-  @Column({ nullable: false, type: 'varchar' })
-  role: string;
+  @Column({ nullable: false, type: 'enum', enum: Role, default: Role.USER })
+  role: Role;
 
   @Column({ nullable: true, type: 'varchar' })
   password: string;
