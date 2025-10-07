@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
 import {
@@ -17,9 +21,20 @@ export class UserRepository implements IUser {
   ) {}
 
   async createUser(userModel: UserModel): Promise<FetchUserModel> {
+    const normalizedEmail = userModel.email.toLowerCase();
+
+    // Prevent duplicates at application level (case-insensitive)
+    const existing = await this.userRepository
+      .createQueryBuilder('u')
+      .where('LOWER(u.email) = :email', { email: normalizedEmail })
+      .getOne();
+    if (existing) {
+      throw new ConflictException('Email already exists');
+    }
+
     return await this.userRepository.save({
       ...userModel,
-      email: userModel.email.toLowerCase(),
+      email: normalizedEmail,
     });
   }
 
@@ -77,8 +92,9 @@ export class UserRepository implements IUser {
   ): Promise<FetchUserModel> {
     const user = await this.userRepository.findOne({ where: { id } });
     if (user) {
-      const updatedUser = { ...user, ...updateUserModel };
-      return this.userRepository.save(updatedUser as any);
+      const merged = { ...user, ...updateUserModel } as any;
+      if (merged.email) merged.email = merged.email.toLowerCase();
+      return this.userRepository.save(merged);
     }
     return;
   }
@@ -93,24 +109,22 @@ export class UserRepository implements IUser {
   }
 
   async getActiveUserByEmail(email: string): Promise<UserModel> {
-    const adminUserEntity = await this.userRepository.findOne({
-      where: {
-        email: email.toLowerCase(),
-        is_active: true,
-      },
-      relations: ['profile'],
-    });
+    const adminUserEntity = await this.userRepository
+      .createQueryBuilder('u')
+      .leftJoinAndSelect('u.profile', 'profile')
+      .where('LOWER(u.email) = :email', { email: email.toLowerCase() })
+      .andWhere('u.is_active = :active', { active: true })
+      .getOne();
     if (!adminUserEntity) {
       return null;
     }
     return adminUserEntity;
   }
   async getUserByEmail(email: string): Promise<FetchUserModel> {
-    const adminUserEntity = await this.userRepository.findOne({
-      where: {
-        email: email.toLowerCase(),
-      },
-    });
+    const adminUserEntity = await this.userRepository
+      .createQueryBuilder('u')
+      .where('LOWER(u.email) = :email', { email: email.toLowerCase() })
+      .getOne();
     if (!adminUserEntity) {
       return null;
     }
