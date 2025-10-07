@@ -7,6 +7,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Patch,
   Query,
   Request,
   UseGuards,
@@ -15,6 +16,8 @@ import { ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../../infrastructure/common/guards/jwtAuth.guard';
 import { UserUseCases } from '../../../usecases/user/user.usecases';
 import { CreateUserDto, UpdateUserDto } from './user.dto';
+import { ProfileUseCases } from 'src/usecases/profile/profile.usecases';
+import { UpdateProfileDto } from '../profile/profile.dto';
 import { Permission } from 'src/infrastructure/common/decorators/permissions.decorator';
 import { PermissionGuard } from 'src/infrastructure/common/guards/permission.guard';
 import { LoginUseCases } from 'src/usecases/auth/login.usecases';
@@ -25,6 +28,7 @@ export class UserController {
   constructor(
     private readonly userUseCases: UserUseCases,
     private readonly loginUsecaseProxy: LoginUseCases,
+    private readonly profileUseCases: ProfileUseCases,
   ) {}
 
   @UseGuards(PermissionGuard)
@@ -55,13 +59,14 @@ export class UserController {
   })
   async getMe(@Request() req) {
     console.log('req.user', req.user);
-    const user = await this.userUseCases.getMe(req.user.email);
+    const user: any = await this.userUseCases.getMe(req.user.email);
     const accessTokenCookie = await this.loginUsecaseProxy.getJwtToken(
       user.email,
     );
 
+    const { password, ...userWithoutPassword } = user || {};
     return {
-      user,
+      user: userWithoutPassword,
       authentication: accessTokenCookie,
     };
   }
@@ -114,5 +119,49 @@ export class UserController {
   @ApiResponse({ status: 204, description: 'User deleted' })
   deleteUser(@Param('id', ParseIntPipe) id: number) {
     return this.userUseCases.deleteUser(id);
+  }
+
+  @Patch('me')
+  @ApiOperation({
+    summary: "Update the current user's profile (first and last name)",
+  })
+  @ApiBody({ type: UpdateProfileDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Updated user',
+    schema: {
+      example: {
+        user: {
+          id: 1,
+          email: 'user@example.com',
+          profile: { id: 1, first_name: 'John', last_name: 'Doe' },
+        },
+        authentication: 'jwt-token',
+      },
+    },
+  })
+  async updateMe(@Request() req, @Body() body: UpdateProfileDto) {
+    // Get current user and their profile
+    const currentUser: any = await this.userUseCases.getMe(req.user.email);
+    if (!currentUser || !currentUser.profile) {
+      throw new Error('Profile not found');
+    }
+
+    await this.profileUseCases.updateProfile(
+      currentUser.profile.id,
+      body as any,
+    );
+
+    // Return the same user object shape as login (with token)
+    const updatedUser: any = await this.userUseCases.getMe(req.user.email);
+    const accessTokenCookie = await this.loginUsecaseProxy.getJwtToken(
+      req.user.email,
+    );
+
+    const { password, ...userWithoutPassword } = updatedUser || {};
+    return {
+      user: userWithoutPassword,
+      authentication: accessTokenCookie,
+    };
   }
 }

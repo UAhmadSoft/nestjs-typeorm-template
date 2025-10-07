@@ -125,7 +125,7 @@ export class AuthController {
     description: 'google-login',
   })
   async googleLogin(@Body() auth: AuthGoogleDto, @Response() res) {
-    let user = await this.userUseCases.checkUser(auth.email);
+    let user: any = await this.userUseCases.checkUser(auth.email);
 
     if (!user) {
       user = await this.userUseCases.createUser({
@@ -139,12 +139,16 @@ export class AuthController {
         throw new UnauthorizedException('Please login with your password');
       }
     }
+
+    // Refetch user with profile to get consistent shape
+    const fullUser: any = await this.userUseCases.getMe(auth.email);
     const accessTokenCookie = await this.loginUsecaseProxy.getJwtToken(
-      user.email,
+      auth.email,
     );
 
+    const { password, ...userWithoutPassword } = fullUser || {};
     return res.json({
-      user: user,
+      user: userWithoutPassword,
       authentication: accessTokenCookie,
     });
   }
@@ -215,7 +219,7 @@ export class AuthController {
     schema: {
       example: {
         user: { id: 1, email: 'user@example.com' },
-        token: 'jwt-token',
+        authentication: 'jwt-token',
       },
     },
   })
@@ -230,7 +234,7 @@ export class AuthController {
     @Next() next,
   ) {
     return await catchAsync(async (req, res) => {
-      const User = await this.userUseCases.createUserOnConfirmation(
+      const User: any = await this.userUseCases.createUserOnConfirmation(
         user.code,
         user.email,
       );
@@ -239,9 +243,10 @@ export class AuthController {
           user.email,
         );
 
+        const { password, ...userWithoutPassword } = User || {};
         return res.json({
-          user: User,
-          token: accessTokenCookie,
+          user: userWithoutPassword,
+          authentication: accessTokenCookie,
         });
       } else {
         throw new HttpException(

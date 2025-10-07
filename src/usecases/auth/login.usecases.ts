@@ -43,31 +43,22 @@ export class LoginUseCases {
     }
     const match = await this.bcryptService.compare(pass, user.password);
 
-    console.log('user', user);
-    console.log('match', match);
     if (user && match) {
-      const { password, ...result } = user;
-      console.log('user', user);
+      const { password, ...result } = user as any;
       return result;
     }
     throw new UnauthorizedException('Wrong password');
   }
   async validateEmailForLocalStragtegy(email: string) {
     const user = await this.userRepository.getActiveUserByEmail(email);
-    if (!user) {
-      return null;
-    }
-    return user;
+    if (!user) return null;
+    const { password, ...result } = user as any;
+    return result;
   }
   async validateUserForJWTStragtegy(email: string) {
-    const verifEmail = await this.userRepository.getActiveUserByEmail(email);
-    if (!verifEmail) {
-      return null;
-    }
     const user = await this.userRepository.getActiveUserByEmail(email);
-    if (!user) {
-      return null;
-    }
-    return user;
+    if (!user) return null;
+    const { password, ...result } = user as any;
+    return result;
   }
 }
