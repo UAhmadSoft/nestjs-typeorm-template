@@ -70,6 +70,16 @@ export class AuthController {
   @UseGuards(LoginGuard)
   @ApiBearerAuth()
   @ApiBody({ type: AuthLoginDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Successful login',
+    schema: {
+      example: {
+        user: { id: 1, email: 'user@example.com', is_active: true },
+        authentication: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+      }
+    }
+  })
   @ApiOperation({
     summary: 'Log in with email and password',
     description: 'login',
@@ -100,6 +110,11 @@ export class AuthController {
   @Post('google-login')
   @ApiBearerAuth()
   @ApiBody({ type: AuthGoogleDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Successful Google login',
+    schema: { example: { user: { id: 1, email: 'user@gmail.com' }, authentication: 'jwt-token' } }
+  })
   @ApiOperation({
     summary: 'Log in using Google account',
     description: 'google-login',
@@ -132,6 +147,11 @@ export class AuthController {
   @Post('signup')
   @ApiBearerAuth()
   @ApiBody({ type: AuthSignUpDto })
+  @ApiResponse({
+    status: 201,
+    description: 'User created and OTP sent for confirmation',
+    schema: { example: { status: 'success', message: 'Otp is Sent to your email ,please verify your email ' } }
+  })
   @ApiOperation({
     summary: 'Create a new user (signup)',
     description: 'sign up',
@@ -179,6 +199,11 @@ export class AuthController {
   @Post('confirm-signup')
   @ApiBearerAuth()
   @ApiBody({ type: AuthConfirmSignUpDto })
+  @ApiResponse({
+    status: 200,
+    description: 'User confirmed and token returned',
+    schema: { example: { user: { id: 1, email: 'user@example.com' }, token: 'jwt-token' } }
+  })
   @ApiOperation({
     summary: 'Confirm signup with verification code',
     description: 'confirm sign up',
@@ -215,6 +240,7 @@ export class AuthController {
   @Post('resend-code-email')
   @ApiBearerAuth()
   @ApiBody({ type: ResendCodeDto })
+  @ApiResponse({ status: 200, description: 'Resent confirmation code', schema: { example: { status: 'success', message: 'Email sent with code for confirmation' } } })
   @ApiOperation({
     summary: 'Resend confirmation code to email',
     description: 'sign up',
@@ -247,6 +273,7 @@ export class AuthController {
     description: 'forgot-password',
   })
   @ApiBody({ type: ForgotPasswordDto })
+  @ApiResponse({ status: 200, description: 'Password reset request accepted', schema: { example: { message: 'Reset email sent' } } })
   async forgotPassword(
     @Body() forgotDto: ForgotPasswordDto,
     @Request() req,
@@ -264,6 +291,7 @@ export class AuthController {
   @Put('set-password/:code')
   @ApiOperation({ summary: 'Set a new password using a reset code' })
   @ApiBody({ type: SetPasswordDto })
+  @ApiResponse({ status: 200, description: 'Password set successfully', schema: { example: { status: 'success', message: 'Password Updated successfully' } } })
   async setPassword(
     @Param('code', ParseIntPipe) code: number,
     @Body() body: SetPasswordDto,
@@ -295,6 +323,7 @@ export class AuthController {
   @Patch('reset-password/:code')
   @ApiOperation({ summary: 'Reset password using provided code' })
   @ApiBody({ type: ResetPasswordDto })
+  @ApiResponse({ status: 200, description: 'Password reset and user updated', schema: { example: { id: 1, email: 'user@example.com' } } })
   async resetPassword(
     @Body() body: ResetPasswordDto,
     @Param('code') code: number,
@@ -321,6 +350,7 @@ export class AuthController {
   @Patch('update-password')
   @ApiOperation({ summary: "Update the logged-in user's password" })
   @ApiBody({ type: UpdatePasswordDto })
+  @ApiResponse({ status: 200, description: "Password updated and user returned", schema: { example: { id: 1, email: 'user@example.com' } } })
   async updatePassword(
     @Body() user: UpdatePasswordDto,
     @Request() req,
