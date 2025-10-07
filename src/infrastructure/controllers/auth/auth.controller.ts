@@ -70,7 +70,10 @@ export class AuthController {
   @UseGuards(LoginGuard)
   @ApiBearerAuth()
   @ApiBody({ type: AuthLoginDto })
-  @ApiOperation({ description: 'login' })
+  @ApiOperation({
+    summary: 'Log in with email and password',
+    description: 'login',
+  })
   async login(
     @Body() auth: AuthLoginDto,
     @Request() req,
@@ -97,7 +100,10 @@ export class AuthController {
   @Post('google-login')
   @ApiBearerAuth()
   @ApiBody({ type: AuthGoogleDto })
-  @ApiOperation({ description: 'google-login' })
+  @ApiOperation({
+    summary: 'Log in using Google account',
+    description: 'google-login',
+  })
   async googleLogin(@Body() auth: AuthGoogleDto, @Response() res) {
     let user = await this.userUseCases.checkUser(auth.email);
 
@@ -126,7 +132,10 @@ export class AuthController {
   @Post('signup')
   @ApiBearerAuth()
   @ApiBody({ type: AuthSignUpDto })
-  @ApiOperation({ description: 'sign up' })
+  @ApiOperation({
+    summary: 'Create a new user (signup)',
+    description: 'sign up',
+  })
   async SignUp(
     @Body() auth: AuthSignUpDto,
     @Request() req,
@@ -170,7 +179,10 @@ export class AuthController {
   @Post('confirm-signup')
   @ApiBearerAuth()
   @ApiBody({ type: AuthConfirmSignUpDto })
-  @ApiOperation({ description: 'confirm sign up' })
+  @ApiOperation({
+    summary: 'Confirm signup with verification code',
+    description: 'confirm sign up',
+  })
   async ConfirmUserSignUp(
     @Body() user: AuthConfirmSignUpDto,
     @Request() req,
@@ -203,7 +215,10 @@ export class AuthController {
   @Post('resend-code-email')
   @ApiBearerAuth()
   @ApiBody({ type: ResendCodeDto })
-  @ApiOperation({ description: 'sign up' })
+  @ApiOperation({
+    summary: 'Resend confirmation code to email',
+    description: 'sign up',
+  })
   async ResendCode(
     @Body() auth: ResendCodeDto,
     @Request() req,
@@ -227,7 +242,10 @@ export class AuthController {
   }
 
   @Post('forgot-password')
-  @ApiOperation({ description: 'forgot-password' })
+  @ApiOperation({
+    summary: 'Request a password reset email/code',
+    description: 'forgot-password',
+  })
   async forgotPassword(
     @Body() forgotDto: ForgotPasswordDto,
     @Request() req,
@@ -243,6 +261,7 @@ export class AuthController {
   }
 
   @Put('set-password/:code')
+  @ApiOperation({ summary: 'Set a new password using a reset code' })
   async setPassword(
     @Param('code', ParseIntPipe) code: number,
     @Body() body: SetPasswordDto,
@@ -272,6 +291,7 @@ export class AuthController {
   }
 
   @Patch('reset-password/:code')
+  @ApiOperation({ summary: 'Reset password using provided code' })
   async resetPassword(
     @Body() body: ResetPasswordDto,
     @Param('code') code: number,
@@ -296,6 +316,7 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Patch('update-password')
+  @ApiOperation({ summary: "Update the logged-in user's password" })
   async updatePassword(
     @Body() user: UpdatePasswordDto,
     @Request() req,

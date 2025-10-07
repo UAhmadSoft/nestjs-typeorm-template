@@ -5,8 +5,10 @@ import { SwaggerConfig } from './swagger.interface';
  * Change this to suit your app!
  */
 export const SWAGGER_CONFIG: SwaggerConfig = {
-  title: 'Liberty Sweets api',
-  description: 'Nest js api',
+  title: process.env.npm_package_name || 'Nestjs Template',
+  description:
+    process.env.npm_package_description ||
+    'The Nestjs Template API description',
   version: '1.0',
   tags: [],
   contact: {
