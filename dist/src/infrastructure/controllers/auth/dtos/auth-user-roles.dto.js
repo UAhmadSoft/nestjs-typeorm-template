@@ -15,7 +15,7 @@ const class_validator_1 = require("class-validator");
 class AuthUserRoleDto {
 }
 __decorate([
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: ['admin', 'editor'] }),
     (0, class_validator_1.ArrayNotEmpty)(),
     (0, class_validator_1.IsArray)(),
     __metadata("design:type", Array)

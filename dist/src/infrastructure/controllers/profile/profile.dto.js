@@ -17,25 +17,25 @@ class CreateProfileDto {
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 'John' }),
     __metadata("design:type", String)
 ], CreateProfileDto.prototype, "first_name", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 'Doe' }),
     __metadata("design:type", String)
 ], CreateProfileDto.prototype, "last_name", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 'https://example.com/avatar.png' }),
     __metadata("design:type", String)
 ], CreateProfileDto.prototype, "image_url", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 1 }),
     __metadata("design:type", Number)
 ], CreateProfileDto.prototype, "user", void 0);
 exports.CreateProfileDto = CreateProfileDto;
@@ -44,25 +44,25 @@ class UpdateProfileDto {
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 'John' }),
     __metadata("design:type", String)
 ], UpdateProfileDto.prototype, "first_name", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 'Doe' }),
     __metadata("design:type", String)
 ], UpdateProfileDto.prototype, "last_name", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 'https://example.com/avatar.png' }),
     __metadata("design:type", String)
 ], UpdateProfileDto.prototype, "image_url", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: 1 }),
     __metadata("design:type", Number)
 ], UpdateProfileDto.prototype, "user", void 0);
 exports.UpdateProfileDto = UpdateProfileDto;

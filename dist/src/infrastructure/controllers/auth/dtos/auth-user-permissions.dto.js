@@ -18,13 +18,13 @@ class NestedAuthUserPermissionDto {
     }
 }
 __decorate([
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 'read:users' }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], NestedAuthUserPermissionDto.prototype, "permissions", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: true }),
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Object)
 ], NestedAuthUserPermissionDto.prototype, "is_allow", void 0);
@@ -32,7 +32,7 @@ exports.NestedAuthUserPermissionDto = NestedAuthUserPermissionDto;
 class AuthUserPermissionsDto {
 }
 __decorate([
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: ['read:users', 'write:users'] }),
     (0, class_validator_1.IsArray)(),
     __metadata("design:type", Array)
 ], AuthUserPermissionsDto.prototype, "permissions", void 0);

@@ -17,91 +17,91 @@ class CreateUserDto {
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 'user@example.com' }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 'Str0ngP@ssw0rd!' }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 123456 }),
     __metadata("design:type", Number)
 ], CreateUserDto.prototype, "signup_otp", void 0);
 __decorate([
     (0, class_validator_1.IsDate)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: '2025-10-07T12:00:00.000Z' }),
     __metadata("design:type", Date)
 ], CreateUserDto.prototype, "signup_otp_expiry", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 654321 }),
     __metadata("design:type", Number)
 ], CreateUserDto.prototype, "forget_email_otp", void 0);
 __decorate([
     (0, class_validator_1.IsDate)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: '2025-10-07T13:00:00.000Z' }),
     __metadata("design:type", Date)
 ], CreateUserDto.prototype, "forget_email_otp_expiry", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: false }),
     __metadata("design:type", Boolean)
 ], CreateUserDto.prototype, "is_social_login", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: true }),
     __metadata("design:type", Boolean)
 ], CreateUserDto.prototype, "is_email_verified", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 'new@example.com' }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "upcoming_email", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 111222 }),
     __metadata("design:type", Number)
 ], CreateUserDto.prototype, "upcoming_email_otp", void 0);
 __decorate([
     (0, class_validator_1.IsDate)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: '2025-10-07T14:00:00.000Z' }),
     __metadata("design:type", Date)
 ], CreateUserDto.prototype, "upcoming_email_otp_expiry", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: true }),
     __metadata("design:type", Boolean)
 ], CreateUserDto.prototype, "allow_notifications", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: true }),
     __metadata("design:type", Boolean)
 ], CreateUserDto.prototype, "is_active", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: false }),
     __metadata("design:type", Boolean)
 ], CreateUserDto.prototype, "is_banned", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, swagger_1.ApiProperty)({ required: true, example: 'device-uuid-1234' }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "device", void 0);
 exports.CreateUserDto = CreateUserDto;
@@ -110,91 +110,91 @@ class UpdateUserDto {
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: 'user@example.com' }),
     __metadata("design:type", String)
 ], UpdateUserDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: 'Str0ngP@ssw0rd!' }),
     __metadata("design:type", String)
 ], UpdateUserDto.prototype, "password", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: 123456 }),
     __metadata("design:type", Number)
 ], UpdateUserDto.prototype, "signup_otp", void 0);
 __decorate([
     (0, class_validator_1.IsDate)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: '2025-10-07T12:00:00.000Z' }),
     __metadata("design:type", Date)
 ], UpdateUserDto.prototype, "signup_otp_expiry", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: 654321 }),
     __metadata("design:type", Number)
 ], UpdateUserDto.prototype, "forget_email_otp", void 0);
 __decorate([
     (0, class_validator_1.IsDate)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: '2025-10-07T13:00:00.000Z' }),
     __metadata("design:type", Date)
 ], UpdateUserDto.prototype, "forget_email_otp_expiry", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: false }),
     __metadata("design:type", Boolean)
 ], UpdateUserDto.prototype, "is_social_login", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: true }),
     __metadata("design:type", Boolean)
 ], UpdateUserDto.prototype, "is_email_verified", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: 'new@example.com' }),
     __metadata("design:type", String)
 ], UpdateUserDto.prototype, "upcoming_email", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: 111222 }),
     __metadata("design:type", Number)
 ], UpdateUserDto.prototype, "upcoming_email_otp", void 0);
 __decorate([
     (0, class_validator_1.IsDate)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: '2025-10-07T14:00:00.000Z' }),
     __metadata("design:type", Date)
 ], UpdateUserDto.prototype, "upcoming_email_otp_expiry", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: true }),
     __metadata("design:type", Boolean)
 ], UpdateUserDto.prototype, "allow_notifications", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: true }),
     __metadata("design:type", Boolean)
 ], UpdateUserDto.prototype, "is_active", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: false }),
     __metadata("design:type", Boolean)
 ], UpdateUserDto.prototype, "is_banned", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
-    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, swagger_1.ApiProperty)({ required: false, example: 'device-uuid-1234' }),
     __metadata("design:type", String)
 ], UpdateUserDto.prototype, "device", void 0);
 exports.UpdateUserDto = UpdateUserDto;

@@ -177,7 +177,20 @@ __decorate([
     (0, common_1.UseGuards)(login_guard_1.LoginGuard),
     (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiBody)({ type: auth_dto_1.AuthLoginDto }),
-    (0, swagger_1.ApiOperation)({ description: 'login' }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'Successful login',
+        schema: {
+            example: {
+                user: { id: 1, email: 'user@example.com', is_active: true },
+                authentication: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+            },
+        },
+    }),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Log in with email and password',
+        description: 'login',
+    }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Request)()),
     __param(2, (0, common_1.Response)()),
@@ -190,7 +203,20 @@ __decorate([
     (0, common_1.Post)('google-login'),
     (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiBody)({ type: auth_dto_1.AuthGoogleDto }),
-    (0, swagger_1.ApiOperation)({ description: 'google-login' }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'Successful Google login',
+        schema: {
+            example: {
+                user: { id: 1, email: 'user@gmail.com' },
+                authentication: 'jwt-token',
+            },
+        },
+    }),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Log in using Google account',
+        description: 'google-login',
+    }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Response)()),
     __metadata("design:type", Function),
@@ -201,7 +227,20 @@ __decorate([
     (0, common_1.Post)('signup'),
     (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiBody)({ type: auth_dto_1.AuthSignUpDto }),
-    (0, swagger_1.ApiOperation)({ description: 'sign up' }),
+    (0, swagger_1.ApiResponse)({
+        status: 201,
+        description: 'User created and OTP sent for confirmation',
+        schema: {
+            example: {
+                status: 'success',
+                message: 'Otp is Sent to your email ,please verify your email ',
+            },
+        },
+    }),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Create a new user (signup)',
+        description: 'sign up',
+    }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Request)()),
     __param(2, (0, common_1.Response)()),
@@ -214,7 +253,20 @@ __decorate([
     (0, common_1.Post)('confirm-signup'),
     (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiBody)({ type: auth_dto_1.AuthConfirmSignUpDto }),
-    (0, swagger_1.ApiOperation)({ description: 'confirm sign up' }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'User confirmed and token returned',
+        schema: {
+            example: {
+                user: { id: 1, email: 'user@example.com' },
+                token: 'jwt-token',
+            },
+        },
+    }),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Confirm signup with verification code',
+        description: 'confirm sign up',
+    }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Request)()),
     __param(2, (0, common_1.Response)()),
@@ -227,7 +279,20 @@ __decorate([
     (0, common_1.Post)('resend-code-email'),
     (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiBody)({ type: auth_dto_1.ResendCodeDto }),
-    (0, swagger_1.ApiOperation)({ description: 'sign up' }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'Resent confirmation code',
+        schema: {
+            example: {
+                status: 'success',
+                message: 'Email sent with code for confirmation',
+            },
+        },
+    }),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Resend confirmation code to email',
+        description: 'sign up',
+    }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Request)()),
     __param(2, (0, common_1.Response)()),
@@ -238,7 +303,16 @@ __decorate([
 ], AuthController.prototype, "ResendCode", null);
 __decorate([
     (0, common_1.Post)('forgot-password'),
-    (0, swagger_1.ApiOperation)({ description: 'forgot-password' }),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Request a password reset email/code',
+        description: 'forgot-password',
+    }),
+    (0, swagger_1.ApiBody)({ type: auth_dto_1.ForgotPasswordDto }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'Password reset request accepted',
+        schema: { example: { message: 'Reset email sent' } },
+    }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Request)()),
     __param(2, (0, common_1.Response)()),
@@ -249,6 +323,15 @@ __decorate([
 ], AuthController.prototype, "forgotPassword", null);
 __decorate([
     (0, common_1.Put)('set-password/:code'),
+    (0, swagger_1.ApiOperation)({ summary: 'Set a new password using a reset code' }),
+    (0, swagger_1.ApiBody)({ type: auth_dto_1.SetPasswordDto }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'Password set successfully',
+        schema: {
+            example: { status: 'success', message: 'Password Updated successfully' },
+        },
+    }),
     __param(0, (0, common_1.Param)('code', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, common_1.Request)()),
@@ -260,6 +343,13 @@ __decorate([
 ], AuthController.prototype, "setPassword", null);
 __decorate([
     (0, common_1.Patch)('reset-password/:code'),
+    (0, swagger_1.ApiOperation)({ summary: 'Reset password using provided code' }),
+    (0, swagger_1.ApiBody)({ type: auth_dto_1.ResetPasswordDto }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'Password reset and user updated',
+        schema: { example: { id: 1, email: 'user@example.com' } },
+    }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Param)('code')),
     __param(2, (0, common_1.Request)()),
@@ -272,6 +362,13 @@ __decorate([
 __decorate([
     (0, common_1.UseGuards)(jwtAuth_guard_1.JwtAuthGuard),
     (0, common_1.Patch)('update-password'),
+    (0, swagger_1.ApiOperation)({ summary: "Update the logged-in user's password" }),
+    (0, swagger_1.ApiBody)({ type: auth_dto_1.UpdatePasswordDto }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'Password updated and user returned',
+        schema: { example: { id: 1, email: 'user@example.com' } },
+    }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Request)()),
     __param(2, (0, common_1.Response)()),
